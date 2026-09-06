@@ -3,6 +3,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 import { eventsData } from '../data/eventsData';
 import { EventModal } from './EventModal';
 import { SpringCoilDecor } from './GeometricDecors';
+import { SaitLogoShowcase } from './SaitLogoShowcase';
 
 export const EventsSection = ({ onNotifyToast }) => {
   const [selectedEventForModal, setSelectedEventForModal] = useState(null);
@@ -53,13 +54,9 @@ export const EventsSection = ({ onNotifyToast }) => {
             </div>
           </div>
 
-          {/* Right Column: Featured Laptop/Workspace Photo */}
+          {/* Right Column: Interactive Holographic SAIT Logo Showcase */}
           <div>
-            <img 
-              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80" 
-              alt="Campus Event Tech Workspace" 
-              className="event-featured-image"
-            />
+            <SaitLogoShowcase />
           </div>
         </div>
       </div>

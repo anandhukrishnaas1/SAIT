@@ -48,4 +48,4 @@ public/
 
 ## License
 
-Designed & Developed by SAIT — Division of Information Technology, SOE CUSAT.
+Designed & Developed by ITians — Division of Information Technology, SOE CUSAT.

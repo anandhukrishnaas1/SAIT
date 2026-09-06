@@ -48,4 +48,4 @@ public/
 
 ## License
 
-Built for the SAIT Website Redesign Challenge — SOE CUSAT.
+Designed & Developed by SAIT — Division of Information Technology, SOE CUSAT.

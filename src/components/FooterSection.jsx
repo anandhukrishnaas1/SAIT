@@ -177,7 +177,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
             © {new Date().getFullYear()} SAIT. Division of Information Technology, SOE CUSAT.
           </div>
           <div>
-            Crafted for the SAIT Website Redesign Challenge
+            Designed & Developed by SAIT Tech Team
           </div>
         </div>
 

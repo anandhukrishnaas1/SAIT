@@ -3,7 +3,7 @@ import './styles/mobile-animations.css';
 import { Navbar } from './components/Navbar';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { MobileBottomNav } from './components/MobileBottomNav';
-import { useScrollReveal, useScrollProgress } from './hooks/useScrollAnimations';
+import { useScrollReveal } from './hooks/useScrollAnimations';
 import { HeroSection } from './components/HeroSection';
 import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
@@ -70,7 +70,6 @@ export function App() {
 
   // Scroll reveal (IntersectionObserver) & scroll progress bar
   useScrollReveal();
-  useScrollProgress();
 
   // Sync Activities to localStorage and calculate Leaderboard
   useEffect(() => {
@@ -104,9 +103,6 @@ export function App() {
 
   return (
     <div className="app-root">
-      {/* Scroll progress bar */}
-      <div id="scroll-progress" aria-hidden="true" />
-
       {/* Top Announcement Bar */}
       <AnnouncementBar announcements={announcementsData} />
 

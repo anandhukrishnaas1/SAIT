@@ -52,26 +52,4 @@ export function useScrollReveal() {
   }, []);
 }
 
-/**
- * useScrollProgress - drives the #scroll-progress bar
- * for browsers that don't support CSS scroll-driven animations (Firefox).
- */
-export function useScrollProgress() {
-  useEffect(() => {
-    const bar = document.getElementById('scroll-progress');
-    if (!bar) return;
-
-    // If native CSS scroll-driven animations are supported, do nothing
-    if (CSS.supports('animation-timeline', 'scroll()')) return;
-
-    const onScroll = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
-      bar.style.transform = `scaleX(${pct})`;
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-}
 

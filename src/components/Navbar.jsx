@@ -13,7 +13,8 @@ export const Navbar = ({
   announcements,
   unreadNotifs,
   setUnreadNotifs,
-  onOpenActivityModal
+  onOpenActivityModal,
+  onReplayIntro
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showNotifs, setShowNotifs] = useState(false);

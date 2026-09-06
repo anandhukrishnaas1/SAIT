@@ -10,7 +10,8 @@ import {
   FileText, 
   PlusCircle, 
   ArrowRight,
-  Terminal
+  Terminal,
+  Sparkles
 } from 'lucide-react';
 
 export const CommandPalette = ({ 
@@ -21,7 +22,8 @@ export const CommandPalette = ({
   alumni, 
   resources,
   onOpenActivityModal,
-  onOpenTerminal
+  onOpenTerminal,
+  onReplayIntro
 }) => {
   const [query, setQuery] = useState('');
   const inputRef = useRef(null);
@@ -125,6 +127,19 @@ export const CommandPalette = ({
                 </div>
                 <span className="cmd-result-tag">CLI Tool</span>
               </div>
+
+              {onReplayIntro && (
+                <div 
+                  className="cmd-result-item" 
+                  onClick={() => { onClose(); onReplayIntro(); }}
+                >
+                  <div className="cmd-result-info">
+                    <Sparkles size={16} color="var(--brand-primary)" />
+                    <span>Replay Cinematic 'IT' Intro (Stranger Things Style)</span>
+                  </div>
+                  <span className="cmd-result-tag">Intro</span>
+                </div>
+              )}
 
               <div 
                 className="cmd-result-item" 

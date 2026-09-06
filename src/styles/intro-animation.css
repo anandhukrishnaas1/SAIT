@@ -1,98 +1,191 @@
 /* ==========================================================================
-   INTRO ANIMATION — STRANGER THINGS STYLE 'IT' CINEMATIC LOADING
-   Color theme: SAIT Monochrome (#0a0a0a, #ffffff, #a8a8a8) & Frosted Glass.
+   STRANGER THINGS 'IT' CINEMATIC INTRO — STANDALONE SINGLE PAGE
+   Sleek SAIT Monochrome Glass aesthetic with iconic Stranger Things mechanics:
+   - Floating dark void with stardust particle canvas.
+   - Creeping hollow neon glass letters ("I" and "T") in dramatic serif typography.
+   - Horizontal neon framing bars that expand outward with glowing endpoints.
+   - Intense bloom & lock flash pulse.
+   - Smooth zoom-through dissolving into the SAIT home page.
    ========================================================================== */
 
-.intro-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #080808;
-  overflow: hidden;
+/* Fullscreen Standalone Page Container */
+.intro-single-page {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999999 !important;
+  background-color: #060608 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
   cursor: pointer;
   user-select: none;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, filter, transform;
 }
 
-/* Glass backdrop with high-blur */
-.intro-backdrop-blur {
+/* Background Cosmic Ash / Stardust Particle Canvas */
+.intro-particle-canvas {
   position: absolute;
-  inset: 0;
-  background: rgba(8, 8, 10, 0.94);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* Deep cinematic vignette */
-.intro-light-vignette {
+/* Deep Vignette (Stranger Things 80s Dark Void) */
+.intro-deep-vignette {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     circle at 50% 50%,
-    transparent 30%,
-    rgba(8, 8, 8, 0.7) 70%,
-    #050505 100%
+    rgba(10, 10, 14, 0.3) 0%,
+    rgba(6, 6, 8, 0.75) 55%,
+    #040406 100%
   );
   pointer-events: none;
+  z-index: 2;
 }
 
-/* Subtle prismatic glass light beam sweeping through */
-.intro-beam-sweep {
+/* Subtle Film Grain Texture Overlay */
+.intro-film-grain {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.035) 48%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.035) 52%,
-    transparent 58%
-  );
-  animation: introBeamSlide 2.6s ease-in-out infinite;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 4px 4px;
+  opacity: 0.35;
   pointer-events: none;
+  z-index: 3;
 }
 
-@keyframes introBeamSlide {
-  0% { transform: translateY(-30%) rotate(25deg); opacity: 0; }
-  25% { opacity: 1; }
-  75% { opacity: 1; }
-  100% { transform: translateY(30%) rotate(25deg); opacity: 0; }
+/* Anamorphic Horizontal Lens Light Streak */
+.intro-anamorphic-streak {
+  position: absolute;
+  top: 48%;
+  left: -20%;
+  width: 140%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 3;
+  animation: streakPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes streakPulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(0.8); }
+  50% { opacity: 0.6; transform: scaleY(1.4); }
+}
+
+/* Ambient Subtle Chromatic Aura (Subtle deep-red & cool-silver edge glow) */
+.intro-ambient-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  max-width: 90vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(220, 40, 40, 0.04) 40%,
+    transparent 75%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 2;
+  animation: auraBreathe 3s ease-in-out infinite;
+}
+
+@keyframes auraBreathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+/* Top Skip Button */
+.intro-skip-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.intro-skip-btn kbd {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.intro-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.15);
 }
 
 /* --------------------------------------------------------------------------
-   CENTRAL STRANGER THINGS LETTER CONTAINER
+   CENTRAL STRANGER THINGS LETTER MONOLITH
    -------------------------------------------------------------------------- */
-.intro-content {
+.intro-monolith-wrap {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1.5rem;
+  animation: monolithCreep 2.4s cubic-bezier(0.12, 0.7, 0.25, 1) forwards;
   will-change: transform, opacity;
-  animation: introSlowZoom 2.2s cubic-bezier(0.1, 0.6, 0.2, 1) forwards;
 }
 
-@keyframes introSlowZoom {
+@keyframes monolithCreep {
   0% {
-    transform: scale(0.82) translateZ(0);
+    transform: scale(0.8) translateZ(0);
     opacity: 0;
   }
-  15% {
+  20% {
     opacity: 1;
   }
-  80% {
+  85% {
     transform: scale(1.08) translateZ(0);
     opacity: 1;
   }
@@ -103,217 +196,305 @@
 }
 
 /* --------------------------------------------------------------------------
-   FRAMING HORIZONTAL BARS (Classic Stranger Things Header/Footer Rails)
+   FRAMING HORIZONTAL BARS (Classic Stranger Things Header & Footer Rails)
    -------------------------------------------------------------------------- */
-.intro-frame-bar {
+.intro-frame-line {
+  position: relative;
   width: 0%;
   height: 2px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.3) 15%,
+    rgba(255, 255, 255, 0.4) 15%,
     #ffffff 50%,
-    rgba(255, 255, 255, 0.3) 85%,
+    rgba(255, 255, 255, 0.4) 85%,
     transparent 100%
   );
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7),
-              0 0 24px rgba(168, 168, 168, 0.4);
-  animation: expandFrameBar 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.8),
+              0 0 28px rgba(180, 180, 200, 0.45);
+  animation: expandFramingBar 1.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.intro-frame-bar.bar-top {
-  margin-bottom: 0.5rem;
+.intro-frame-line.line-top {
+  margin-bottom: 0.6rem;
 }
 
-.intro-frame-bar.bar-bottom {
-  margin-top: 0.5rem;
+.intro-frame-line.line-bottom {
+  margin-top: 0.6rem;
 }
 
-@keyframes expandFrameBar {
+.frame-line-glow {
+  position: absolute;
+  inset: -1px 0;
+  background: inherit;
+  filter: blur(3px);
+}
+
+.frame-line-dot {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+  transform: translateY(-50%);
+}
+
+.frame-line-dot.left { left: 0; }
+.frame-line-dot.right { right: 0; }
+
+@keyframes expandFramingBar {
   0% {
-    width: 10%;
+    width: 8%;
     opacity: 0;
   }
-  20% {
+  25% {
     opacity: 1;
   }
   100% {
     width: 100%;
-    max-width: 440px;
+    max-width: 460px;
     opacity: 0.95;
   }
 }
 
 /* --------------------------------------------------------------------------
-   "IT" LUMINOUS HOLLOW GLASS LETTERS
+   GIANT HOLLOW NEON "IT" LETTERS (Benguiat / Cinzel Serif Style)
    -------------------------------------------------------------------------- */
-.intro-title-wrap {
+.intro-it-letters {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  margin: 0.5rem 0;
+  gap: 1.8rem;
+  line-height: 0.88;
+  margin: 0.25rem 0;
 }
 
-.intro-letter {
-  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(6.5rem, 18vw, 12rem);
+.intro-letter-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-i {
+  animation: creepCharI 1.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.box-t {
+  animation: creepCharT 1.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes creepCharI {
+  0% {
+    transform: translateX(-40px) scale(0.92);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes creepCharT {
+  0% {
+    transform: translateX(40px) scale(0.92);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.intro-char {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: clamp(6.5rem, 20vw, 13.5rem);
   font-weight: 900;
   text-transform: uppercase;
+  display: inline-block;
   color: transparent;
-  -webkit-text-stroke: 2.2px rgba(255, 255, 255, 0.95);
+  -webkit-text-stroke: 2.8px rgba(255, 255, 255, 0.96);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(200, 200, 210, 0.12) 50%,
+    rgba(220, 220, 230, 0.08) 50%,
     rgba(255, 255, 255, 0.35) 100%
   );
   -webkit-background-clip: text;
   text-shadow: 
-    0 0 18px rgba(255, 255, 255, 0.65),
-    0 0 45px rgba(255, 255, 255, 0.35),
-    0 0 80px rgba(168, 168, 168, 0.25);
-  display: inline-block;
-  will-change: transform, text-shadow;
-}
-
-/* Letter "I" creeps in from slightly left */
-.letter-i {
-  animation: creepLetterI 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes creepLetterI {
-  0% {
-    transform: translateX(-35px) scale(0.9);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Letter "T" creeps in from slightly right */
-.letter-t {
-  animation: creepLetterT 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes creepLetterT {
-  0% {
-    transform: translateX(35px) scale(0.9);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
+    0 0 15px rgba(255, 255, 255, 0.75),
+    0 0 35px rgba(255, 255, 255, 0.45),
+    0 0 75px rgba(200, 200, 220, 0.3),
+    0 0 120px rgba(160, 160, 180, 0.2);
+  will-change: transform, text-shadow, filter;
+  letter-spacing: -0.02em;
 }
 
 /* --------------------------------------------------------------------------
-   SUBTITLE LINE
+   SUBTITLE CREDITS
    -------------------------------------------------------------------------- */
-.intro-subtext {
-  margin-top: 1.25rem;
+.intro-credits {
+  margin-top: 1.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
+  text-align: center;
   opacity: 0;
-  animation: fadeSubtext 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  animation: fadeCredits 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
-.subtext-line {
-  font-family: 'Fira Code', monospace;
-  font-size: clamp(0.68rem, 1.6vw, 0.95rem);
-  font-weight: 600;
+.credits-title {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.72rem, 1.8vw, 1.05rem);
+  font-weight: 700;
   color: #ffffff;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
 }
 
-.subtext-dots {
+.credits-sub {
+  margin: 0;
   font-family: 'Fira Code', monospace;
-  font-size: 0.65rem;
+  font-size: clamp(0.6rem, 1.2vw, 0.72rem);
   color: #a8a8a8;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
 }
 
-@keyframes fadeSubtext {
+@keyframes fadeCredits {
   0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   100% {
-    opacity: 0.9;
+    opacity: 0.92;
     transform: translateY(0);
   }
 }
 
 /* --------------------------------------------------------------------------
-   BLOOM PHASE (Bright Flash Pulse)
+   BOTTOM FOOTER HINT
    -------------------------------------------------------------------------- */
-.intro-overlay.blooming .intro-letter {
-  -webkit-text-stroke: 2.8px #ffffff;
+.intro-footer-hint {
+  position: absolute;
+  bottom: 2.2rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.18em;
+  opacity: 0;
+  animation: hintReveal 1s ease 1.1s forwards;
+}
+
+.hint-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes hintReveal {
+  to { opacity: 0.75; }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 2: BLOOM & LOCK PULSE
+   -------------------------------------------------------------------------- */
+.intro-single-page.blooming .intro-char {
+  -webkit-text-stroke: 3.2px #ffffff;
   text-shadow: 
     0 0 25px #ffffff,
-    0 0 60px rgba(255, 255, 255, 0.8),
-    0 0 120px rgba(255, 255, 255, 0.5);
+    0 0 60px rgba(255, 255, 255, 0.9),
+    0 0 110px rgba(255, 255, 255, 0.6),
+    0 0 160px rgba(220, 220, 240, 0.4);
   transition: all 0.35s ease;
 }
 
-.intro-overlay.blooming .intro-frame-bar {
-  box-shadow: 0 0 20px #ffffff,
-              0 0 40px rgba(255, 255, 255, 0.7);
+.intro-single-page.blooming .intro-frame-line {
+  box-shadow: 0 0 24px #ffffff,
+              0 0 45px rgba(255, 255, 255, 0.8);
   transition: box-shadow 0.35s ease;
 }
 
-/* --------------------------------------------------------------------------
-   EXIT PHASE (Cinematic Zoom-Through & Fade Out into Landing Page)
-   -------------------------------------------------------------------------- */
-.intro-overlay.exiting {
-  opacity: 0;
-  filter: blur(20px);
-  transform: scale(1.15);
-  pointer-events: none;
-}
-
-.intro-overlay.exiting .intro-content {
-  transform: scale(1.48) translateZ(0);
-  opacity: 0;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+.intro-single-page.blooming .intro-ambient-aura {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+  transition: all 0.4s ease;
 }
 
 /* --------------------------------------------------------------------------
-   SKIP HINT (Bottom subtle text)
+   PHASE 3: ZOOM-THROUGH EXIT INTO HOME PAGE
    -------------------------------------------------------------------------- */
-.intro-skip-hint {
-  position: absolute;
-  bottom: 2rem;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.12em;
-  opacity: 0;
-  animation: fadeHint 1s ease 1s forwards;
+.intro-single-page.exiting {
+  opacity: 0 !important;
+  filter: blur(28px) !important;
+  transform: scale(1.2) !important;
+  pointer-events: none !important;
 }
 
-@keyframes fadeHint {
-  to { opacity: 0.7; }
+.intro-single-page.exiting .intro-monolith-wrap {
+  transform: scale(1.65) translateZ(0) !important;
+  opacity: 0 !important;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   HOME PAGE ENTRANCE TRANSITION AFTER INTRO COMPLETES
+   -------------------------------------------------------------------------- */
+.site-content-hidden {
+  display: none !important;
+}
+
+.site-content-revealing {
+  display: block !important;
+  opacity: 0;
+  animation: homeSiteFadeIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.site-content-visible {
+  display: block !important;
+  opacity: 1;
+}
+
+@keyframes homeSiteFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .intro-overlay {
+  .intro-single-page {
     display: none !important;
+  }
+  .site-content-hidden {
+    display: block !important;
   }
 }

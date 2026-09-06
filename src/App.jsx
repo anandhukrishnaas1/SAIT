@@ -52,6 +52,14 @@ export function App() {
   const [activityModalOpen, setActivityModalOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
 
+  // Stranger Things IT Single-Page Intro State: 'playing' | 'revealing' | 'done'
+  const [introStage, setIntroStage] = useState('playing');
+
+  const handleReplayIntro = () => {
+    setIntroStage('playing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Toast Notification Queue
   const [toasts, setToasts] = useState([]);
 
@@ -103,133 +111,154 @@ export function App() {
   };
 
   return (
-    <div className="app-root">
-      {/* Stranger Things Style Cinematic 'IT' Intro Loader */}
-      <IntroAnimation />
+    <div className={`app-root ${introStage !== 'done' ? 'intro-active' : ''}`}>
+      {/* Stranger Things Style Cinematic 'IT' Intro — Standalone Single Page */}
+      {introStage !== 'done' && (
+        <IntroAnimation 
+          onRevealing={() => setIntroStage('revealing')}
+          onComplete={() => setIntroStage('done')}
+        />
+      )}
 
-      {/* Scroll-Reactive Glass Ambient Background Animation */}
-      <GlassBackgroundAnimation />
+      {/* Main Home Page — completely hidden during intro, smoothly revealed on exit */}
+      <div 
+        className={`main-site-wrapper ${
+          introStage === 'playing' 
+            ? 'site-content-hidden' 
+            : introStage === 'revealing' 
+              ? 'site-content-revealing' 
+              : 'site-content-visible'
+        }`}
+        aria-hidden={introStage === 'playing'}
+      >
+        {/* Scroll-Reactive Glass Ambient Background Animation */}
+        <GlassBackgroundAnimation />
 
-      {/* Minimal Stardust Cursor Trail */}
-      <CursorAnimation />
+        {/* Minimal Stardust Cursor Trail */}
+        <CursorAnimation />
 
-      {/* Top Announcement Bar */}
-      <AnnouncementBar announcements={announcementsData} />
+        {/* Top Announcement Bar */}
+        <AnnouncementBar announcements={announcementsData} />
 
-      {/* Minimalist Top Navbar */}
-      <Navbar
-        onOpenCommandPalette={() => setCommandPaletteOpen(true)}
-        onOpenTerminal={() => setTerminalOpen(true)}
-        announcements={announcementsData}
-        unreadNotifs={unreadNotifs}
-        setUnreadNotifs={setUnreadNotifs}
-        onOpenActivityModal={() => setActivityModalOpen(true)}
-      />
-
-      {/* Main Sections Ordered by Template Structure */}
-      <main>
-        {/* Hero Section */}
-        <HeroSection
-          onOpenActivityModal={() => setActivityModalOpen(true)}
+        {/* Minimalist Top Navbar */}
+        <Navbar
+          onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+          onOpenTerminal={() => setTerminalOpen(true)}
           announcements={announcementsData}
-          onNotifyToast={addToast}
+          unreadNotifs={unreadNotifs}
+          setUnreadNotifs={setUnreadNotifs}
+          onOpenActivityModal={() => setActivityModalOpen(true)}
+          onReplayIntro={handleReplayIntro}
         />
 
-        {/* Enjoy Studying / Department Pillars */}
-        <div className="reveal">
-          <PillarsSection />
-        </div>
+        {/* Main Sections Ordered by Template Structure */}
+        <main>
+          {/* Hero Section */}
+          <HeroSection
+            onOpenActivityModal={() => setActivityModalOpen(true)}
+            announcements={announcementsData}
+            onNotifyToast={addToast}
+          />
 
-        {/* Top Stories / Department Highlights */}
-        <div className="reveal reveal-stagger">
-          <TopStoriesSection onNotifyToast={addToast} />
-        </div>
-
-        {/* Placements & Careers */}
-        <div className="reveal">
-          <PlacementsSection onNotifyToast={addToast} />
-        </div>
-
-        {/* Campus Events (Split Layout) */}
-        <div className="reveal">
-          <EventsSection onNotifyToast={addToast} />
-        </div>
-
-        {/* More to Explore (3-Photo Grid) */}
-        <div className="reveal reveal-scale">
-          <MoreToExploreSection onNotifyToast={addToast} />
-        </div>
-
-        {/* Academics & Faculty Directory */}
-        <div className="reveal reveal-left">
-          <AboutSection />
-        </div>
-
-        {/* Association & Leadership */}
-        <div className="reveal reveal-right">
-          <AssociationSection />
-        </div>
-
-        {/* Alumni Network & Mentorship */}
-        <div className="reveal">
-          <AlumniSection onNotifyToast={addToast} />
-        </div>
-
-        {/* Apply / Connect CTA Banner */}
-        <div className="reveal reveal-scale">
-          <ApplyBannerSection />
-        </div>
-
-        {/* Notices & Circulars */}
-        <div className="reveal">
-          <AnnouncementsSection onNotifyToast={addToast} />
-        </div>
-
-        {/* Academic Notes Vault */}
-        <div className="reveal">
-          <ResourceVaultSection onNotifyToast={addToast} />
-        </div>
-      </main>
-
-      {/* 4-Column Footer */}
-      <div className="reveal reveal-fade">
-        <FooterSection 
-          onOpenTerminal={() => setTerminalOpen(true)} 
-          onNotifyToast={addToast} 
-        />
-      </div>
-
-      {/* Interactive Global Modals */}
-      <CommandPalette
-        isOpen={commandPaletteOpen}
-        onClose={() => setCommandPaletteOpen(false)}
-        events={eventsData}
-        faculty={departmentData.faculty}
-        alumni={alumniData}
-        resources={resourcesData}
-        onOpenActivityModal={() => setActivityModalOpen(true)}
-        onOpenTerminal={() => setTerminalOpen(true)}
-      />
-
-      <ActivitySubmissionModal
-        isOpen={activityModalOpen}
-        onClose={() => setActivityModalOpen(false)}
-        onActivityAdded={handleActivityAdded}
-      />
-
-      <TerminalModal
-        isOpen={terminalOpen}
-        onClose={() => setTerminalOpen(false)}
-        onOpenActivityModal={() => setActivityModalOpen(true)}
-      />
-
-      {/* Toast Notification Tray */}
-      <div className="toast-container">
-        {toasts.map((toast) => (
-          <div key={toast.id} className="toast">
-            <span>{toast.text}</span>
+          {/* Enjoy Studying / Department Pillars */}
+          <div className="reveal">
+            <PillarsSection />
           </div>
-        ))}
+
+          {/* Top Stories / Department Highlights */}
+          <div className="reveal reveal-stagger">
+            <TopStoriesSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Placements & Careers */}
+          <div className="reveal">
+            <PlacementsSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Campus Events (Split Layout) */}
+          <div className="reveal">
+            <EventsSection onNotifyToast={addToast} />
+          </div>
+
+          {/* More to Explore (3-Photo Grid) */}
+          <div className="reveal reveal-scale">
+            <MoreToExploreSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Academics & Faculty Directory */}
+          <div className="reveal reveal-left">
+            <AboutSection />
+          </div>
+
+          {/* Association & Leadership */}
+          <div className="reveal reveal-right">
+            <AssociationSection />
+          </div>
+
+          {/* Alumni Network & Mentorship */}
+          <div className="reveal">
+            <AlumniSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Apply / Connect CTA Banner */}
+          <div className="reveal reveal-scale">
+            <ApplyBannerSection />
+          </div>
+
+          {/* Notices & Circulars */}
+          <div className="reveal">
+            <AnnouncementsSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Academic Notes Vault */}
+          <div className="reveal">
+            <ResourceVaultSection onNotifyToast={addToast} />
+          </div>
+        </main>
+
+        {/* 4-Column Footer */}
+        <div className="reveal reveal-fade">
+          <FooterSection 
+            onOpenTerminal={() => setTerminalOpen(true)} 
+            onNotifyToast={addToast}
+            onReplayIntro={handleReplayIntro}
+          />
+        </div>
+
+        {/* Interactive Global Modals */}
+        <CommandPalette
+          isOpen={commandPaletteOpen}
+          onClose={() => setCommandPaletteOpen(false)}
+          events={eventsData}
+          faculty={departmentData.faculty}
+          alumni={alumniData}
+          resources={resourcesData}
+          onOpenActivityModal={() => setActivityModalOpen(true)}
+          onOpenTerminal={() => setTerminalOpen(true)}
+          onReplayIntro={handleReplayIntro}
+        />
+
+        <ActivitySubmissionModal
+          isOpen={activityModalOpen}
+          onClose={() => setActivityModalOpen(false)}
+          onActivityAdded={handleActivityAdded}
+        />
+
+        <TerminalModal
+          isOpen={terminalOpen}
+          onClose={() => setTerminalOpen(false)}
+          onOpenActivityModal={() => setActivityModalOpen(true)}
+          onReplayIntro={handleReplayIntro}
+        />
+
+        {/* Toast Notification Tray */}
+        <div className="toast-container">
+          {toasts.map((toast) => (
+            <div key={toast.id} className="toast">
+              <span>{toast.text}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

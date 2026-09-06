@@ -1,47 +1,129 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/intro-animation.css';
 
 /**
- * IntroAnimation — "Stranger Things Style 'IT' Cinematic Intro"
+ * IntroAnimation — Standalone Single-Page Stranger Things 'IT' Experience
  * 
- * Initial / first-time page loading animation:
- * - Iconic Stranger Things style slow 3D creep and scale increase.
- * - Outlined glowing glass letterforms ("I" and "T") with framing horizontal bars.
- * - Matching SAIT monochrome silver/white & frosted glass palette (#0a0a0a, #ffffff, #a8a8a8).
- * - Smooth dramatic zoom-through and fade-out transition into the landing page.
- * - Dismissible on click or ESC.
+ * - Plays as a dedicated single screen before revealing the SAIT home page.
+ * - Stranger Things iconic cinematic title mechanics:
+ *     * Slow 3D camera creep & scale increase.
+ *     * Hollow neon glass strokes with glowing white-silver aura & subtle chromatic fringing.
+ *     * Iconic top & bottom expanding neon framing bars.
+ *     * Upside-down cosmic ash / stardust particles drifting in the dark void.
+ *     * Intense bloom & lock phase.
+ *     * Dramatic zoom-through exit that dissolves cleanly into the home page.
+ * - Skip anytime via click, spacebar, enter, or ESC.
  */
-export const IntroAnimation = ({ onComplete }) => {
+export const IntroAnimation = ({ onComplete, onRevealing }) => {
   const [phase, setPhase] = useState('entering'); // 'entering' | 'blooming' | 'exiting' | 'finished'
+  const canvasRef = useRef(null);
 
+  // Lock body scroll while intro single page is active
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  // Particle background simulation (Stranger Things spores / cosmic dust)
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    const particleCount = 45;
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.6 + 0.4,
+      alpha: Math.random() * 0.7 + 0.2,
+      speedY: -(Math.random() * 0.45 + 0.15),
+      speedX: (Math.random() - 0.5) * 0.25,
+      pulse: Math.random() * Math.PI,
+      pulseSpeed: Math.random() * 0.03 + 0.01
+    }));
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.pulse += p.pulseSpeed;
+
+        if (p.y < -10) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+
+        const dynamicAlpha = Math.max(0.1, Math.min(1, p.alpha + Math.sin(p.pulse) * 0.25));
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${dynamicAlpha})`;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.shadowBlur = p.radius * 4;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Animation timeline
   useEffect(() => {
     // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
+      if (onRevealing) onRevealing();
       if (onComplete) onComplete();
       return;
     }
 
-    // Timeline:
-    // 0ms - 1900ms: slow dramatic increase & scale creep (Stranger Things style)
-    // 1900ms: bloom & lock
-    // 2300ms: zoom-through exit & fade out
-    // 2900ms: finish & unmount
+    // Phase 1: Slow dramatic scale increase (0ms - 2100ms)
+    // Phase 2: Bloom & lock pulse (2100ms - 2600ms)
     const bloomTimer = setTimeout(() => {
       setPhase('blooming');
-    }, 1800);
+    }, 2000);
 
+    // Phase 3: Zoom-through & exit fade (2600ms - 3250ms)
     const exitTimer = setTimeout(() => {
       setPhase('exiting');
-    }, 2250);
+      if (onRevealing) onRevealing();
+    }, 2550);
 
+    // Phase 4: Complete & unmount
     const finishTimer = setTimeout(() => {
       setPhase('finished');
       if (onComplete) onComplete();
-    }, 2950);
+    }, 3250);
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' || e.key === ' ') {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
         skipIntro();
       }
     };
@@ -54,50 +136,89 @@ export const IntroAnimation = ({ onComplete }) => {
       clearTimeout(finishTimer);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onComplete]);
+  }, [onComplete, onRevealing]);
 
   const skipIntro = () => {
-    setPhase('finished');
-    if (onComplete) onComplete();
+    if (phase === 'finished') return;
+    setPhase('exiting');
+    if (onRevealing) onRevealing();
+    setTimeout(() => {
+      setPhase('finished');
+      if (onComplete) onComplete();
+    }, 350);
   };
 
   if (phase === 'finished') return null;
 
   return (
     <div 
-      className={`intro-overlay ${phase}`}
+      className={`intro-single-page ${phase}`}
       onClick={skipIntro}
-      title="Click anywhere to skip intro"
+      role="banner"
+      aria-label="Stranger Things Style IT Intro"
     >
-      {/* Background Frosted Glass & Film Atmosphere */}
-      <div className="intro-backdrop-blur" />
-      <div className="intro-light-vignette" />
-      <div className="intro-beam-sweep" />
+      {/* Floating Stardust / Cosmic Ash Void Canvas */}
+      <canvas ref={canvasRef} className="intro-particle-canvas" />
 
-      {/* Cinematic Stranger Things Framed Letter Container */}
-      <div className="intro-content">
-        {/* Top Framing Bar (Expands outward) */}
-        <div className="intro-frame-bar bar-top" />
+      {/* Cinematic Vignette & Deep Cosmic Glass Atmosphere */}
+      <div className="intro-deep-vignette" />
+      <div className="intro-film-grain" />
+      <div className="intro-anamorphic-streak" />
 
-        {/* The Luminous "IT" Glass Monolith */}
-        <div className="intro-title-wrap">
-          <span className="intro-letter letter-i">I</span>
-          <span className="intro-letter letter-t">T</span>
+      {/* Retro Sci-Fi / Stranger Things Ambient Red/Silver Chromatic Aura */}
+      <div className="intro-ambient-aura" />
+
+      {/* Top Skip Button */}
+      <button 
+        type="button" 
+        className="intro-skip-btn"
+        onClick={(e) => {
+          e.stopPropagation();
+          skipIntro();
+        }}
+        title="Skip intro and go directly to home page"
+      >
+        <span>Skip Intro</span>
+        <kbd>ESC</kbd>
+      </button>
+
+      {/* Central Stranger Things Letter Monolith Container */}
+      <div className="intro-monolith-wrap">
+        {/* Top Framing Bar (Expands outward horizontally) */}
+        <div className="intro-frame-line line-top">
+          <div className="frame-line-glow" />
+          <div className="frame-line-dot left" />
+          <div className="frame-line-dot right" />
         </div>
 
-        {/* Bottom Framing Bar (Expands outward) */}
-        <div className="intro-frame-bar bar-bottom" />
+        {/* The Giant Luminous "IT" Glass Letterforms */}
+        <div className="intro-it-letters">
+          <div className="intro-letter-box box-i">
+            <span className="intro-char char-i">I</span>
+          </div>
+          <div className="intro-letter-box box-t">
+            <span className="intro-char char-t">T</span>
+          </div>
+        </div>
 
-        {/* Subtitle Line */}
-        <div className="intro-subtext">
-          <span className="subtext-line">INFORMATION TECHNOLOGY</span>
-          <span className="subtext-dots">CUSAT // 2026</span>
+        {/* Bottom Framing Bar (Expands outward horizontally) */}
+        <div className="intro-frame-line line-bottom">
+          <div className="frame-line-glow" />
+          <div className="frame-line-dot left" />
+          <div className="frame-line-dot right" />
+        </div>
+
+        {/* Subtitle Typography */}
+        <div className="intro-credits">
+          <h2 className="credits-title">INFORMATION TECHNOLOGY</h2>
+          <p className="credits-sub">STUDENTS ASSOCIATION • SOE CUSAT // 2026</p>
         </div>
       </div>
 
-      {/* Subtle Skip Hint */}
-      <div className="intro-skip-hint">
-        <span>Click anywhere or ESC to skip</span>
+      {/* Subtle Bottom Interaction Hint */}
+      <div className="intro-footer-hint">
+        <span className="hint-pulse-dot" />
+        <span>CLICK ANYWHERE OR PRESS ESC TO ENTER</span>
       </div>
     </div>
   );

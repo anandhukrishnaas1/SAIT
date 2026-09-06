@@ -44,6 +44,7 @@ const HELP_TEXT = [
   { type: 'output', text: '│    whoami           Your student profile                   │' },
   { type: 'output', text: '│    neofetch         SAIT system info (neofetch style)       │' },
   { type: 'output', text: '│    matrix           Toggle matrix rain easter egg           │' },
+  { type: 'output', text: '│    intro            Replay cinematic Stranger Things intro  │' },
   { type: 'output', text: '│    date             Current date & time                    │' },
   { type: 'output', text: '│    echo <text>      Print text to terminal                 │' },
   { type: 'output', text: '│    clear            Clear terminal output                   │' },
@@ -56,7 +57,7 @@ function buildOutput(lines) {
   return lines;
 }
 
-export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
+export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIntro }) => {
   const [history, setHistory] = useState([...BOOT_LINES]);
   const [inputVal, setInputVal] = useState('');
   const [cmdHistory, setCmdHistory] = useState([]);
@@ -381,6 +382,17 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
             ? '  01010011 01000001 01001001 01010100'
             : '  You took the blue pill.' },
       ];
+    }
+    // ── intro / stranger-things ───────────────────────────────────────────
+    else if (cmd === 'intro' || cmd === 'stranger-things' || cmd === 'replay') {
+      if (onReplayIntro) {
+        onClose();
+        setTimeout(() => {
+          onReplayIntro();
+        }, 150);
+        return;
+      }
+      output = [{ type: 'info', text: '  Replaying Stranger Things intro sequence...' }];
     }
 
     // ── unknown ────────────────────────────────────────────────────────────

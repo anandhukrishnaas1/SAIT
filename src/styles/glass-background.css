@@ -61,7 +61,7 @@
 .app-root > header,
 .app-root > nav,
 .app-root > footer,
-.app-root > div:not(.glass-bg-viewport) {
+.app-root > div:not(.glass-bg-viewport):not(.intro-overlay):not(.cursor-animation-canvas):not(.intro-single-page-root) {
   position: relative;
   z-index: 1;
 }

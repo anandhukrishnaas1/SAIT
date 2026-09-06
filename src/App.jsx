@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { useScrollReveal } from './hooks/useScrollAnimations';
 import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation';
+import { CursorAnimation } from './components/CursorAnimation';
 import { HeroSection } from './components/HeroSection';
 import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
@@ -105,6 +106,9 @@ export function App() {
     <div className="app-root">
       {/* Scroll-Reactive Glass Ambient Background Animation */}
       <GlassBackgroundAnimation />
+
+      {/* Minimal Stardust Cursor Trail */}
+      <CursorAnimation />
 
       {/* Top Announcement Bar */}
       <AnnouncementBar announcements={announcementsData} />

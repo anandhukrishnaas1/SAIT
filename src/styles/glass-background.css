@@ -130,3 +130,23 @@
     opacity: 0.6;
   }
 }
+
+/* --------------------------------------------------------------------------
+   CURSOR ANIMATION CANVAS (Minimal Stardust & Micro-Star Trail)
+   -------------------------------------------------------------------------- */
+.cursor-animation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  user-select: none;
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .cursor-animation-canvas {
+    display: none !important;
+  }
+}

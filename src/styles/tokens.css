@@ -1,0 +1,130 @@
+/* ==========================================================================
+   SAIT DESIGN SYSTEM — LOGO-MATCHED MONOCHROME PALETTE
+   Colors derived from the official SAIT badge:
+     #0a0a0a  – deep black (logo background)
+     #ffffff  – pure white  (logo ring & icon outline)
+     #a8a8a8  – silver gray (inner S-icon fill)
+     #1a1a1a  – off-black   (secondary surfaces)
+   ========================================================================== */
+
+:root {
+  /* ── Surfaces ── */
+  --bg-primary:      #0a0a0a;          /* Logo black — page background      */
+  --bg-secondary:    #111111;          /* Slightly lifted surface            */
+  --bg-tertiary:     #1a1a1a;          /* Cards & panels                     */
+  --bg-card:         #161616;          /* Card default                       */
+  --bg-card-hover:   #1f1f1f;          /* Card hover lift                    */
+  --bg-glass:        rgba(10,10,10,0.88); /* Frosted glass navbar            */
+  --bg-input:        #1a1a1a;          /* Input fields                       */
+
+  /* ── Borders ── */
+  --border-subtle:    rgba(255,255,255,0.07);   /* Hairline dividers          */
+  --border-card:      rgba(255,255,255,0.10);   /* Card outlines              */
+  --border-highlight: #ffffff;                  /* Active / focus rings       */
+
+  /* ── Typography ── */
+  --text-primary:   #ffffff;           /* Logo white — headings & labels     */
+  --text-secondary: #b0b0b0;           /* Silver — body text                 */
+  --text-muted:     #666666;           /* Muted captions                     */
+  --text-inverse:   #0a0a0a;           /* Text on white surfaces             */
+
+  /* ── Brand Accents (logo silver palette) ── */
+  --brand-primary:      #ffffff;               /* Pure white — "IT" text, CTAs  */
+  --brand-secondary:    #a8a8a8;               /* Silver gray — secondary accent */
+  --brand-accent:       #d4d4d4;               /* Light silver highlight         */
+  --brand-glow:         rgba(255,255,255,0.10);
+  --brand-cyan-glow:    rgba(168,168,168,0.12);
+
+  /* ── Status Colors ── */
+  --color-success:    #4ade80;
+  --color-success-bg: rgba(74,222,128,0.08);
+  --color-warning:    #fbbf24;
+  --color-warning-bg: rgba(251,191,36,0.08);
+  --color-danger:     #f87171;
+  --color-danger-bg:  rgba(248,113,113,0.08);
+  --color-info:       #60a5fa;
+  --color-info-bg:    rgba(96,165,250,0.08);
+
+  /* ── Gradients ── */
+  --grad-brand:      linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+  --grad-amber:      linear-gradient(135deg, #d4d4d4 0%, #888888 100%);
+  --grad-card:       #161616;
+  --grad-hero-text:  linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+  --grad-badge:      rgba(255,255,255,0.06);
+
+  /* ── Typography ── */
+  --font-display: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'Fira Code', monospace;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.40);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.50);
+  --shadow-lg:   0 12px 32px rgba(0,0,0,0.60);
+  --shadow-glow: 0 4px 24px rgba(255,255,255,0.08);
+  --backdrop-blur: blur(14px);
+
+  /* ── Radius ── */
+  --radius-xs:   3px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ── Layout ── */
+  --nav-height:     76px;
+  --container-max: 1200px;
+}
+
+/* Cyber Dark Theme (Preserved) */
+[data-theme="dark"] {
+  --bg-primary: #090d14;
+  --bg-secondary: #0f1522;
+  --bg-tertiary: #151d2e;
+  --bg-card: rgba(21, 29, 46, 0.85);
+  --bg-card-hover: rgba(28, 39, 62, 0.95);
+  --bg-glass: rgba(15, 21, 34, 0.85);
+  --bg-input: #101624;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(99, 102, 241, 0.2);
+  --border-highlight: #6366f1;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+  
+  --brand-primary: #6366f1;
+  --brand-secondary: #f59e0b;
+  --brand-accent: #38bdf8;
+  --brand-glow: rgba(99, 102, 241, 0.3);
+  --grad-brand: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --grad-hero-text: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+}
+
+/* Emerald Aurora Theme */
+[data-theme="emerald"] {
+  --bg-primary: #04120e;
+  --bg-secondary: #081d18;
+  --bg-tertiary: #0c2b23;
+  --bg-card: rgba(12, 43, 35, 0.85);
+  --bg-card-hover: rgba(16, 56, 46, 0.95);
+  --bg-glass: rgba(8, 29, 24, 0.85);
+  --bg-input: #061c16;
+  
+  --border-subtle: rgba(52, 211, 153, 0.14);
+  --border-card: rgba(52, 211, 153, 0.24);
+  --border-highlight: #10b981;
+  
+  --text-primary: #f0fdf4;
+  --text-secondary: #99f6e4;
+  --text-muted: #5eead4;
+  
+  --brand-primary: #10b981;
+  --brand-secondary: #34d399;
+  --brand-accent: #a7f3d0;
+  --brand-glow: rgba(16, 185, 129, 0.3);
+  --grad-brand: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}

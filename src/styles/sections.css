@@ -1,0 +1,449 @@
+/* ==========================================================================
+   SECTIONS: EDITORIAL TEMPLATE STYLE (PILLARS, TOP STORIES, EVENTS, EXPLORE, FOOTER)
+   ========================================================================== */
+
+section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-bg-alt {
+  background-color: var(--bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   PILLARS / "ENJOY STUDYING" (3-COLUMN WIREFRAME ICONS)
+   -------------------------------------------------------------------------- */
+.pillars-section {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pillars-header {
+  margin-bottom: 3.5rem;
+}
+
+.pillars-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.pillars-subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.pillar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pillar-icon-box {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+
+.pillar-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   TOP STORIES / ACHIEVEMENTS & HIGHLIGHTS
+   -------------------------------------------------------------------------- */
+.top-stories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.story-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.story-img-wrap {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.story-card:hover .story-img {
+  transform: scale(1.03);
+}
+
+.story-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.story-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+
+.story-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.story-read-more {
+  color: var(--brand-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   CAMPUS EVENTS (SPLIT EDITORIAL LAYOUT)
+   -------------------------------------------------------------------------- */
+.campus-events-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.events-list-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.event-editorial-item {
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.event-editorial-item:hover {
+  transform: translateX(4px);
+}
+
+.event-date-range {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 0.25rem;
+}
+
+.event-editorial-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.event-editorial-title:hover {
+  color: var(--brand-primary);
+}
+
+.event-editorial-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.event-featured-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   MORE TO EXPLORE (3 PHOTO CARDS)
+   -------------------------------------------------------------------------- */
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-img-wrap {
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  margin-bottom: 1.25rem;
+}
+
+.explore-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.explore-card:hover .explore-img {
+  transform: scale(1.04);
+}
+
+.explore-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.explore-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   CTA BANNER (APPLY FOR SCHOLARSHIPS / LOGGER)
+   -------------------------------------------------------------------------- */
+.cta-banner-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 3.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin: 3rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.cta-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.cta-banner-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 580px;
+}
+
+/* --------------------------------------------------------------------------
+   FACULTY & EXECUTIVE DIRECTORY
+   -------------------------------------------------------------------------- */
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.person-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xs);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.person-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  border: 1px solid var(--border-card);
+  margin-bottom: 1rem;
+}
+
+.person-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.person-role {
+  font-size: 0.8125rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   PLACEMENTS & RECRUITERS (EDITORIAL GRID)
+   -------------------------------------------------------------------------- */
+.recruiters-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.recruiter-editorial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: var(--radius-xs);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER (MATCHING FILLO 4-COLUMN TEMPLATE)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 4.5rem 0 3rem 0;
+}
+
+.footer-columns-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-col-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-link-item {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-link-item:hover {
+  color: var(--brand-primary);
+}
+
+.footer-newsletter-wrap {
+  display: flex;
+  margin-top: 1.25rem;
+  max-width: 320px;
+}
+
+.footer-newsletter-input {
+  flex-grow: 1;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border-card);
+  border-right: none;
+  font-size: 0.8125rem;
+  outline: none;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-radius: var(--radius-xs) 0 0 var(--radius-xs);
+}
+
+.footer-newsletter-input::placeholder {
+  color: var(--text-muted);
+}
+
+.footer-newsletter-btn {
+  background: #ffffff;
+  color: #0a0a0a;
+  border: 1px solid #ffffff;
+  padding: 0.6rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  transition: background 0.15s;
+}
+
+.footer-newsletter-btn:hover {
+  background: #e0e0e0;
+}
+
+.footer-bottom-row {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .pillars-grid,
+  .top-stories-grid,
+  .campus-events-grid,
+  .explore-grid,
+  .people-grid,
+  .footer-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .cta-banner-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+  .cta-banner-left {
+    flex-direction: column;
+  }
+  .recruiters-editorial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

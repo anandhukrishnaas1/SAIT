@@ -29,14 +29,23 @@ export const Navbar = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const navItems = [
-    { label: 'Home', href: '#' },
-    { label: 'Academics', href: '#about' },
-    { label: 'People', href: '#association' },
-    { label: 'Campus Events', href: '#events' },
+  // Important, catchy destinations for the header
+  const desktopNavItems = [
+    { label: 'Events', href: '#events' },
     { label: 'Placements', href: '#placements' },
-    { label: 'Activity Logger', href: '#activity-logger', highlight: true },
-    { label: 'Vault', href: '#resources' }
+    { label: 'Academic Vault', href: '#resources' },
+    { label: 'About', href: '#about' }
+  ];
+
+  // Full navigation for the mobile slide-out drawer
+  const drawerNavItems = [
+    { label: 'Home', href: '#' },
+    { label: 'Events & Hackathons', href: '#events' },
+    { label: 'Placements & Careers', href: '#placements' },
+    { label: 'Academic Vault', href: '#resources' },
+    { label: 'Activity Logger', href: '#activity-logger' },
+    { label: 'Faculty & Academics', href: '#about' },
+    { label: 'Executive Office', href: '#association' }
   ];
 
   return (
@@ -67,23 +76,28 @@ export const Navbar = ({
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
+          {/* Curated Desktop Nav Links */}
           <nav>
             <ul className="nav-links">
-              {navItems.map((item) => (
+              {desktopNavItems.map((item) => (
                 <li key={item.label}>
                   <a 
                     href={item.href} 
-                    className={`nav-item-link ${item.highlight ? 'highlight' : ''}`}
+                    className="nav-item-link"
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
               <li>
-                <button className="nav-search-trigger" onClick={onOpenCommandPalette}>
-                  <Search size={15} />
+                <button 
+                  className="nav-search-pill" 
+                  onClick={onOpenCommandPalette}
+                  title="Search & Command Palette (⌘K)"
+                >
+                  <Search size={13} />
                   <span>Search</span>
+                  <kbd className="nav-search-kbd">⌘K</kbd>
                 </button>
               </li>
             </ul>
@@ -178,7 +192,7 @@ export const Navbar = ({
               </button>
             </div>
             <ul className="mobile-drawer-links">
-              {navItems.map((item) => (
+              {drawerNavItems.map((item) => (
                 <li key={item.label}>
                   <a 
                     href={item.href} 

@@ -145,7 +145,7 @@ export const MentorshipModal = ({ alumni, isOpen, onClose, onMentorshipSuccess }
                 <div className="form-group">
                   <label className="form-label">Brief Note for Mentor</label>
                   <textarea 
-                    rows={3} 
+                    rows={4} 
                     required 
                     className="form-textarea" 
                     placeholder="Describe what specific guidance you are seeking..."

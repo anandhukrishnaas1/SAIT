@@ -247,7 +247,7 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
                 <div className="form-group">
                   <label className="form-label">Description & Contributions *</label>
                   <textarea 
-                    rows={2} 
+                    rows={4} 
                     required 
                     className="form-textarea" 
                     placeholder="Briefly describe what you built, solved, or presented..."

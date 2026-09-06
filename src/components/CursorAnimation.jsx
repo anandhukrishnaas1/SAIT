@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react';
  * 
  * High-performance canvas cursor animation trailing interactive binary
  * '0' and '1' glyphs that drift and dissipate as the cursor moves across the screen.
+ * Does not render any artificial cursor rings or dots.
  */
 export const CursorAnimation = () => {
   const canvasRef = useRef(null);
@@ -45,14 +46,7 @@ export const CursorAnimation = () => {
     let mouseY = -100;
     let lastX = -100;
     let lastY = -100;
-    let isHoveringInteractive = false;
     let isMouseInside = false;
-
-    // Smooth follower coordinates
-    let followerX = -100;
-    let followerY = -100;
-    let followerRadius = 13;
-    let targetRadius = 13;
 
     const particles = [];
     const MAX_PARTICLES = 40;
@@ -87,30 +81,6 @@ export const CursorAnimation = () => {
     const loop = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth follower position (lagging smoothly behind cursor)
-      followerX += (mouseX - followerX) * 0.25;
-      followerY += (mouseY - followerY) * 0.25;
-      followerRadius += (targetRadius - followerRadius) * 0.18;
-
-      // Draw subtle cursor aura ring when mouse is inside window
-      if (isMouseInside && followerX > 0 && followerY > 0) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(followerX, followerY, followerRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = isHoveringInteractive
-          ? 'rgba(255, 255, 255, 0.45)'
-          : 'rgba(255, 255, 255, 0.18)';
-        ctx.lineWidth = isHoveringInteractive ? 1.5 : 1;
-        ctx.stroke();
-
-        // Center dot
-        ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-        ctx.fill();
-        ctx.restore();
-      }
-
       // Update and draw active binary particles
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
@@ -127,8 +97,8 @@ export const CursorAnimation = () => {
         drawBinaryDigit(p);
       }
 
-      // Keep running if there are active particles or mouse is moving
-      if (particles.length > 0 || isMouseInside) {
+      // Keep running while particles are active
+      if (particles.length > 0) {
         rafId = requestAnimationFrame(loop);
       } else {
         isRunning = false;
@@ -164,7 +134,7 @@ export const CursorAnimation = () => {
             x: mouseX + (Math.random() - 0.5) * 8,
             y: mouseY + (Math.random() - 0.5) * 8,
             vx: (Math.random() - 0.5) * 0.7 - (dx * 0.03),
-            vy: (Math.random() - 0.5) * 0.7 - (dy * 0.03) - 0.25, // gentle upward drift
+            vy: (Math.random() - 0.5) * 0.7 - (dy * 0.03) - 0.25, // gentle upward buoyancy
             fontSize: Math.floor(Math.random() * 4) + 11, // 11px to 14px
             alpha: Math.random() * 0.35 + 0.65,
             decay: Math.random() * 0.024 + 0.018,
@@ -173,26 +143,6 @@ export const CursorAnimation = () => {
             isHighlight: Math.random() > 0.65
           });
         }
-      }
-
-      // Check if hovering interactive element to expand aura ring
-      const target = e.target;
-      if (
-        target &&
-        (target.closest('a') ||
-          target.closest('button') ||
-          target.closest('input') ||
-          target.closest('textarea') ||
-          target.closest('[role="button"]') ||
-          target.closest('.card') ||
-          target.closest('.interactive') ||
-          target.classList?.contains('clickable'))
-      ) {
-        isHoveringInteractive = true;
-        targetRadius = 22;
-      } else {
-        isHoveringInteractive = false;
-        targetRadius = 13;
       }
 
       startLoop();

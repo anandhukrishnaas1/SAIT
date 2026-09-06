@@ -232,17 +232,30 @@
   .cta-banner-box {
     flex-direction: column;
     text-align: center;
-    padding: 2rem 1.25rem;
-    gap: 1.5rem;
+    padding: 2.25rem 1.5rem;
+    gap: 1.75rem;
   }
 
   .cta-banner-left {
     flex-direction: column;
     align-items: center;
+    gap: 1.25rem;
   }
 
   .cta-banner-title {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .cta-banner-action {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-banner-action .btn {
+    width: 100%;
+    max-width: 320px;
   }
 
   /* ── Alumni Grid ── */

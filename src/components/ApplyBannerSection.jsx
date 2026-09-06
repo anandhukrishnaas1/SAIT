@@ -18,10 +18,13 @@ export const ApplyBannerSection = ({ onOpenActivityModal }) => {
           <div className="cta-banner-action">
             <button 
               className="btn btn-primary btn-lg"
-              onClick={onOpenActivityModal}
+              onClick={() => {
+                const el = document.getElementById('vault');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
               style={{ padding: '0.9rem 2.2rem', fontSize: '0.95rem', borderRadius: 'var(--radius-xs)', whiteSpace: 'nowrap' }}
             >
-              Access The Application
+              Explore Academic Vault
             </button>
           </div>
         </div>

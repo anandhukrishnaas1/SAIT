@@ -43,7 +43,6 @@ export const Navbar = ({
     { label: 'Events & Hackathons', href: '#events' },
     { label: 'Placements & Careers', href: '#placements' },
     { label: 'Academic Vault', href: '#resources' },
-    { label: 'Activity Logger', href: '#activity-logger' },
     { label: 'Faculty & Academics', href: '#about' },
     { label: 'Executive Office', href: '#association' }
   ];
@@ -151,13 +150,14 @@ export const Navbar = ({
               )}
             </div>
 
-            {/* Fillo-Style Outlined "Sign Up" / "+ Log Activity" Button */}
-            <button 
+            {/* Contact Action Link */}
+            <a 
+              href="#contact"
               className="nav-signup-btn"
-              onClick={onOpenActivityModal}
+              style={{ textDecoration: 'none' }}
             >
-              + Log Activity
-            </button>
+              Contact
+            </a>
 
             {/* Mobile Toggle */}
             <button 
@@ -205,15 +205,14 @@ export const Navbar = ({
               ))}
             </ul>
             <div className="mobile-drawer-footer">
-              <button 
+              <a 
+                href="#contact"
                 className="btn btn-primary"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenActivityModal();
-                }}
+                style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}
+                onClick={() => setMobileMenuOpen(false)}
               >
-                + Submit Activity Log
-              </button>
+                Contact Department
+              </a>
             </div>
           </div>
         </>

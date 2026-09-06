@@ -145,7 +145,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
               <li><a href="#about" className="footer-link-item">Department A - Z</a></li>
               <li><a href="#resources" className="footer-link-item">Academic Vault</a></li>
               <li><a href="#placements" className="footer-link-item">Career & Placements</a></li>
-              <li><a href="#activity-logger" className="footer-link-item">Activity Portal</a></li>
+              <li><a href="#contact" className="footer-link-item">Contact Us</a></li>
               <li><a href="#association" className="footer-link-item">Executive Office</a></li>
             </ul>
           </div>

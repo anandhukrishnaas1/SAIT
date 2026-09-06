@@ -14,7 +14,6 @@ import { AboutSection } from './components/AboutSection';
 import { AssociationSection } from './components/AssociationSection';
 import { PlacementsSection } from './components/PlacementsSection';
 import { AlumniSection } from './components/AlumniSection';
-import { ActivityLoggerSection } from './components/ActivityLoggerSection';
 import { ApplyBannerSection } from './components/ApplyBannerSection';
 import { AnnouncementsSection } from './components/AnnouncementsSection';
 import { ResourceVaultSection } from './components/ResourceVaultSection';
@@ -172,20 +171,9 @@ export function App() {
           <AlumniSection onNotifyToast={addToast} />
         </div>
 
-        {/* Flagship: Student Activity Logger & Leaderboard */}
-        <div className="reveal">
-          <ActivityLoggerSection
-            activities={activities}
-            setActivities={setActivities}
-            leaderboard={leaderboard}
-            onOpenSubmissionModal={() => setActivityModalOpen(true)}
-            onNotifyToast={addToast}
-          />
-        </div>
-
         {/* Apply / Connect CTA Banner */}
         <div className="reveal reveal-scale">
-          <ApplyBannerSection onOpenActivityModal={() => setActivityModalOpen(true)} />
+          <ApplyBannerSection />
         </div>
 
         {/* Notices & Circulars */}

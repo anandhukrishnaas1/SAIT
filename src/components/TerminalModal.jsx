@@ -40,7 +40,7 @@ const HELP_TEXT = [
   { type: 'output', text: '│    sait faculty     Faculty directory                       │' },
   { type: 'output', text: '│                                                            │' },
   { type: 'output', text: '│  ACTIONS                                                   │' },
-  { type: 'output', text: '│    sait log         Open Activity Logger modal              │' },
+  { type: 'output', text: '│    sait portal      Student intranet portal status          │' },
   { type: 'output', text: '│    whoami           Your student profile                   │' },
   { type: 'output', text: '│    neofetch         SAIT system info (neofetch style)       │' },
   { type: 'output', text: '│    matrix           Toggle matrix rain easter egg           │' },
@@ -142,16 +142,17 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
       return;
     }
 
-    // ── sait log / log ─────────────────────────────────────────────────────
-    if (cmd === 'sait log' || cmd === 'log') {
+    // ── sait log / sait portal ──────────────────────────────────────────────
+    if (cmd === 'sait log' || cmd === 'log' || cmd === 'sait portal') {
       setHistory((prev) => [
         ...prev,
         inputLine,
-        { type: 'success', text: '  Launching Activity Logger...' },
+        { type: 'info', text: '  [ACCESS RESTRICTED]' },
+        { type: 'output', text: '  Student Activity Portal is restricted to authenticated CUSAT IT intranet sessions.' },
+        { type: 'output', text: '  Public student activity logging is currently disabled.' },
         { type: 'blank', text: '' },
       ]);
       setInputVal('');
-      setTimeout(() => { onClose(); onOpenActivityModal(); }, 400);
       return;
     }
 
@@ -167,8 +168,7 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
         about:       '#about',
         academics:   '#about',
         alumni:      '#alumni',
-        logger:      '#activity-logger',
-        'activity-logger': '#activity-logger',
+        contact:     '#contact',
         association: '#association',
         announcements: '#announcements',
         home:        '#',

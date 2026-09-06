@@ -102,13 +102,17 @@ export const CommandPalette = ({
               <div className="cmd-result-group-title">Quick Actions</div>
               <div 
                 className="cmd-result-item" 
-                onClick={() => { onClose(); onOpenActivityModal(); }}
+                onClick={() => {
+                  onClose();
+                  const el = document.getElementById('vault');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 <div className="cmd-result-info">
                   <PlusCircle size={16} color="var(--brand-accent)" />
-                  <span>Log a New Student Activity</span>
+                  <span>Access Academic Notes Vault</span>
                 </div>
-                <span className="cmd-result-tag">Activity Logger</span>
+                <span className="cmd-result-tag">Vault</span>
               </div>
 
               <div 

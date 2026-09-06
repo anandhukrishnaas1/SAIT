@@ -94,7 +94,7 @@ export const departmentData = {
       domain: "Natural Language Processing, Full Stack Systems, UX Research",
       email: "meeran@cusat.ac.in",
       office: "IT Block Room 206",
-      avatar: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=400&q=80",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
       featured: false,
       publications: 15
     },

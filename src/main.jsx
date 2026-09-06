@@ -10,7 +10,6 @@ import './styles/sections.css';
 import './styles/activity-logger.css';
 import './styles/modals.css';
 import './styles/responsive.css';
-import './styles/sait-showcase.css';
 import './styles/mobile-animations.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

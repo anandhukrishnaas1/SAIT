@@ -108,7 +108,7 @@ export const Navbar = ({
           <div className="nav-actions">
             {/* Terminal Console */}
             <button 
-              className="icon-btn" 
+              className="icon-btn nav-terminal-btn" 
               onClick={onOpenTerminal}
               title="Open CLI Terminal"
             >

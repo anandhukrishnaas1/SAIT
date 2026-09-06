@@ -44,20 +44,20 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
         </div>
 
         {/* Search & Filter Bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
-          <div style={{ position: 'relative', width: '320px', maxWidth: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem' }}>
+          <div style={{ position: 'relative', flex: '1 1 260px', minWidth: '200px', maxWidth: '480px' }}>
             <Search size={16} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
             <input 
               type="text" 
               className="form-input" 
               placeholder="Search circulars or keywords..."
-              style={{ paddingLeft: '2.6rem' }}
+              style={{ paddingLeft: '2.6rem', width: '100%' }}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
             {categories.map((cat) => (
               <button
                 key={cat}

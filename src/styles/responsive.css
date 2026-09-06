@@ -449,6 +449,11 @@
     display: none !important;
   }
 
+  /* Hide terminal button on mobile for cleaner alignment */
+  .nav-terminal-btn {
+    display: none !important;
+  }
+
   .nav-cusat-link {
     height: 32px;
   }

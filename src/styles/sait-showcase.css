@@ -1,256 +1,122 @@
 /* ==========================================================================
-   SAIT HOLOGRAPHIC LOGO SHOWCASE — HIGH-TECH EDITORIAL COMPONENT
+   SAIT MINIMAL GALLERY SHOWCASE — ARCHITECTURAL & MONOCHROME
    ========================================================================== */
 
-.sait-showcase-container {
+.sait-gallery-card {
   position: relative;
   width: 100%;
   height: 420px;
-  background: 
-    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 50% 45%, #181818 0%, #101010 55%, #080808 100%);
-  background-size: 22px 22px, 100% 100%;
+  background-color: #121212;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: 
-    0 24px 48px -12px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 0 40px rgba(0, 0, 0, 0.5);
+    0 16px 36px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   overflow: hidden;
   user-select: none;
-  cursor: crosshair;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.sait-showcase-container:hover {
-  border-color: rgba(255, 255, 255, 0.28);
+.sait-gallery-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
   box-shadow: 
-    0 28px 56px -12px rgba(0, 0, 0, 0.9),
-    0 0 35px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 20px 44px -12px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Dynamic Specular Glare Follower */
-.sait-showcase-glare {
+/* Subtle Cursor-Responsive Spotlight */
+.sait-gallery-spotlight {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  transition: opacity 0.3s ease;
+  transition: background 0.25s ease-out;
 }
 
-/* Cybernetic Corner HUD Brackets */
-.hud-corner {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-color: rgba(255, 255, 255, 0.35);
-  pointer-events: none;
-  z-index: 3;
-  transition: border-color 0.3s ease, width 0.3s ease, height 0.3s ease;
-}
-
-.sait-showcase-container:hover .hud-corner {
-  border-color: #ffffff;
-  width: 14px;
-  height: 14px;
-}
-
-.hud-corner-tl {
-  top: 10px;
-  left: 10px;
-  border-top: 1.5px solid;
-  border-left: 1.5px solid;
-}
-.hud-corner-tr {
-  top: 10px;
-  right: 10px;
-  border-top: 1.5px solid;
-  border-right: 1.5px solid;
-}
-.hud-corner-bl {
-  bottom: 10px;
-  left: 10px;
-  border-bottom: 1.5px solid;
-  border-left: 1.5px solid;
-}
-.hud-corner-br {
-  bottom: 10px;
-  right: 10px;
-  border-bottom: 1.5px solid;
-  border-right: 1.5px solid;
-}
-
-/* Top Status Header */
-.sait-showcase-header {
+/* Top Header */
+.sait-gallery-header {
   position: relative;
-  z-index: 4;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.85rem;
 }
 
-.showcase-status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.65rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  backdrop-filter: blur(8px);
+.sait-gallery-overline {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
-.status-indicator-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #4ade80;
-  box-shadow: 0 0 8px #4ade80, 0 0 16px rgba(74, 222, 128, 0.4);
-  animation: statusDotPulse 2s ease-in-out infinite;
-}
-
-@keyframes statusDotPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(0.85);
-  }
-}
-
-.status-text {
+.sait-gallery-tag {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
-  color: var(--text-primary);
-  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-.showcase-meta-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-}
-
-/* 3D Holographic Stage */
-.sait-showcase-stage {
+/* Center Stage with Subtle 3D Depth */
+.sait-gallery-stage {
   position: relative;
+  z-index: 2;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1000px;
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out;
-  margin: 0.5rem 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: 0.75rem 0;
 }
 
-/* Ambient Radial Glow */
-.holo-ambient-glow {
+/* Concentric Architectural Hairline Geometry */
+.sait-concentric-rings {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sait-ring {
+  position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(168, 168, 168, 0.04) 50%, transparent 75%);
-  filter: blur(25px);
-  pointer-events: none;
-  animation: ambientGlowPulse 4s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-@keyframes ambientGlowPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(0.95);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+.ring-outer {
+  width: 260px;
+  height: 260px;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.08);
+  animation: slowRingRotate 60s linear infinite;
 }
 
-/* Radar Sonar Wave Pulses */
-.radar-wave {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  pointer-events: none;
-  animation: radarPing 4.5s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+.ring-mid {
+  width: 204px;
+  height: 204px;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
-.radar-wave-1 {
-  animation-delay: 0s;
-}
-.radar-wave-2 {
-  animation-delay: 1.5s;
-}
-.radar-wave-3 {
-  animation-delay: 3.0s;
+.ring-inner {
+  width: 156px;
+  height: 156px;
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
-.user-burst-pulse {
-  animation: userBurst 0.9s cubic-bezier(0.1, 0.9, 0.2, 1) forwards !important;
-  border-color: #ffffff !important;
-  border-width: 2px !important;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-@keyframes radarPing {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.55;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
-}
-
-@keyframes userBurst {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(3.2);
-    opacity: 0;
-  }
-}
-
-/* SVG Orbital Precision Rings */
-.sait-orbital-svg {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  pointer-events: none;
-}
-
-.ring-outer-hud {
-  transform-origin: center;
-  animation: spinClockwise 32s linear infinite;
-}
-
-.ring-mid-counter {
-  transform-origin: center;
-  animation: spinCounter 22s linear infinite;
-}
-
-.ring-inner-pulse {
-  transform-origin: center;
-  animation: spinClockwise 14s linear infinite;
-}
-
-@keyframes spinClockwise {
+@keyframes slowRingRotate {
   from {
     transform: rotate(0deg);
   }
@@ -259,298 +125,222 @@
   }
 }
 
-@keyframes spinCounter {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-/* 3D Tilted Gyroscope Orbits */
-.orbit-3d-wrapper {
+/* Precision Hairline Guides */
+.sait-crosshair {
   position: absolute;
-  width: 250px;
-  height: 250px;
+  background-color: rgba(255, 255, 255, 0.06);
   pointer-events: none;
 }
 
-.orbit-alpha {
-  transform: rotateX(68deg) rotateY(28deg);
-}
-
-.orbit-beta {
-  transform: rotateX(68deg) rotateY(-28deg);
-}
-
-.orbit-3d-ring {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  position: relative;
-  animation: spinClockwise 12s linear infinite;
-}
-
-.orbit-beta .orbit-3d-ring {
-  animation: spinCounter 16s linear infinite;
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.orbit-satellite {
-  position: absolute;
-  top: -4px;
+.crosshair-v {
+  width: 1px;
+  height: 280px;
+  top: 50%;
   left: 50%;
-  width: 8px;
-  height: 8px;
-  margin-left: -4px;
-  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.satellite-cyan {
-  background: #ffffff;
-  box-shadow: 0 0 10px #ffffff, 0 0 20px rgba(255, 255, 255, 0.6);
+.crosshair-h {
+  height: 1px;
+  width: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.satellite-silver {
-  background: #d4d4d4;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
-
-/* Central Floating SAIT Logo Vessel */
-.sait-logo-floating-vessel {
+/* Floating Emblem Disc */
+.sait-emblem-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  animation: logoFloatingPhysics 3.8s ease-in-out infinite;
+  z-index: 4;
+  animation: emblemBreathing 5s ease-in-out infinite;
 }
 
-@keyframes logoFloatingPhysics {
+@keyframes emblemBreathing {
   0%, 100% {
-    transform: translateY(0px) translateZ(20px);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-12px) translateZ(35px);
+    transform: translateY(-8px);
   }
 }
 
-/* Logo Bezel Frame */
-.sait-logo-bezel {
+.sait-emblem-disc {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  padding: 6px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 4px;
+  background: radial-gradient(circle at 35% 30%, #202020 0%, #141414 70%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.7),
-    0 0 28px rgba(255, 255, 255, 0.18),
-    inset 0 0 15px rgba(255, 255, 255, 0.1);
-  overflow: hidden;
+    0 12px 28px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sait-showcase-container:hover .sait-logo-bezel {
+.sait-gallery-card:hover .sait-emblem-disc {
+  border-color: rgba(255, 255, 255, 0.35);
   box-shadow: 
-    0 20px 44px rgba(0, 0, 0, 0.8),
-    0 0 45px rgba(255, 255, 255, 0.32),
-    inset 0 0 20px rgba(255, 255, 255, 0.2);
+    0 16px 36px rgba(0, 0, 0, 0.75),
+    0 0 28px rgba(255, 255, 255, 0.1);
 }
 
-.sait-logo-img {
+.sait-emblem-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: 50%;
-  filter: contrast(1.05) brightness(1.02);
   display: block;
 }
 
-/* Holographic Diagonal Sheen Sweep */
-.sait-hologram-sheen {
+/* Natural Specular Sheen (Gentle Light Shift) */
+.sait-emblem-specular {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  inset: 0;
+  border-radius: 50%;
   background: linear-gradient(
-    65deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.0) 45%,
-    rgba(255, 255, 255, 0.45) 50%,
-    rgba(255, 255, 255, 0.0) 55%,
-    transparent 58%
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.03) 100%
   );
   pointer-events: none;
-  animation: hologramSheenSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes hologramSheenSweep {
-  0%, 25% {
-    transform: translateX(-80%) translateY(-80%);
-  }
-  65%, 100% {
-    transform: translateX(80%) translateY(80%);
-  }
-}
-
-/* Dynamic Ground Elevation Shadow */
-.sait-logo-elevation-shadow {
+/* Soft Contact Shadow */
+.sait-emblem-shadow {
   position: absolute;
-  bottom: -26px;
-  width: 110px;
-  height: 18px;
+  bottom: -22px;
+  width: 90px;
+  height: 14px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
   filter: blur(4px);
-  animation: shadowBreath 3.8s ease-in-out infinite;
+  animation: emblemShadowPulse 5s ease-in-out infinite;
 }
 
-@keyframes shadowBreath {
+@keyframes emblemShadowPulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.85;
+    opacity: 0.8;
   }
   50% {
-    transform: scale(0.72);
-    opacity: 0.45;
+    transform: scale(0.85);
+    opacity: 0.5;
   }
 }
 
-/* Bottom Telemetry HUD */
-.sait-showcase-footer {
+/* Bottom Editorial Caption */
+.sait-gallery-footer {
   position: relative;
-  z-index: 4;
+  z-index: 3;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.85rem;
 }
 
-.showcase-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.28rem 0.6rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-xs);
+.sait-gallery-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.chip-code {
+.sait-gallery-title {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sait-gallery-sub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.sait-gallery-year {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   color: var(--text-secondary);
   font-weight: 500;
-}
-
-.showcase-interact-prompt {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-
-.sait-showcase-container:hover .showcase-interact-prompt {
-  color: var(--text-primary);
-}
-
-.prompt-arrow {
-  color: #ffffff;
-  animation: promptPulse 2s ease-in-out infinite;
-}
-
-@keyframes promptPulse {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
 }
 
 /* --------------------------------------------------------------------------
    RESPONSIVE TUNING
    -------------------------------------------------------------------------- */
 @media (max-width: 991px) {
-  .sait-showcase-container {
+  .sait-gallery-card {
     height: 380px;
+    padding: 1.25rem;
   }
-  .sait-orbital-svg {
-    width: 250px;
-    height: 250px;
-  }
-  .orbit-3d-wrapper {
+  .sait-concentric-rings {
     width: 220px;
     height: 220px;
   }
-  .sait-logo-bezel {
-    width: 125px;
-    height: 125px;
+  .ring-outer {
+    width: 220px;
+    height: 220px;
+  }
+  .ring-mid {
+    width: 170px;
+    height: 170px;
+  }
+  .ring-inner {
+    width: 130px;
+    height: 130px;
+  }
+  .sait-emblem-disc {
+    width: 115px;
+    height: 115px;
   }
 }
 
 @media (max-width: 768px) {
-  .sait-showcase-container {
-    height: 320px;
-    padding: 1rem;
+  .sait-gallery-card {
+    height: 340px;
   }
-  .sait-orbital-svg {
-    width: 220px;
+  .crosshair-v {
     height: 220px;
   }
-  .orbit-3d-wrapper {
-    width: 190px;
-    height: 190px;
-  }
-  .sait-logo-bezel {
-    width: 110px;
-    height: 110px;
-  }
-  .radar-wave {
-    width: 110px;
-    height: 110px;
+  .crosshair-h {
+    width: 220px;
   }
 }
 
 @media (max-width: 480px) {
-  .sait-showcase-container {
-    height: 280px;
-    padding: 0.85rem;
+  .sait-gallery-card {
+    height: 300px;
+    padding: 1rem;
   }
-  .sait-orbital-svg {
-    width: 190px;
-    height: 190px;
+  .sait-gallery-overline {
+    font-size: 0.62rem;
   }
-  .orbit-3d-wrapper {
-    width: 160px;
-    height: 160px;
+  .sait-gallery-tag {
+    font-size: 0.62rem;
   }
-  .sait-logo-bezel {
-    width: 95px;
-    height: 95px;
-    padding: 4px;
+  .sait-emblem-disc {
+    width: 100px;
+    height: 100px;
   }
-  .radar-wave {
-    width: 95px;
-    height: 95px;
+  .sait-gallery-title {
+    font-size: 0.85rem;
   }
-  .showcase-status-badge,
-  .showcase-chip {
-    padding: 0.2rem 0.45rem;
+  .sait-gallery-sub {
+    font-size: 0.7rem;
   }
 }

@@ -2,9 +2,7 @@ import React, { useState, useRef } from 'react';
 
 export const SaitLogoShowcase = () => {
   const cardRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0, glareX: 50, glareY: 50 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [pulseCount, setPulseCount] = useState(0);
+  const [coords, setCoords] = useState({ x: 0, y: 0, tiltX: 0, tiltY: 0, isHovered: false });
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -13,176 +11,94 @@ export const SaitLogoShowcase = () => {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
-    // Smooth tilt calculation (-10 to +10 degrees)
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-    
-    setTilt({
-      x: rotateX,
-      y: rotateY,
-      glareX: (x / rect.width) * 100,
-      glareY: (y / rect.height) * 100,
+
+    // Subtle, organic tilt (max 5 degrees for realistic physical feel)
+    const tiltX = ((y - centerY) / centerY) * -5;
+    const tiltY = ((x - centerX) / centerX) * 5;
+
+    setCoords({
+      x,
+      y,
+      tiltX,
+      tiltY,
+      isHovered: true,
     });
   };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
   const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTilt({ x: 0, y: 0, glareX: 50, glareY: 50 });
-  };
-
-  const handleTriggerPulse = () => {
-    setPulseCount((prev) => prev + 1);
+    setCoords((prev) => ({
+      ...prev,
+      tiltX: 0,
+      tiltY: 0,
+      isHovered: false,
+    }));
   };
 
   return (
     <div
       ref={cardRef}
-      className={`sait-showcase-container ${isHovered ? 'is-hovered' : ''}`}
+      className="sait-gallery-card"
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleTriggerPulse}
-      title="Click to trigger holographic pulse"
     >
-      {/* Dynamic Specular Glare Layer that follows mouse */}
+      {/* Dynamic Cursor Spotlight (Subtle Architectural Lighting) */}
       <div
-        className="sait-showcase-glare"
+        className="sait-gallery-spotlight"
         style={{
-          background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.03) 35%, transparent 65%)`,
-          opacity: isHovered ? 1 : 0.4,
+          background: coords.isHovered
+            ? `radial-gradient(420px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.07), transparent 60%)`
+            : 'radial-gradient(350px circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 65%)',
         }}
       />
 
-      {/* Cybernetic Corner HUD Brackets */}
-      <div className="hud-corner hud-corner-tl" />
-      <div className="hud-corner hud-corner-tr" />
-      <div className="hud-corner hud-corner-bl" />
-      <div className="hud-corner hud-corner-br" />
-
-      {/* Top Status Header */}
-      <div className="sait-showcase-header">
-        <div className="showcase-status-badge">
-          <span className="status-indicator-dot" />
-          <span className="status-text">NETWORK // ACTIVE</span>
-        </div>
-        <div className="showcase-meta-tag">
-          SOE CUSAT • EST. 1995
-        </div>
+      {/* Top Architectural Header */}
+      <div className="sait-gallery-header">
+        <span className="sait-gallery-overline">DIVISION OF INFORMATION TECHNOLOGY</span>
+        <span className="sait-gallery-tag">SOE CUSAT</span>
       </div>
 
-      {/* 3D Holographic Core Chamber */}
+      {/* Centerpiece: Physical Emblem Presentation */}
       <div
-        className="sait-showcase-stage"
+        className="sait-gallery-stage"
         style={{
-          transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transform: `perspective(1000px) rotateX(${coords.tiltX}deg) rotateY(${coords.tiltY}deg)`,
         }}
       >
-        {/* Background Deep Radial Glow */}
-        <div className="holo-ambient-glow" />
-
-        {/* Sonar Radar Pulse Waves */}
-        <div className="radar-wave radar-wave-1" />
-        <div className="radar-wave radar-wave-2" />
-        <div className="radar-wave radar-wave-3" />
-
-        {/* User-Triggered Dynamic Energy Pulse */}
-        {pulseCount > 0 && (
-          <div key={pulseCount} className="radar-wave user-burst-pulse" />
-        )}
-
-        {/* SVG Orbital Gyroscope Rings */}
-        <svg
-          className="sait-orbital-svg"
-          viewBox="0 0 360 360"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Outer Segmented HUD Compass Ring */}
-          <circle
-            cx="180"
-            cy="180"
-            r="160"
-            className="ring-outer-hud"
-            stroke="rgba(255,255,255,0.15)"
-            strokeWidth="1.5"
-            strokeDasharray="5 9"
-          />
-
-          {/* Cardinal Coordinate Notches */}
-          <line x1="180" y1="12" x2="180" y2="24" stroke="#ffffff" strokeWidth="2" opacity="0.75" />
-          <line x1="180" y1="336" x2="180" y2="348" stroke="#ffffff" strokeWidth="2" opacity="0.75" />
-          <line x1="12" y1="180" x2="24" y2="180" stroke="#ffffff" strokeWidth="2" opacity="0.75" />
-          <line x1="336" y1="180" x2="348" y2="180" stroke="#ffffff" strokeWidth="2" opacity="0.75" />
-
-          {/* Mid Precision Counter-Rotating Ring with Tick Marks */}
-          <circle
-            cx="180"
-            cy="180"
-            r="132"
-            className="ring-mid-counter"
-            stroke="rgba(255,255,255,0.22)"
-            strokeWidth="1.2"
-            strokeDasharray="28 14 6 14"
-          />
-
-          {/* Inner Quantum Confinement Ring */}
-          <circle
-            cx="180"
-            cy="180"
-            r="108"
-            className="ring-inner-pulse"
-            stroke="rgba(255,255,255,0.3)"
-            strokeWidth="1"
-            strokeDasharray="4 4"
-          />
-        </svg>
-
-        {/* 3D Tilted Orbital Rings with Satellites */}
-        <div className="orbit-3d-wrapper orbit-alpha">
-          <div className="orbit-3d-ring">
-            <div className="orbit-satellite satellite-cyan" />
-            <div className="orbit-satellite-trail" />
-          </div>
+        {/* Fine Precision Concentric Rings (Swiss Horology / Astrolabe aesthetic) */}
+        <div className="sait-concentric-rings" aria-hidden="true">
+          <div className="sait-ring ring-outer" />
+          <div className="sait-ring ring-mid" />
+          <div className="sait-ring ring-inner" />
+          {/* Subtle Hairline Crosshairs */}
+          <div className="sait-crosshair crosshair-v" />
+          <div className="sait-crosshair crosshair-h" />
         </div>
 
-        <div className="orbit-3d-wrapper orbit-beta">
-          <div className="orbit-3d-ring">
-            <div className="orbit-satellite satellite-silver" />
-          </div>
-        </div>
-
-        {/* Central Floating SAIT Logo Vessel */}
-        <div className="sait-logo-floating-vessel">
-          {/* Logo Rim & Glass Bezel */}
-          <div className="sait-logo-bezel">
+        {/* Floating SAIT Circular Emblem */}
+        <div className="sait-emblem-wrapper">
+          <div className="sait-emblem-disc">
             <img
               src="/sait-logo.png"
-              alt="SAIT Official Badge"
-              className="sait-logo-img"
+              alt="SAIT Official Seal"
+              className="sait-emblem-image"
               draggable="false"
             />
-            {/* Holographic Diagonal Sheen Sweep */}
-            <div className="sait-hologram-sheen" />
+            {/* Fine Specular Highlight Reflection */}
+            <div className="sait-emblem-specular" />
           </div>
-
-          {/* Dynamic Ground Elevation Shadow */}
-          <div className="sait-logo-elevation-shadow" />
+          {/* Soft Ground Shadow */}
+          <div className="sait-emblem-shadow" />
         </div>
       </div>
 
-      {/* Bottom Telemetry HUD */}
-      <div className="sait-showcase-footer">
-        <div className="showcase-chip">
-          <span className="chip-code">DIVISION OF IT</span>
+      {/* Bottom Editorial Caption */}
+      <div className="sait-gallery-footer">
+        <div className="sait-gallery-title-group">
+          <h4 className="sait-gallery-title">SAIT Official Emblem</h4>
+          <p className="sait-gallery-sub">Student Association of Information Technology</p>
         </div>
-        <div className="showcase-interact-prompt">
-          <span>INTERACTIVE HOLOGRAM</span>
-          <span className="prompt-arrow">◈</span>
+        <div className="sait-gallery-year">
+          EST. 1995
         </div>
       </div>
     </div>

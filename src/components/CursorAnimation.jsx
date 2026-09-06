@@ -3,15 +3,8 @@ import React, { useEffect, useRef } from 'react';
 /**
  * CursorAnimation
  * 
- * Minimal, high-performance cursor animation that trails subtle cosmic
- * micro-stars and stardust specks as the mouse moves across the page.
- * 
- * Features:
- * - High-performance HTML5 Canvas with zero DOM node creation.
- * - Only active on pointer/mouse devices (disabled on touch/mobile screens).
- * - Sleep mode: rAF loop automatically pauses when mouse is stationary and particles have faded.
- * - Draws tiny 4-pointed micro-stars and glowing stardust matching the SAIT monochrome palette.
- * - Non-intrusive: pointer-events: none ensures zero impact on clicks or selections.
+ * High-performance canvas cursor animation trailing interactive binary
+ * '0' and '1' glyphs that drift and dissipate as the cursor moves across the screen.
  */
 export const CursorAnimation = () => {
   const canvasRef = useRef(null);
@@ -58,51 +51,36 @@ export const CursorAnimation = () => {
     // Smooth follower coordinates
     let followerX = -100;
     let followerY = -100;
-    let followerRadius = 14;
-    let targetRadius = 14;
+    let followerRadius = 13;
+    let targetRadius = 13;
 
     const particles = [];
-    const MAX_PARTICLES = 36;
+    const MAX_PARTICLES = 40;
     let isRunning = false;
     let rafId = null;
 
-    // Helper: Draw tiny 4-pointed diamond micro-star
-    const drawMicroStar = (x, y, size, alpha, rot) => {
+    // Draw single binary digit (0 or 1)
+    const drawBinaryDigit = (p) => {
       ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-      ctx.shadowBlur = 6;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
 
-      ctx.beginPath();
-      // 4-pointed star coordinates
-      ctx.moveTo(0, -size);
-      ctx.quadraticCurveTo(0, 0, size * 0.25, 0);
-      ctx.lineTo(size, 0);
-      ctx.quadraticCurveTo(0, 0, 0, size * 0.25);
-      ctx.lineTo(0, size);
-      ctx.quadraticCurveTo(0, 0, -size * 0.25, 0);
-      ctx.lineTo(-size, 0);
-      ctx.quadraticCurveTo(0, 0, 0, -size * 0.25);
-      ctx.closePath();
-      ctx.fill();
+      // Monospace typography for crisp code look
+      ctx.font = `600 ${p.fontSize}px "Fira Code", monospace, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
 
-      // Core center dot
-      ctx.beginPath();
-      ctx.arc(0, 0, size * 0.2, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.fill();
+      // Subtle glow
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.75)';
+      ctx.shadowBlur = p.isHighlight ? 6 : 3;
 
+      // Silver / white monochrome palette
+      ctx.fillStyle = p.isHighlight
+        ? `rgba(255, 255, 255, ${p.alpha})`
+        : `rgba(200, 200, 208, ${p.alpha * 0.9})`;
+
+      ctx.fillText(p.char, 0, 0);
       ctx.restore();
-    };
-
-    // Helper: Draw soft stardust speck
-    const drawStardust = (x, y, radius, alpha) => {
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(220, 220, 230, ${alpha})`;
-      ctx.fill();
     };
 
     // Animation frame loop
@@ -110,8 +88,8 @@ export const CursorAnimation = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Smooth follower position (lagging smoothly behind cursor)
-      followerX += (mouseX - followerX) * 0.24;
-      followerY += (mouseY - followerY) * 0.24;
+      followerX += (mouseX - followerX) * 0.25;
+      followerY += (mouseY - followerY) * 0.25;
       followerRadius += (targetRadius - followerRadius) * 0.18;
 
       // Draw subtle cursor aura ring when mouse is inside window
@@ -125,33 +103,28 @@ export const CursorAnimation = () => {
         ctx.lineWidth = isHoveringInteractive ? 1.5 : 1;
         ctx.stroke();
 
-        // Tiny center dot
+        // Center dot
         ctx.beginPath();
         ctx.arc(mouseX, mouseY, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
         ctx.fill();
         ctx.restore();
       }
 
-      // Update and draw active stardust particles
+      // Update and draw active binary particles
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
         p.alpha -= p.decay;
-        p.size *= 0.96;
         p.rotation += p.vRot;
 
-        if (p.alpha <= 0.02 || p.size <= 0.3) {
+        if (p.alpha <= 0.02) {
           particles.splice(i, 1);
           continue;
         }
 
-        if (p.isStar) {
-          drawMicroStar(p.x, p.y, p.size, p.alpha, p.rotation);
-        } else {
-          drawStardust(p.x, p.y, p.size, p.alpha);
-        }
+        drawBinaryDigit(p);
       }
 
       // Keep running if there are active particles or mouse is moving
@@ -175,50 +148,34 @@ export const CursorAnimation = () => {
       mouseY = e.clientY;
       isMouseInside = true;
 
-      // Check distance from last particle spawn point
+      // Distance from last particle spawn point
       const dx = mouseX - lastX;
       const dy = mouseY - lastY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Spawn subtle star/dust particle when cursor moves > 12px
+      // Spawn binary 0 or 1 when cursor moves > 12px
       if (dist > 12) {
         lastX = mouseX;
         lastY = mouseY;
 
-        // Add 1 micro-star
         if (particles.length < MAX_PARTICLES) {
           particles.push({
-            x: mouseX + (Math.random() - 0.5) * 6,
-            y: mouseY + (Math.random() - 0.5) * 6,
-            vx: (Math.random() - 0.5) * 0.6 - (dx * 0.04),
-            vy: (Math.random() - 0.5) * 0.6 - (dy * 0.04),
-            size: Math.random() * 2.8 + 2.2,
-            alpha: Math.random() * 0.45 + 0.45,
-            decay: Math.random() * 0.025 + 0.02,
-            rotation: Math.random() * Math.PI * 2,
-            vRot: (Math.random() - 0.5) * 0.08,
-            isStar: Math.random() > 0.35 // 65% micro-stars, 35% stardust specks
-          });
-        }
-
-        // Occasionally add a tiny secondary stardust speck
-        if (Math.random() > 0.55 && particles.length < MAX_PARTICLES) {
-          particles.push({
-            x: mouseX + (Math.random() - 0.5) * 10,
-            y: mouseY + (Math.random() - 0.5) * 10,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
-            size: Math.random() * 1.2 + 0.6,
-            alpha: Math.random() * 0.5 + 0.3,
-            decay: Math.random() * 0.03 + 0.025,
-            rotation: 0,
-            vRot: 0,
-            isStar: false
+            char: Math.random() > 0.5 ? '1' : '0',
+            x: mouseX + (Math.random() - 0.5) * 8,
+            y: mouseY + (Math.random() - 0.5) * 8,
+            vx: (Math.random() - 0.5) * 0.7 - (dx * 0.03),
+            vy: (Math.random() - 0.5) * 0.7 - (dy * 0.03) - 0.25, // gentle upward drift
+            fontSize: Math.floor(Math.random() * 4) + 11, // 11px to 14px
+            alpha: Math.random() * 0.35 + 0.65,
+            decay: Math.random() * 0.024 + 0.018,
+            rotation: (Math.random() - 0.5) * 0.2, // subtle organic tilt
+            vRot: (Math.random() - 0.5) * 0.015,
+            isHighlight: Math.random() > 0.65
           });
         }
       }
 
-      // Check if hovering interactive element to gently expand aura ring
+      // Check if hovering interactive element to expand aura ring
       const target = e.target;
       if (
         target &&
@@ -235,7 +192,7 @@ export const CursorAnimation = () => {
         targetRadius = 22;
       } else {
         isHoveringInteractive = false;
-        targetRadius = 12;
+        targetRadius = 13;
       }
 
       startLoop();

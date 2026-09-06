@@ -191,74 +191,66 @@
 }
 
 
-.nav-container {
+.navbar .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-/* Brand Logo (sait) */
+/* Brand Logo & Institution Lockup */
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   text-decoration: none;
-  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-acronym {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.45rem;
-  letter-spacing: -0.04em;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
 }
 
-.brand-icon-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-}
-
-.brand-sub-badge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 0.18rem 0.55rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--radius-xs);
-  color: #c4c4c4;
-  margin-left: 0.45rem;
+.brand-fullname {
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 500;
+  color: #a1a1aa;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  line-height: 1.3;
-  transition: all 0.2s ease;
+  margin-top: 0.15rem;
+  line-height: 1.2;
 }
 
-@media (max-width: 1150px) {
-  .brand-sub-badge {
+@media (max-width: 860px) {
+  .brand-fullname {
+    font-size: 0.58rem;
     max-width: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 0.62rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .brand-sub-badge {
-    max-width: 170px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 0.6rem;
-    padding: 0.12rem 0.4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .brand-sub-badge {
+  .brand-fullname {
+    font-size: 0.52rem;
     max-width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 0.55rem;
-    padding: 0.1rem 0.35rem;
   }
 }
 
@@ -266,17 +258,26 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1250px) {
+  .nav-links {
+    gap: 0.95rem;
+  }
 }
 
 .nav-item-link {
   display: inline-flex;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 

@@ -43,8 +43,8 @@ export const Navbar = ({
     <>
       <header className="navbar">
         <div className="container nav-container">
-          {/* Brand Logo (Matching Fillo Logo Mark Style) */}
-          <a href="#" className="nav-brand">
+          {/* Brand Logo & Institution Lockup */}
+          <a href="#" className="nav-brand" title="Students Association of Information Technology">
             <img
               src="/sait-logo.png"
               alt="SAIT Logo"
@@ -56,11 +56,15 @@ export const Navbar = ({
                 flexShrink: 0,
               }}
             />
-            <span style={{ fontWeight: '800', fontSize: '1.1rem', letterSpacing: '0.05em', flexShrink: 0 }}>
-              <span style={{ color: '#ffffff' }}>SA</span>
-              <span style={{ color: '#a8a8a8' }}>IT</span>
-            </span>
-            <span className="brand-sub-badge">Students Association of Information Technology</span>
+            <div className="brand-text-block">
+              <div className="brand-acronym">
+                <span style={{ color: '#ffffff' }}>SA</span>
+                <span style={{ color: '#a8a8a8' }}>IT</span>
+              </div>
+              <span className="brand-fullname">
+                Students Association of Information Technology
+              </span>
+            </div>
           </a>
 
           {/* Desktop Nav Links */}

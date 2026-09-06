@@ -68,7 +68,7 @@ export const placementsData = {
       tier: "Core Tech",
       ctcRange: "₹8 - 12 LPA",
       category: "Consulting",
-      logo: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=200&q=80"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/UST_%28company%29_Logo.svg"
     },
     {
       name: "Tata Consultancy Services (TCS Digital)",
@@ -76,7 +76,7 @@ export const placementsData = {
       tier: "Core Tech",
       ctcRange: "₹7.5 - 11 LPA",
       category: "Enterprise IT",
-      logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/99/TATA_Consultancy_Services_Logo_blue.svg"
     }
   ],
   interviewGuides: [

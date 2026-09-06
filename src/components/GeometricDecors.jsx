@@ -141,26 +141,20 @@ export const ConnectedWorldDecor = ({ size = 72 }) => (
   </svg>
 );
 
-// Scholarship / Admission Merit Star Emblem
-export const ScholarshipEmblemDecor = ({ size = 84 }) => (
-  <svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 80 80" 
-    fill="none" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="scholarGrad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#ffffff" />
-        <stop offset="100%" stopColor="#a8a8a8" />
-      </linearGradient>
-    </defs>
-    <circle cx="40" cy="40" r="35" stroke="url(#scholarGrad)" strokeWidth="1.4" strokeDasharray="3 3" opacity="0.5" />
-    <circle cx="40" cy="40" r="25" stroke="url(#scholarGrad)" strokeWidth="1.5" />
-    <polygon points="40,19 46,34 60,35 49,46 52,60 40,51 28,60 31,46 20,35 34,34" stroke="url(#scholarGrad)" strokeWidth="1.5" fill="rgba(255,255,255,0.06)" />
-    <circle cx="40" cy="40" r="4.5" fill="#ffffff" />
-  </svg>
+// Scholarship / Admission Merit Graduation Cap on Hand Emblem (White)
+export const ScholarshipEmblemDecor = ({ size = 80 }) => (
+  <img 
+    src="/scholarship-white.png" 
+    alt="Scholarship & Admission" 
+    style={{
+      width: size,
+      height: size,
+      objectFit: 'contain',
+      display: 'inline-block',
+      flexShrink: 0,
+      filter: 'drop-shadow(0 2px 10px rgba(255, 255, 255, 0.2))',
+    }}
+  />
 );
 
 // Backward compatibility aliases

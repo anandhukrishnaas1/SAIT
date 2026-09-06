@@ -10,9 +10,19 @@ const PRIORITY_CONFIG = {
 export const AnnouncementBar = ({ announcements = [] }) => {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const timerRef = useRef(null);
 
   const items = announcements.slice(0, 5);
+
+  // Detect scroll to hide on mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Auto-rotate every 4 seconds
   useEffect(() => {
@@ -40,7 +50,7 @@ export const AnnouncementBar = ({ announcements = [] }) => {
 
   return (
     <div
-      className="announcement-bar"
+      className={`announcement-bar ${scrolled ? 'is-scrolled' : ''}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

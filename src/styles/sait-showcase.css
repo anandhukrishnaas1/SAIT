@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SAIT FULL-SIZE SEAMLESS LOGO (MAXIMIZED FULL SPACE DISPLAY)
+   SAIT FULL-SIZE SEAMLESS LOGO (CLEAN CIRCULAR DISPLAY - ZERO SQUARE SHADOWS)
    ========================================================================== */
 
 .sait-seamless-logo-container {
@@ -38,26 +38,25 @@
   height: auto;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
   overflow: hidden;
   animation: seamlessLogoFloat 5.5s ease-in-out infinite;
-  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(255, 255, 255, 0.12));
-  transition: filter 0.35s ease, transform 0.35s ease;
-}
-
-.sait-seamless-logo-container:hover .sait-seamless-logo-disc {
-  filter: drop-shadow(0 36px 64px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 65px rgba(255, 255, 255, 0.2));
+  transition: transform 0.35s ease;
+  background: transparent;
 }
 
 .sait-seamless-logo-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: scale(1.03); /* Utilizes the full circle diameter to outer edge */
   border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
   display: block;
 }
 
-/* Elegant Light Sweep / Sheen across the logo face */
+/* Elegant Light Sweep / Sheen strictly clipped inside the circle */
 .sait-seamless-sheen {
   position: absolute;
   top: -50%;
@@ -68,7 +67,7 @@
     120deg,
     transparent 42%,
     rgba(255, 255, 255, 0.0) 45%,
-    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.22) 50%,
     rgba(255, 255, 255, 0.0) 55%,
     transparent 58%
   );
@@ -76,37 +75,13 @@
   animation: seamlessSheenSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Ground Elevation Shadow */
-.sait-seamless-shadow {
-  position: absolute;
-  bottom: -32px;
-  width: 300px;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 70%);
-  filter: blur(10px);
-  pointer-events: none;
-  animation: seamlessShadowBreath 5.5s ease-in-out infinite;
-}
-
-/* Animations */
+/* Floating Animations */
 @keyframes seamlessLogoFloat {
   0%, 100% {
     transform: translateY(0px) scale(1);
   }
   50% {
     transform: translateY(-12px) scale(1.015);
-  }
-}
-
-@keyframes seamlessShadowBreath {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.85;
-  }
-  50% {
-    transform: scale(0.82);
-    opacity: 0.45;
   }
 }
 
@@ -126,9 +101,6 @@
   .sait-seamless-logo-disc {
     max-width: 420px;
   }
-  .sait-seamless-shadow {
-    width: 260px;
-  }
 }
 
 @media (max-width: 991px) {
@@ -138,10 +110,6 @@
   }
   .sait-seamless-logo-disc {
     max-width: 360px;
-  }
-  .sait-seamless-shadow {
-    width: 220px;
-    bottom: -22px;
   }
 }
 
@@ -154,18 +122,10 @@
   .sait-seamless-logo-disc {
     max-width: 300px;
   }
-  .sait-seamless-shadow {
-    width: 190px;
-    bottom: -18px;
-  }
 }
 
 @media (max-width: 480px) {
   .sait-seamless-logo-disc {
     max-width: 250px;
-  }
-  .sait-seamless-shadow {
-    width: 150px;
-    bottom: -14px;
   }
 }

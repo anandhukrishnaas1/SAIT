@@ -12,9 +12,9 @@ export const SaitLogoShowcase = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Ultra-smooth, elegant 3D tilt
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+    // Smooth subtle 3D tilt
+    const rotateX = ((y - centerY) / centerY) * -7;
+    const rotateY = ((x - centerX) / centerX) * 7;
 
     setTilt({ x: rotateX, y: rotateY, isHovered: true });
   };
@@ -30,7 +30,7 @@ export const SaitLogoShowcase = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* 3D Floating Full-Size Logo */}
+      {/* 3D Floating Pure Circular Logo */}
       <div
         className={`sait-seamless-logo-stage ${tilt.isHovered ? 'is-hovered' : ''}`}
         style={{
@@ -47,9 +47,6 @@ export const SaitLogoShowcase = () => {
           {/* Subtle Specular Sheen Sweep */}
           <div className="sait-seamless-sheen" />
         </div>
-
-        {/* Ambient Ground Shadow */}
-        <div className="sait-seamless-shadow" />
       </div>
     </div>
   );

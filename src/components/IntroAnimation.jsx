@@ -208,12 +208,6 @@ export const IntroAnimation = ({ onComplete, onRevealing }) => {
           <p className="credits-sub">STUDENTS ASSOCIATION • SOE CUSAT</p>
         </div>
       </div>
-
-      {/* Minimalist Bottom Hint */}
-      <div className="intro-footer-hint">
-        <span className="hint-pulse-dot" />
-        <span>CLICK ANYWHERE OR PRESS ESC TO ENTER</span>
-      </div>
     </div>
   );
 };

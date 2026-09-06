@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './styles/mobile-animations.css';
 import { Navbar } from './components/Navbar';
 import { AnnouncementBar } from './components/AnnouncementBar';
+import { MobileBottomNav } from './components/MobileBottomNav';
+import { useScrollReveal, useScrollProgress } from './hooks/useScrollAnimations';
 import { HeroSection } from './components/HeroSection';
 import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
@@ -65,6 +68,10 @@ export function App() {
     localStorage.removeItem('sait_theme');
   }, []);
 
+  // Scroll reveal (IntersectionObserver) & scroll progress bar
+  useScrollReveal();
+  useScrollProgress();
+
   // Sync Activities to localStorage and calculate Leaderboard
   useEffect(() => {
     localStorage.setItem('sait_activities', JSON.stringify(activities));
@@ -97,6 +104,9 @@ export function App() {
 
   return (
     <div className="app-root">
+      {/* Scroll progress bar */}
+      <div id="scroll-progress" aria-hidden="true" />
+
       {/* Top Announcement Bar */}
       <AnnouncementBar announcements={announcementsData} />
 
@@ -120,53 +130,82 @@ export function App() {
         />
 
         {/* Enjoy Studying / Department Pillars */}
-        <PillarsSection />
+        <div className="reveal">
+          <PillarsSection />
+        </div>
 
         {/* Top Stories / Department Highlights */}
-        <TopStoriesSection onNotifyToast={addToast} />
+        <div className="reveal reveal-stagger">
+          <TopStoriesSection onNotifyToast={addToast} />
+        </div>
 
         {/* Placements & Careers */}
-        <PlacementsSection onNotifyToast={addToast} />
+        <div className="reveal">
+          <PlacementsSection onNotifyToast={addToast} />
+        </div>
 
         {/* Campus Events (Split Layout) */}
-        <EventsSection onNotifyToast={addToast} />
+        <div className="reveal">
+          <EventsSection onNotifyToast={addToast} />
+        </div>
 
         {/* More to Explore (3-Photo Grid) */}
-        <MoreToExploreSection onNotifyToast={addToast} />
+        <div className="reveal reveal-scale">
+          <MoreToExploreSection onNotifyToast={addToast} />
+        </div>
 
         {/* Academics & Faculty Directory */}
-        <AboutSection />
+        <div className="reveal reveal-left">
+          <AboutSection />
+        </div>
 
         {/* Association & Leadership */}
-        <AssociationSection />
+        <div className="reveal reveal-right">
+          <AssociationSection />
+        </div>
 
         {/* Alumni Network & Mentorship */}
-        <AlumniSection onNotifyToast={addToast} />
+        <div className="reveal">
+          <AlumniSection onNotifyToast={addToast} />
+        </div>
 
         {/* Flagship: Student Activity Logger & Leaderboard */}
-        <ActivityLoggerSection
-          activities={activities}
-          setActivities={setActivities}
-          leaderboard={leaderboard}
-          onOpenSubmissionModal={() => setActivityModalOpen(true)}
-          onNotifyToast={addToast}
-        />
+        <div className="reveal">
+          <ActivityLoggerSection
+            activities={activities}
+            setActivities={setActivities}
+            leaderboard={leaderboard}
+            onOpenSubmissionModal={() => setActivityModalOpen(true)}
+            onNotifyToast={addToast}
+          />
+        </div>
 
         {/* Apply / Connect CTA Banner */}
-        <ApplyBannerSection onOpenActivityModal={() => setActivityModalOpen(true)} />
+        <div className="reveal reveal-scale">
+          <ApplyBannerSection onOpenActivityModal={() => setActivityModalOpen(true)} />
+        </div>
 
         {/* Notices & Circulars */}
-        <AnnouncementsSection onNotifyToast={addToast} />
+        <div className="reveal">
+          <AnnouncementsSection onNotifyToast={addToast} />
+        </div>
 
         {/* Academic Notes Vault */}
-        <ResourceVaultSection onNotifyToast={addToast} />
+        <div className="reveal">
+          <ResourceVaultSection onNotifyToast={addToast} />
+        </div>
       </main>
 
       {/* 4-Column Footer */}
-      <FooterSection 
-        onOpenTerminal={() => setTerminalOpen(true)} 
-        onNotifyToast={addToast} 
-      />
+      <div className="reveal reveal-fade">
+        <FooterSection 
+          onOpenTerminal={() => setTerminalOpen(true)} 
+          onNotifyToast={addToast} 
+        />
+      </div>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <MobileBottomNav onOpenActivityModal={() => setActivityModalOpen(true)} />
 
       {/* Interactive Global Modals */}
       <CommandPalette

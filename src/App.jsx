@@ -5,6 +5,7 @@ import { AnnouncementBar } from './components/AnnouncementBar';
 import { useScrollReveal } from './hooks/useScrollAnimations';
 import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation';
 import { CursorAnimation } from './components/CursorAnimation';
+import { IntroAnimation } from './components/IntroAnimation';
 import { HeroSection } from './components/HeroSection';
 import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
@@ -103,6 +104,9 @@ export function App() {
 
   return (
     <div className="app-root">
+      {/* Stranger Things Style Cinematic 'IT' Intro Loader */}
+      <IntroAnimation />
+
       {/* Scroll-Reactive Glass Ambient Background Animation */}
       <GlassBackgroundAnimation />
 

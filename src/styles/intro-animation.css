@@ -1,0 +1,319 @@
+/* ==========================================================================
+   INTRO ANIMATION — STRANGER THINGS STYLE 'IT' CINEMATIC LOADING
+   Color theme: SAIT Monochrome (#0a0a0a, #ffffff, #a8a8a8) & Frosted Glass.
+   ========================================================================== */
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080808;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+/* Glass backdrop with high-blur */
+.intro-backdrop-blur {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 10, 0.94);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  pointer-events: none;
+}
+
+/* Deep cinematic vignette */
+.intro-light-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 30%,
+    rgba(8, 8, 8, 0.7) 70%,
+    #050505 100%
+  );
+  pointer-events: none;
+}
+
+/* Subtle prismatic glass light beam sweeping through */
+.intro-beam-sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.035) 48%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.035) 52%,
+    transparent 58%
+  );
+  animation: introBeamSlide 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes introBeamSlide {
+  0% { transform: translateY(-30%) rotate(25deg); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translateY(30%) rotate(25deg); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   CENTRAL STRANGER THINGS LETTER CONTAINER
+   -------------------------------------------------------------------------- */
+.intro-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  will-change: transform, opacity;
+  animation: introSlowZoom 2.2s cubic-bezier(0.1, 0.6, 0.2, 1) forwards;
+}
+
+@keyframes introSlowZoom {
+  0% {
+    transform: scale(0.82) translateZ(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.08) translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.15) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FRAMING HORIZONTAL BARS (Classic Stranger Things Header/Footer Rails)
+   -------------------------------------------------------------------------- */
+.intro-frame-bar {
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 15%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.3) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7),
+              0 0 24px rgba(168, 168, 168, 0.4);
+  animation: expandFrameBar 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.intro-frame-bar.bar-top {
+  margin-bottom: 0.5rem;
+}
+
+.intro-frame-bar.bar-bottom {
+  margin-top: 0.5rem;
+}
+
+@keyframes expandFrameBar {
+  0% {
+    width: 10%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    max-width: 440px;
+    opacity: 0.95;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   "IT" LUMINOUS HOLLOW GLASS LETTERS
+   -------------------------------------------------------------------------- */
+.intro-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0.5rem 0;
+}
+
+.intro-letter {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(6.5rem, 18vw, 12rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 2.2px rgba(255, 255, 255, 0.95);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(200, 200, 210, 0.12) 50%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  -webkit-background-clip: text;
+  text-shadow: 
+    0 0 18px rgba(255, 255, 255, 0.65),
+    0 0 45px rgba(255, 255, 255, 0.35),
+    0 0 80px rgba(168, 168, 168, 0.25);
+  display: inline-block;
+  will-change: transform, text-shadow;
+}
+
+/* Letter "I" creeps in from slightly left */
+.letter-i {
+  animation: creepLetterI 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes creepLetterI {
+  0% {
+    transform: translateX(-35px) scale(0.9);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Letter "T" creeps in from slightly right */
+.letter-t {
+  animation: creepLetterT 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes creepLetterT {
+  0% {
+    transform: translateX(35px) scale(0.9);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SUBTITLE LINE
+   -------------------------------------------------------------------------- */
+.intro-subtext {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  opacity: 0;
+  animation: fadeSubtext 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.subtext-line {
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.68rem, 1.6vw, 0.95rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+.subtext-dots {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: #a8a8a8;
+  letter-spacing: 0.28em;
+}
+
+@keyframes fadeSubtext {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BLOOM PHASE (Bright Flash Pulse)
+   -------------------------------------------------------------------------- */
+.intro-overlay.blooming .intro-letter {
+  -webkit-text-stroke: 2.8px #ffffff;
+  text-shadow: 
+    0 0 25px #ffffff,
+    0 0 60px rgba(255, 255, 255, 0.8),
+    0 0 120px rgba(255, 255, 255, 0.5);
+  transition: all 0.35s ease;
+}
+
+.intro-overlay.blooming .intro-frame-bar {
+  box-shadow: 0 0 20px #ffffff,
+              0 0 40px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.35s ease;
+}
+
+/* --------------------------------------------------------------------------
+   EXIT PHASE (Cinematic Zoom-Through & Fade Out into Landing Page)
+   -------------------------------------------------------------------------- */
+.intro-overlay.exiting {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.15);
+  pointer-events: none;
+}
+
+.intro-overlay.exiting .intro-content {
+  transform: scale(1.48) translateZ(0);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   SKIP HINT (Bottom subtle text)
+   -------------------------------------------------------------------------- */
+.intro-skip-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.12em;
+  opacity: 0;
+  animation: fadeHint 1s ease 1s forwards;
+}
+
+@keyframes fadeHint {
+  to { opacity: 0.7; }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    display: none !important;
+  }
+}

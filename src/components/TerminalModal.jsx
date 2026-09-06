@@ -124,29 +124,56 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-container terminal-window" onClick={(e) => e.stopPropagation()}>
+        {/* macOS Terminal Window Header */}
         <div className="terminal-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <TerminalIcon size={16} color="#10b981" />
-            <span style={{ fontSize: '0.8125rem', color: '#e2e8f0', fontWeight: '600' }}>
-              sait-cli@soe-cusat: ~
-            </span>
+          <div className="terminal-mac-controls">
+            <button 
+              className="mac-dot mac-dot-close" 
+              onClick={onClose} 
+              title="Close (⌘W)"
+              aria-label="Close"
+            />
+            <span className="mac-dot mac-dot-minimize" title="Minimize" />
+            <span className="mac-dot mac-dot-maximize" title="Maximize" />
           </div>
-          <button className="modal-close-btn" onClick={onClose}>
-            <X size={16} />
-          </button>
+
+          <div className="terminal-mac-title">
+            <TerminalIcon size={12} style={{ opacity: 0.85 }} />
+            <span>sait-cli — -zsh — 80×24</span>
+          </div>
+
+          <div className="terminal-header-right">
+            <span className="terminal-env-badge">SOE CUSAT</span>
+          </div>
         </div>
 
+        {/* Terminal Output Logs */}
         <div className="terminal-logs">
           {history.map((line, idx) => (
-            <div key={idx} style={{ color: line.type === 'input' ? '#38bdf8' : '#cbd5e1' }}>
-              {line.type === 'input' ? `cusat-it:~$ ${line.text}` : line.text}
+            <div 
+              key={idx} 
+              className={`term-log-line ${line.type === 'input' ? 'term-log-input' : 'term-log-output'}`}
+            >
+              {line.type === 'input' ? (
+                <span className="term-line-flex">
+                  <span className="term-prompt-user">sait@soe-cusat</span>
+                  <span className="term-prompt-dir">~</span>
+                  <span className="term-prompt-sym">$</span>
+                  <span className="term-input-text">{line.text}</span>
+                </span>
+              ) : (
+                <span>{line.text}</span>
+              )}
             </div>
           ))}
           <div ref={bottomRef} />
         </div>
 
+        {/* Terminal Input Prompt */}
         <div className="terminal-input-line">
-          <span style={{ color: '#10b981' }}>cusat-it:~$</span>
+          <span className="term-prompt-user">sait@soe-cusat</span>
+          <span className="term-prompt-dir">~</span>
+          <span className="term-prompt-sym">$</span>
           <input 
             ref={inputRef}
             type="text" 
@@ -154,7 +181,9 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             onKeyDown={handleCommand}
-            placeholder="type command here..."
+            placeholder="type command here... (try: 'sait stats', 'whoami', 'help')"
+            spellCheck={false}
+            autoComplete="off"
           />
         </div>
       </div>

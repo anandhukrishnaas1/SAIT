@@ -102,7 +102,7 @@ export const MentorshipModal = ({ alumni, isOpen, onClose, onMentorshipSuccess }
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="modal-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div className="form-group">
                     <label className="form-label">CUSAT Email *</label>
                     <input 

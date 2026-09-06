@@ -100,7 +100,7 @@ export const AssociationSection = () => {
             </p>
           </div>
 
-          <div style={{
+          <div className="association-exec-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '1rem',

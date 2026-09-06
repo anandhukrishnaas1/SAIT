@@ -26,7 +26,7 @@ export const AboutSection = () => {
         </div>
 
         {/* Vision & Mission Card + Timeline Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '2.5rem', marginBottom: '4rem' }}>
+        <div className="about-content-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '2.5rem', marginBottom: '4rem' }}>
           <div className="editorial-card" style={{ padding: '2.25rem' }}>
             <div className="filter-tabs" style={{ marginBottom: '1.5rem' }}>
               <button 

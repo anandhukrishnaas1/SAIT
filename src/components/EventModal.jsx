@@ -129,7 +129,7 @@ export const EventModal = ({ event, isOpen, onClose, onRegisterSuccess }) => {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="modal-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div className="form-group">
                     <label className="form-label">CUSAT Email *</label>
                     <input 
@@ -154,7 +154,7 @@ export const EventModal = ({ event, isOpen, onClose, onRegisterSuccess }) => {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="modal-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div className="form-group">
                     <label className="form-label">University Roll No *</label>
                     <input 

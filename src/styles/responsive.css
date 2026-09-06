@@ -1,5 +1,9 @@
 /* ==========================================================================
    RESPONSIVE & MOBILE ADAPTATIONS
+   Breakpoints:
+     ≤1024px  — Tablet landscape / small desktop
+     ≤768px   — Tablet portrait
+     ≤480px   — Mobile phone
    ========================================================================== */
 
 /* Mobile Drawer Navigation */
@@ -79,7 +83,41 @@
   display: none;
 }
 
+/* =====================================================================
+   TABLET LANDSCAPE / SMALL DESKTOP  (≤1024px)
+   ===================================================================== */
+@media (max-width: 1024px) {
+  /* Container narrower padding */
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Section spacing */
+  section {
+    padding: 3.5rem 0;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* Section header stack */
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Navbar hamburger (already in navbar.css) */
+}
+
+/* =====================================================================
+   TABLET PORTRAIT  (≤768px)
+   ===================================================================== */
 @media (max-width: 768px) {
+  /* Mobile bottom bar */
   .mobile-bottom-bar {
     position: fixed;
     bottom: 0;
@@ -115,21 +153,501 @@
     font-weight: 600;
   }
 
-  /* Add bottom padding to body for the fixed bar */
+  /* Add bottom padding for the fixed bar */
   body {
     padding-bottom: 70px;
   }
+
+  /* Section spacing tighter */
+  section {
+    padding: 3rem 0;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* ── Pillars ── */
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .pillars-title {
+    font-size: 2rem;
+  }
+
+  /* ── Top Stories ── */
+  .top-stories-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  /* ── Campus Events ── */
+  .campus-events-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .event-featured-image {
+    height: 260px;
+  }
+
+  /* ── Explore Grid ── */
+  .explore-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  /* ── People / Faculty ── */
+  .people-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem;
+  }
+
+  /* ── Recruiters ── */
+  .recruiters-editorial-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+  }
+
+  /* ── Footer ── */
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  /* ── CTA Banner ── */
+  .cta-banner-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .cta-banner-left {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-banner-title {
+    font-size: 1.5rem;
+  }
+
+  /* ── Alumni Grid ── */
+  .alumni-compact-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── Activity Logger ── */
+  .activity-card-editorial {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .logger-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logger-nav-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .logger-nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Leaderboard table ── */
+  .editorial-leaderboard-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  /* ── Modals ── */
+  .modal-container {
+    max-width: 95vw;
+    max-height: 92vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  .cmd-palette-modal {
+    max-width: 95vw;
+  }
+
+  .terminal-window {
+    max-width: 95vw;
+  }
+
+  /* ── Announcement Bar ── */
+  .announcement-bar {
+    height: auto;
+    min-height: 38px;
+    padding: 0.4rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .ann-bar-text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .ann-bar-deadline {
+    display: none;
+  }
 }
 
-/* Alumni Grid Responsive */
-@media (max-width: 900px) {
+/* =====================================================================
+   MOBILE PHONE  (≤480px)
+   ===================================================================== */
+@media (max-width: 480px) {
+  /* Container minimum padding */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Section spacing compact */
+  section {
+    padding: 2.25rem 0;
+  }
+
+  /* ── Hero ── */
+  .hero-editorial-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-cta-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-stats-row {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+  }
+
+  /* ── Notices Card ── */
+  .hero-notices-card {
+    max-width: 100% !important;
+    border-radius: 12px;
+  }
+
+  .hero-notices-top {
+    padding: 1rem;
+  }
+
+  .hero-notices-headline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero-notices-tabs {
+    gap: 0.25rem;
+  }
+
+  .hero-notice-tab {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .hero-notices-list {
+    padding: 0.65rem 0.75rem;
+    max-height: 280px;
+  }
+
+  .hero-notice-item {
+    padding: 0.75rem;
+  }
+
+  .hero-notice-action-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  /* ── Section Titles ── */
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.84rem;
+  }
+
+  .pillars-title {
+    font-size: 1.6rem;
+  }
+
+  /* ── Stories ── */
+  .story-img-wrap {
+    height: 180px;
+  }
+
+  .story-body {
+    padding: 1.25rem;
+  }
+
+  .story-title {
+    font-size: 1.1rem;
+  }
+
+  /* ── People ── */
+  .people-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Recruiters ── */
+  .recruiters-editorial-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Alumni ── */
   .alumni-compact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-view-all {
+    width: auto;
+  }
+
+  .nav-signup-btn {
+    display: none;
+  }
+
+  /* ── Filter pills scroll ── */
+  .filter-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill {
+    flex-shrink: 0;
+  }
+
+  /* ── CTA Banner ── */
+  .cta-banner-title {
+    font-size: 1.25rem;
+  }
+
+  /* ── Activity Logger ── */
+  .logger-profile-box {
+    padding: 1.25rem;
+  }
+
+  .student-avatar-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .student-name-title {
+    font-size: 1.1rem;
+  }
+
+  /* ── Footer ── */
+  .footer-newsletter-wrap {
+    max-width: 100%;
+  }
+
+  /* ── Toast ── */
+  .toast-container {
+    right: 1rem;
+    left: 1rem;
+    bottom: 5rem;
+  }
+
+  .toast {
+    font-size: 0.8125rem;
+    padding: 0.75rem 1rem;
+  }
+
+  /* ── Explore ── */
+  .explore-img-wrap {
+    height: 180px;
+  }
+
+  /* ── Events ── */
+  .event-featured-image {
+    height: 200px;
+  }
+
+  /* ── Announcement Bar mobile ── */
+  .ann-bar-left {
+    display: none;
+  }
+
+  .ann-bar-right {
+    gap: 0.2rem;
+  }
+
+  .ann-nav-btn,
+  .ann-dismiss-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ann-bar-cta {
+    font-size: 0.65rem;
+    padding: 0.12rem 0.45rem;
+  }
+}
+
+/* =====================================================================
+   INLINE-STYLE GRID OVERRIDES  (components using inline gridTemplateColumns)
+   These target classes added in JSX for responsive control.
+   ===================================================================== */
+
+/* About Section: 2-col → 1-col on tablet */
+@media (max-width: 768px) {
+  .about-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .about-wings-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Placements: 3-col stats and recruiters → 1-col on small */
+@media (max-width: 768px) {
+  .placement-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .placement-recruiters-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .placement-recruiters-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Association: executive grid → 1-col on mobile */
+@media (max-width: 768px) {
+  .association-exec-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Modal form grids → 1-col on mobile */
+@media (max-width: 480px) {
+  .modal-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Announcement cards (full section) → 1-col on mobile */
+@media (max-width: 768px) {
+  .announcements-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Resource vault grid → responsive */
+@media (max-width: 768px) {
+  .resource-vault-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
-@media (max-width: 580px) {
-  .alumni-compact-grid {
+@media (max-width: 480px) {
+  .resource-vault-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* Footer watermark styling & responsive sizing */
+.footer-watermark-container {
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .footer-watermark-logo {
+    width: 240px !important;
+    height: 240px !important;
+    right: -20px !important;
+    bottom: -30px !important;
+    opacity: 0.035 !important;
+  }
+  .footer-watermark-text {
+    font-size: clamp(3.5rem, 18vw, 7rem) !important;
+    bottom: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-watermark-logo {
+    width: 170px !important;
+    height: 170px !important;
+    right: -10px !important;
+    bottom: -20px !important;
+    opacity: 0.03 !important;
+  }
+  .footer-watermark-text {
+    font-size: 3.5rem !important;
+    letter-spacing: 0.08em !important;
+    bottom: 8px !important;
   }
 }

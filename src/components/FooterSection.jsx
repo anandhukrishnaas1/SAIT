@@ -25,8 +25,67 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
   };
 
   return (
-    <footer id="contact" className="site-footer">
-      <div className="container">
+    <footer id="contact" className="site-footer" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Low-opacity SAIT Watermark Background Elements */}
+      <div 
+        className="footer-watermark-container"
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          userSelect: 'none',
+          overflow: 'hidden',
+          zIndex: 0,
+        }}
+      >
+        {/* Large Logo Emblem Watermark */}
+        <img
+          src="/sait-logo.png"
+          alt=""
+          className="footer-watermark-logo"
+          style={{
+            position: 'absolute',
+            right: '-30px',
+            bottom: '-40px',
+            width: '360px',
+            height: '360px',
+            objectFit: 'contain',
+            opacity: 0.04,
+            filter: 'grayscale(100%) contrast(110%)',
+            transform: 'rotate(-10deg)',
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Large Typographic Watermark Outline */}
+        <div
+          className="footer-watermark-text"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            bottom: '15px',
+            transform: 'translateX(-50%)',
+            fontFamily: 'var(--font-display, "Space Grotesk", sans-serif)',
+            fontSize: 'clamp(4.5rem, 16vw, 13rem)',
+            fontWeight: 900,
+            letterSpacing: '0.12em',
+            lineHeight: 0.8,
+            color: 'rgba(255, 255, 255, 0.015)',
+            WebkitTextStroke: '1.5px rgba(255, 255, 255, 0.035)',
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
+            pointerEvents: 'none',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
+          SAIT
+        </div>
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* 4-Column Layout (Matching Fillo Template) */}
         <div className="footer-columns-grid">
           {/* Column 1: Brand & Newsletter */}

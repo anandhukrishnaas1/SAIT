@@ -193,7 +193,7 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '1rem' }}>
+                <div className="modal-form-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '1rem' }}>
                   <div className="form-group">
                     <label className="form-label">Category *</label>
                     <select 
@@ -219,7 +219,7 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="modal-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div className="form-group">
                     <label className="form-label">Date Completed *</label>
                     <input 

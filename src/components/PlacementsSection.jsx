@@ -16,7 +16,7 @@ export const PlacementsSection = ({ onNotifyToast }) => {
         </div>
 
         {/* Stats Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '3.5rem' }}>
+        <div className="placement-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '3.5rem' }}>
           <div className="editorial-card" style={{ padding: '2rem', textAlign: 'center' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
               Highest CTC
@@ -82,7 +82,7 @@ export const PlacementsSection = ({ onNotifyToast }) => {
             Interview Roadmaps & Question Banks
           </h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div className="placement-recruiters-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {placementsData.interviewGuides.map((guide, idx) => (
               <div key={idx} className="editorial-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column' }}>
                 <span className="skill-tag" style={{ width: 'fit-content', marginBottom: '0.75rem' }}>{guide.type}</span>

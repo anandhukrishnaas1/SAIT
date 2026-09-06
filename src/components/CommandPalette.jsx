@@ -8,7 +8,7 @@ import {
   Award, 
   Briefcase, 
   FileText, 
-  Sparkles, 
+  PlusCircle, 
   ArrowRight,
   Terminal
 } from 'lucide-react';
@@ -105,7 +105,7 @@ export const CommandPalette = ({
                 onClick={() => { onClose(); onOpenActivityModal(); }}
               >
                 <div className="cmd-result-info">
-                  <Sparkles size={16} color="var(--brand-accent)" />
+                  <PlusCircle size={16} color="var(--brand-accent)" />
                   <span>Log a New Student Activity</span>
                 </div>
                 <span className="cmd-result-tag">Activity Logger</span>

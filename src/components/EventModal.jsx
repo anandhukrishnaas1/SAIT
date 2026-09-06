@@ -6,7 +6,6 @@ import {
   Clock, 
   Trophy, 
   CheckCircle, 
-  Sparkles, 
   User, 
   Mail, 
   Phone,
@@ -200,7 +199,7 @@ export const EventModal = ({ event, isOpen, onClose, onRegisterSuccess }) => {
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  <Sparkles size={16} /> Confirm Free Registration
+                  <CheckCircle size={16} /> Confirm Free Registration
                 </button>
               </div>
             </form>

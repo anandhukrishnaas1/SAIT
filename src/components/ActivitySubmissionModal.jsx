@@ -5,7 +5,6 @@ import {
   UploadCloud, 
   FileCheck, 
   CheckCircle, 
-  Sparkles, 
   Calendar, 
   User, 
   Clock,
@@ -291,7 +290,7 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  <Sparkles size={16} /> Submit Activity Record
+                  <UploadCloud size={16} /> Submit Activity Record
                 </button>
               </div>
             </form>

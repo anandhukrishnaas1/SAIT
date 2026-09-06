@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Terminal as TerminalIcon, Sparkles } from 'lucide-react';
+import { X, Terminal as TerminalIcon } from 'lucide-react';
 
 export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal }) => {
   const [history, setHistory] = useState([

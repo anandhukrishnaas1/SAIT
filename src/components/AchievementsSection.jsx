@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Trophy, 
-  Sparkles, 
+  PartyPopper, 
   Award, 
   BookOpen, 
   Flame, 
@@ -97,7 +97,7 @@ export const AchievementsSection = ({ onNotifyToast }) => {
                   style={{ padding: '0.35rem 0.6rem' }}
                   title="Celebrate"
                 >
-                  <Sparkles size={14} color="#ec4899" />
+                  <PartyPopper size={14} color="var(--brand-primary)" />
                 </button>
               </div>
             </div>

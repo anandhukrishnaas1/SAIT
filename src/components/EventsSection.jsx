@@ -55,7 +55,7 @@ export const EventsSection = ({ onNotifyToast }) => {
           </div>
 
           {/* Right Column: Interactive Holographic SAIT Logo Showcase */}
-          <div>
+          <div className="events-showcase-column">
             <SaitLogoShowcase />
           </div>
         </div>

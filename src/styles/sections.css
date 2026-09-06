@@ -162,6 +162,13 @@ section {
   gap: 1.75rem;
 }
 
+.events-showcase-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .event-editorial-item {
   border-bottom: 1px solid var(--border-card);
   padding-bottom: 1.5rem;

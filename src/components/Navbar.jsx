@@ -151,13 +151,19 @@ export const Navbar = ({
               )}
             </div>
 
-            {/* Contact Action Link */}
-            <a 
-              href="#contact"
-              className="nav-signup-btn"
-              style={{ textDecoration: 'none' }}
+            {/* CUSAT Official University Crest */}
+            <a
+              href="https://cusat.ac.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-cusat-link"
+              title="Cochin University of Science and Technology (CUSAT)"
             >
-              Contact
+              <img
+                src="/cusat-logo.png"
+                alt="CUSAT Logo"
+                className="nav-cusat-logo"
+              />
             </a>
 
             {/* Mobile Toggle */}
@@ -187,6 +193,12 @@ export const Navbar = ({
                   <span style={{ color: '#ffffff' }}>SA</span>
                   <span style={{ color: '#a8a8a8' }}>IT</span>
                 </span>
+                <span style={{ color: 'var(--border-subtle, #333)', margin: '0 0.15rem' }}>|</span>
+                <img
+                  src="/cusat-logo.png"
+                  alt="CUSAT Logo"
+                  style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
+                />
               </div>
               <button className="icon-btn" onClick={() => setMobileMenuOpen(false)}>
                 <X size={16} />

@@ -384,6 +384,38 @@
   color: var(--bg-primary);
 }
 
+/* CUSAT Official University Emblem in Nav Actions */
+.nav-cusat-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  padding: 0 0.15rem;
+  user-select: none;
+}
+
+.nav-cusat-link:hover {
+  transform: scale(1.06);
+  opacity: 0.95;
+}
+
+.nav-cusat-logo {
+  height: 40px;
+  width: auto;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.12));
+  transition: filter 0.2s ease;
+}
+
+.nav-cusat-link:hover .nav-cusat-logo {
+  filter: drop-shadow(0 2px 14px rgba(255, 255, 255, 0.28));
+}
+
 /* Icon Buttons */
 .icon-btn {
   width: 36px;

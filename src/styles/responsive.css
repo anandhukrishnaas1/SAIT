@@ -445,6 +445,15 @@
     display: none;
   }
 
+  .nav-cusat-link {
+    height: 32px;
+  }
+
+  .nav-cusat-logo {
+    height: 30px;
+    max-height: 30px;
+  }
+
   /* ── Filter pills scroll ── */
   .filter-tabs {
     flex-wrap: nowrap;

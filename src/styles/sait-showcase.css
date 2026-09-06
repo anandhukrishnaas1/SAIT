@@ -1,0 +1,249 @@
+/* ==========================================================================
+   SAIT & CUSAT 3D REVERSIBLE FLIP MEDALLION (CLEAN CIRCULAR DISPLAY)
+   ========================================================================== */
+
+.sait-seamless-logo-container {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 auto;
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.sait-seamless-logo-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sait-seamless-logo-disc {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: seamlessLogoFloat 5.5s ease-in-out infinite;
+  cursor: pointer;
+  outline: none;
+}
+
+.sait-seamless-logo-disc:focus-visible {
+  box-shadow: 0 0 0 2px var(--brand-primary, #ffffff);
+}
+
+/* 3D Flip Card Inner Container */
+.sait-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.85),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Flip Faces (Front and Back) */
+.sait-flip-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  box-sizing: border-box;
+}
+
+.sait-flip-front {
+  transform: rotateY(0deg);
+}
+
+.sait-flip-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at 50% 45%, #141414 0%, #080808 65%, #000000 100%);
+}
+
+.sait-seamless-logo-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* CUSAT Back Coin Layout */
+.sait-cusat-disc-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.88);
+  box-sizing: border-box;
+  padding: 13%;
+  background: radial-gradient(circle at 50% 40%, #161616 0%, #090909 60%, #000000 100%);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+.sait-cusat-coin-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(255, 255, 255, 0.22));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Elegant Light Sweep / Sheen strictly clipped inside the circle */
+.sait-seamless-sheen {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg,
+      transparent 42%,
+      rgba(255, 255, 255, 0.0) 45%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.0) 55%,
+      transparent 58%);
+  pointer-events: none;
+  animation: seamlessSheenSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Floating Animations */
+@keyframes seamlessLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.012);
+  }
+}
+
+@keyframes seamlessSheenSweep {
+  0%,
+  30% {
+    transform: translateX(-80%) translateY(-80%);
+  }
+
+  70%,
+  100% {
+    transform: translateX(80%) translateY(80%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE TUNING FOR TABLETS & MOBILE DEVICES
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .sait-seamless-logo-stage {
+    max-width: 290px;
+  }
+  .sait-seamless-logo-disc {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 991px) {
+  .sait-seamless-logo-container {
+    min-height: 280px;
+    margin-top: 0;
+  }
+  .sait-seamless-logo-stage {
+    max-width: 260px;
+  }
+  .sait-seamless-logo-disc {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sait-seamless-logo-container {
+    min-height: unset;
+    height: auto;
+    padding: 1.25rem 0;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sait-seamless-logo-stage {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .sait-seamless-logo-disc {
+    width: min(220px, 68vw);
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .sait-seamless-logo-container {
+    padding: 1rem 0;
+    min-height: unset;
+    margin: 0 auto;
+  }
+
+  .sait-seamless-logo-disc {
+    width: min(180px, 60vw);
+    max-width: 180px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .sait-seamless-logo-disc {
+    width: min(160px, 55vw);
+    max-width: 160px;
+    margin: 0 auto;
+  }
+}
+
+/* Touchscreens: Disable mouse-tilt rotation to prevent awkward angles */
+@media (hover: none) {
+  .sait-seamless-logo-stage {
+    transform: none !important;
+  }
+}

@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { useScrollReveal } from './hooks/useScrollAnimations';
+import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation';
 import { HeroSection } from './components/HeroSection';
 import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
@@ -103,6 +104,9 @@ export function App() {
 
   return (
     <div className="app-root">
+      {/* Scroll-Reactive Glass Ambient Background Animation */}
+      <GlassBackgroundAnimation />
+
       {/* Top Announcement Bar */}
       <AnnouncementBar announcements={announcementsData} />
 

@@ -1,0 +1,295 @@
+/* ==========================================================================
+   GLASS BACKGROUND ANIMATION — SCROLL-REACTIVE UNDERLAY
+   Sits behind frosted glass UI components (cards, navbar, modals, badges).
+   Monochrome palette matching official SAIT logo (#0a0a0a, #ffffff, #a8a8a8).
+   ========================================================================== */
+
+.glass-bg-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Ensure app content sits cleanly above the background animation */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-root > main,
+.app-root > header,
+.app-root > nav,
+.app-root > footer,
+.app-root > div:not(.glass-bg-viewport) {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   1. CYBER DOT MESH / GRID LAYER
+   -------------------------------------------------------------------------- */
+.glass-bg-grid {
+  position: absolute;
+  top: -100px;
+  left: -5%;
+  width: 110%;
+  height: calc(100% + 200px);
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.55;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, black 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, black 25%, transparent 75%);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   2. FLOATING STARDUST / NODES
+   -------------------------------------------------------------------------- */
+.glass-bg-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.glass-bg-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  animation: star-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes star-pulse {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. SCROLL-REACTIVE AMBIENT GLOW ORBS (Liquid Light Fields)
+   -------------------------------------------------------------------------- */
+.glass-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Orb 1: Upper-left silver bloom */
+.glass-bg-orb-1 {
+  top: -10%;
+  left: 10%;
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(168, 168, 168, 0.04) 45%,
+    transparent 72%
+  );
+  animation: float-orb-1 18s ease-in-out infinite alternate;
+}
+
+/* Orb 2: Middle-right radiant white core */
+.glass-bg-orb-2 {
+  top: 35%;
+  right: -5%;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(
+    circle,
+    rgba(220, 220, 230, 0.075) 0%,
+    rgba(140, 140, 150, 0.035) 40%,
+    transparent 70%
+  );
+  animation: float-orb-2 22s ease-in-out infinite alternate;
+}
+
+/* Orb 3: Mid-lower subtle smoke/pearl halo */
+.glass-bg-orb-3 {
+  bottom: 10%;
+  left: -5%;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.065) 0%,
+    rgba(160, 160, 160, 0.025) 50%,
+    transparent 75%
+  );
+  animation: float-orb-3 16s ease-in-out infinite alternate;
+}
+
+/* Orb 4: Deep page bottom ambient foundation */
+.glass-bg-orb-4 {
+  bottom: -20%;
+  right: 25%;
+  width: 720px;
+  height: 720px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(120, 120, 120, 0.02) 48%,
+    transparent 70%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   4. PRISMATIC LIGHT SHEEN BEAM
+   -------------------------------------------------------------------------- */
+.glass-bg-beam {
+  position: absolute;
+  top: -20%;
+  left: 30%;
+  width: 1400px;
+  height: 280px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.015) 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.015) 70%,
+    transparent 100%
+  );
+  transform: rotate(-25deg);
+  filter: blur(40px);
+  -webkit-filter: blur(40px);
+  opacity: 0.05;
+  will-change: transform, opacity;
+  transition: opacity 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. VIGNETTE EDGE MASK
+   -------------------------------------------------------------------------- */
+.glass-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 45%,
+    rgba(10, 10, 10, 0.6) 80%,
+    #0a0a0a 100%
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   IDLE FLOATING KEYFRAMES (Keep background breathing even when stationary)
+   -------------------------------------------------------------------------- */
+@keyframes float-orb-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(0.96);
+  }
+}
+
+@keyframes float-orb-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, -30px) scale(1.06);
+  }
+  100% {
+    transform: translate(25px, -15px) scale(0.94);
+  }
+}
+
+@keyframes float-orb-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(25px, -25px) scale(1.1);
+  }
+  100% {
+    transform: translate(-30px, 15px) scale(0.95);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GLASS REFRACTION CARD ENHANCEMENTS
+   Elevate cards across the site into translucent frosted dark glass so the
+   animated background glows smoothly refract through them during scroll.
+   -------------------------------------------------------------------------- */
+.pillar-card,
+.story-card,
+.event-card,
+.alumni-card,
+.faculty-card,
+.stat-card,
+.vault-category-card,
+.resource-card,
+.achievement-card,
+.association-card,
+.more-to-explore-card {
+  background: rgba(18, 18, 20, 0.68) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease !important;
+}
+
+.pillar-card:hover,
+.story-card:hover,
+.event-card:hover,
+.alumni-card:hover,
+.faculty-card:hover,
+.stat-card:hover,
+.vault-category-card:hover,
+.resource-card:hover,
+.achievement-card:hover,
+.association-card:hover,
+.more-to-explore-card:hover {
+  background: rgba(28, 28, 32, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45),
+              0 0 20px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Alternate sections become sleek glass panels */
+.section-bg-alt {
+  background-color: rgba(16, 16, 18, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .glass-bg-orb,
+  .glass-bg-star,
+  .glass-bg-beam {
+    animation: none !important;
+    transform: none !important;
+  }
+}

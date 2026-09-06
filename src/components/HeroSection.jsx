@@ -2,6 +2,71 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Bell, Clock, ArrowUpRight, Pin, ChevronRight, AlertCircle, BookOpen, Calendar, Briefcase } from 'lucide-react';
 import { announcementsData as defaultAnnouncements } from '../data/announcementsData';
 
+const AnimatedStat = ({ target, decimals = 0, prefix = '', suffix = '', duration = 1100 }) => {
+  const [val, setVal] = useState(0);
+  const ref = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const startAnimation = () => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
+
+      let startTimestamp = null;
+      let animId = null;
+
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const elapsed = timestamp - startTimestamp;
+        const progress = Math.min(elapsed / duration, 1);
+        // Fast burst easeOutQuart: 1 - (1 - t)^4
+        const ease = 1 - Math.pow(1 - progress, 4);
+        setVal(ease * target);
+
+        if (progress < 1) {
+          animId = requestAnimationFrame(step);
+        } else {
+          setVal(target);
+        }
+      };
+
+      animId = requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+
+    // Fallback if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      startAnimation();
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [target, duration]);
+
+  const formatted = decimals > 0 ? val.toFixed(decimals) : Math.floor(val);
+  return (
+    <span ref={ref}>
+      {prefix}{formatted}{suffix}
+    </span>
+  );
+};
+
 export const HeroSection = ({ 
   onOpenActivityModal, 
   announcements = defaultAnnouncements,
@@ -87,17 +152,23 @@ export const HeroSection = ({
             {/* Bottom Key Statistics */}
             <div className="hero-stats-row">
               <div className="hero-stat-item">
-                <div className="hero-stat-number">₹42.5L</div>
+                <div className="hero-stat-number">
+                  <AnimatedStat target={42.5} decimals={1} prefix="₹" suffix="L" duration={1100} />
+                </div>
                 <div className="hero-stat-label">Highest Package</div>
               </div>
 
               <div className="hero-stat-item">
-                <div className="hero-stat-number">96.4%</div>
+                <div className="hero-stat-number">
+                  <AnimatedStat target={96.4} decimals={1} suffix="%" duration={1100} />
+                </div>
                 <div className="hero-stat-label">Placement Consistency</div>
               </div>
 
               <div className="hero-stat-item">
-                <div className="hero-stat-number">500+</div>
+                <div className="hero-stat-number">
+                  <AnimatedStat target={500} decimals={0} suffix="+" duration={1100} />
+                </div>
                 <div className="hero-stat-label">Global Alumni</div>
               </div>
             </div>

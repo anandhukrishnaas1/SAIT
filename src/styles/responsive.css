@@ -117,47 +117,6 @@
    TABLET PORTRAIT  (≤768px)
    ===================================================================== */
 @media (max-width: 768px) {
-  /* Mobile bottom bar */
-  .mobile-bottom-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: var(--bg-glass);
-    backdrop-filter: var(--backdrop-blur);
-    border-top: 1px solid var(--border-card);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    z-index: 990;
-    padding: 0 0.5rem;
-  }
-
-  .mobile-bottom-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.2rem;
-    color: var(--text-muted);
-    font-size: 0.6875rem;
-    text-decoration: none;
-    flex: 1;
-    height: 100%;
-    cursor: pointer;
-  }
-
-  .mobile-bottom-item.active {
-    color: var(--brand-primary);
-    font-weight: 600;
-  }
-
-  /* Add bottom padding for the fixed bar */
-  body {
-    padding-bottom: 70px;
-  }
-
   /* Section spacing tighter */
   section {
     padding: 3rem 0;

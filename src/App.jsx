@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './styles/mobile-animations.css';
 import { Navbar } from './components/Navbar';
 import { AnnouncementBar } from './components/AnnouncementBar';
-import { MobileBottomNav } from './components/MobileBottomNav';
 import { useScrollReveal } from './hooks/useScrollAnimations';
 import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation';
 import { HeroSection } from './components/HeroSection';
@@ -203,9 +202,6 @@ export function App() {
           onNotifyToast={addToast} 
         />
       </div>
-
-      {/* Mobile Bottom Navigation Bar */}
-      <MobileBottomNav onOpenActivityModal={() => setActivityModalOpen(true)} />
 
       {/* Interactive Global Modals */}
       <CommandPalette

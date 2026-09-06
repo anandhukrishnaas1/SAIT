@@ -44,6 +44,7 @@ export const Navbar = ({
     { label: 'Events & Hackathons', href: '#events' },
     { label: 'Placements & Careers', href: '#placements' },
     { label: 'Academic Vault', href: '#resources' },
+    { label: 'Notices & Circulars', href: '#announcements' },
     { label: 'Faculty & Academics', href: '#about' },
     { label: 'Executive Office', href: '#association' }
   ];
@@ -115,7 +116,7 @@ export const Navbar = ({
             </button>
 
             {/* Notifications Tray */}
-            <div style={{ position: 'relative' }} ref={notifRef}>
+            <div className="nav-notifications-wrapper" style={{ position: 'relative' }} ref={notifRef}>
               <button 
                 className="icon-btn"
                 onClick={() => {

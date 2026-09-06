@@ -445,6 +445,10 @@
     display: none;
   }
 
+  .nav-notifications-wrapper {
+    display: none !important;
+  }
+
   .nav-cusat-link {
     height: 32px;
   }

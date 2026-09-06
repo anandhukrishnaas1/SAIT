@@ -1,199 +1,51 @@
 /* ==========================================================================
-   SAIT MINIMAL GALLERY SHOWCASE — ARCHITECTURAL & MONOCHROME
+   SAIT FULL-SIZE SEAMLESS LOGO (NO BORDER, NO CARDS, NO CONCENTRIC ROUNDS)
    ========================================================================== */
 
-.sait-gallery-card {
-  position: relative;
+.sait-seamless-logo-container {
   width: 100%;
-  height: 420px;
-  background-color: #121212;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 
-    0 16px 36px -12px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 1.75rem;
-  overflow: hidden;
-  user-select: none;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-.sait-gallery-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    0 20px 44px -12px rgba(0, 0, 0, 0.75),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-/* Subtle Cursor-Responsive Spotlight */
-.sait-gallery-spotlight {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  transition: background 0.25s ease-out;
-}
-
-/* Top Header */
-.sait-gallery-header {
-  position: relative;
-  z-index: 3;
+  height: 100%;
+  min-height: 420px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 0.85rem;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 1rem 0;
+  user-select: none;
+  cursor: pointer;
 }
 
-.sait-gallery-overline {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.sait-gallery-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary);
-}
-
-/* Center Stage with Subtle 3D Depth */
-.sait-gallery-stage {
+.sait-seamless-logo-stage {
   position: relative;
-  z-index: 2;
-  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   perspective: 1000px;
   transform-style: preserve-3d;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  margin: 0.75rem 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Concentric Architectural Hairline Geometry */
-.sait-concentric-rings {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sait-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.ring-outer {
-  width: 260px;
-  height: 260px;
-  border-style: dashed;
-  border-color: rgba(255, 255, 255, 0.08);
-  animation: slowRingRotate 60s linear infinite;
-}
-
-.ring-mid {
-  width: 204px;
-  height: 204px;
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.ring-inner {
-  width: 156px;
-  height: 156px;
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-@keyframes slowRingRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Precision Hairline Guides */
-.sait-crosshair {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.06);
-  pointer-events: none;
-}
-
-.crosshair-v {
-  width: 1px;
-  height: 280px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.crosshair-h {
-  height: 1px;
-  width: 280px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Floating Emblem Disc */
-.sait-emblem-wrapper {
+.sait-seamless-logo-disc {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 4;
-  animation: emblemBreathing 5s ease-in-out infinite;
-}
-
-@keyframes emblemBreathing {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.sait-emblem-disc {
-  position: relative;
-  width: 130px;
-  height: 130px;
+  width: 360px;
+  height: 360px;
+  max-width: 85vw;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  padding: 4px;
-  background: radial-gradient(circle at 35% 30%, #202020 0%, #141414 70%, #0d0d0d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    0 12px 28px rgba(0, 0, 0, 0.65),
-    0 0 20px rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  animation: seamlessLogoFloat 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(255, 255, 255, 0.08));
+  transition: filter 0.35s ease, transform 0.35s ease;
 }
 
-.sait-gallery-card:hover .sait-emblem-disc {
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.75),
-    0 0 28px rgba(255, 255, 255, 0.1);
+.sait-seamless-logo-container:hover .sait-seamless-logo-disc {
+  filter: drop-shadow(0 30px 52px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.16));
 }
 
-.sait-emblem-image {
+.sait-seamless-logo-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -201,146 +53,117 @@
   display: block;
 }
 
-/* Natural Specular Sheen (Gentle Light Shift) */
-.sait-emblem-specular {
+/* Elegant Light Sweep / Sheen across the logo face */
+.sait-seamless-sheen {
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.03) 100%
+    120deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.0) 45%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.0) 55%,
+    transparent 58%
   );
   pointer-events: none;
+  animation: seamlessSheenSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Soft Contact Shadow */
-.sait-emblem-shadow {
+/* Ground Elevation Shadow */
+.sait-seamless-shadow {
   position: absolute;
-  bottom: -22px;
-  width: 90px;
-  height: 14px;
+  bottom: -28px;
+  width: 230px;
+  height: 24px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
-  filter: blur(4px);
-  animation: emblemShadowPulse 5s ease-in-out infinite;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: seamlessShadowBreath 5.5s ease-in-out infinite;
 }
 
-@keyframes emblemShadowPulse {
+/* Animations */
+@keyframes seamlessLogoFloat {
   0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
+    transform: translateY(0px) scale(1);
   }
   50% {
-    transform: scale(0.85);
-    opacity: 0.5;
+    transform: translateY(-12px) scale(1.015);
   }
 }
 
-/* Bottom Editorial Caption */
-.sait-gallery-footer {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 0.85rem;
+@keyframes seamlessShadowBreath {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.82);
+    opacity: 0.45;
+  }
 }
 
-.sait-gallery-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.sait-gallery-title {
-  font-family: var(--font-display);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-
-.sait-gallery-sub {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.sait-gallery-year {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  font-weight: 500;
+@keyframes seamlessSheenSweep {
+  0%, 30% {
+    transform: translateX(-80%) translateY(-80%);
+  }
+  70%, 100% {
+    transform: translateX(80%) translateY(80%);
+  }
 }
 
 /* --------------------------------------------------------------------------
    RESPONSIVE TUNING
    -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .sait-seamless-logo-disc {
+    width: 320px;
+    height: 320px;
+  }
+  .sait-seamless-shadow {
+    width: 200px;
+  }
+}
+
 @media (max-width: 991px) {
-  .sait-gallery-card {
-    height: 380px;
-    padding: 1.25rem;
+  .sait-seamless-logo-container {
+    min-height: 340px;
   }
-  .sait-concentric-rings {
-    width: 220px;
-    height: 220px;
+  .sait-seamless-logo-disc {
+    width: 280px;
+    height: 280px;
   }
-  .ring-outer {
-    width: 220px;
-    height: 220px;
-  }
-  .ring-mid {
+  .sait-seamless-shadow {
     width: 170px;
-    height: 170px;
-  }
-  .ring-inner {
-    width: 130px;
-    height: 130px;
-  }
-  .sait-emblem-disc {
-    width: 115px;
-    height: 115px;
+    bottom: -20px;
   }
 }
 
 @media (max-width: 768px) {
-  .sait-gallery-card {
-    height: 340px;
+  .sait-seamless-logo-container {
+    min-height: 280px;
+    padding: 1.5rem 0;
   }
-  .crosshair-v {
-    height: 220px;
+  .sait-seamless-logo-disc {
+    width: 240px;
+    height: 240px;
   }
-  .crosshair-h {
-    width: 220px;
+  .sait-seamless-shadow {
+    width: 150px;
+    bottom: -16px;
   }
 }
 
 @media (max-width: 480px) {
-  .sait-gallery-card {
-    height: 300px;
-    padding: 1rem;
+  .sait-seamless-logo-disc {
+    width: 200px;
+    height: 200px;
   }
-  .sait-gallery-overline {
-    font-size: 0.62rem;
-  }
-  .sait-gallery-tag {
-    font-size: 0.62rem;
-  }
-  .sait-emblem-disc {
-    width: 100px;
-    height: 100px;
-  }
-  .sait-gallery-title {
-    font-size: 0.85rem;
-  }
-  .sait-gallery-sub {
-    font-size: 0.7rem;
+  .sait-seamless-shadow {
+    width: 120px;
+    bottom: -12px;
   }
 }

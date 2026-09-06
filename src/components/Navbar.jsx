@@ -56,11 +56,11 @@ export const Navbar = ({
                 flexShrink: 0,
               }}
             />
-            <span style={{ fontWeight: '800', fontSize: '1.1rem', letterSpacing: '0.05em' }}>
+            <span style={{ fontWeight: '800', fontSize: '1.1rem', letterSpacing: '0.05em', flexShrink: 0 }}>
               <span style={{ color: '#ffffff' }}>SA</span>
               <span style={{ color: '#a8a8a8' }}>IT</span>
             </span>
-            <span className="brand-sub-badge">CUSAT IT</span>
+            <span className="brand-sub-badge">Students Association of Information Technology</span>
           </a>
 
           {/* Desktop Nav Links */}

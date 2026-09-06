@@ -219,16 +219,47 @@
 }
 
 .brand-sub-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.1rem 0.4rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.18rem 0.55rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-xs);
-  color: #a8a8a8;
-  text-transform: uppercase;
-  margin-left: 0.35rem;
-  letter-spacing: 0.05em;
+  color: #c4c4c4;
+  margin-left: 0.45rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1.3;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 1150px) {
+  .brand-sub-badge {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-sub-badge {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.6rem;
+    padding: 0.12rem 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-sub-badge {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.55rem;
+    padding: 0.1rem 0.35rem;
+  }
 }
 
 /* Navigation Links */

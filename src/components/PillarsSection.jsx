@@ -1,24 +1,24 @@
 import React from 'react';
-import { RingsWireframeDecor, PetalWireframeDecor, SphereWireframeDecor } from './GeometricDecors';
+import { InquiryResearchDecor, JusticeEquilibriumDecor, ConnectedWorldDecor } from './GeometricDecors';
 
 export const PillarsSection = () => {
   const pillars = [
     {
-      icon: <RingsWireframeDecor size={72} color="#84cc16" />,
+      icon: <InquiryResearchDecor size={72} />,
       title: "The Opportunity of Inquiry",
       desc: "For scholars who share common passion for legacy because of what can reveal about our world and our selves.",
       linkText: "Research at SAIT",
       linkHref: "#about"
     },
     {
-      icon: <PetalWireframeDecor size={72} color="#84cc16" />,
+      icon: <JusticeEquilibriumDecor size={72} />,
       title: "The Demand of Justice",
       desc: "SAIT is animated by a faith that inspires us to seek knowledge because of the powerful tools it can be to improve.",
       linkText: "Labs & Service at SAIT",
       linkHref: "#association"
     },
     {
-      icon: <SphereWireframeDecor size={72} color="#84cc16" />,
+      icon: <ConnectedWorldDecor size={72} />,
       title: "The Connected World",
       desc: "SAIT seeks to be in the world, and to bring the world to SOE, because inquiry and scholarly exchange.",
       linkText: "Global Network at SAIT",

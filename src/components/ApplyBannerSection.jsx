@@ -1,5 +1,5 @@
 import React from 'react';
-import { PetalWireframeDecor } from './GeometricDecors';
+import { ScholarshipEmblemDecor } from './GeometricDecors';
 
 export const ApplyBannerSection = ({ onOpenActivityModal }) => {
   return (
@@ -8,7 +8,7 @@ export const ApplyBannerSection = ({ onOpenActivityModal }) => {
         <div className="cta-banner-box">
           <div className="cta-banner-left">
             <div>
-              <PetalWireframeDecor size={84} color="#84cc16" />
+              <ScholarshipEmblemDecor size={84} />
             </div>
             <h2 className="cta-banner-title">
               Apply For Scholarships At The Same Time You Apply For Admission

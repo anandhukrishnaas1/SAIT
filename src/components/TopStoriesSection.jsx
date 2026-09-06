@@ -23,7 +23,7 @@ export const TopStoriesSection = ({ onNotifyToast }) => {
     <section id="achievements" style={{ position: 'relative' }}>
       {/* Decorative Spring Coil along the left side (Matching Template) */}
       <div style={{ position: 'absolute', left: '-20px', top: '40px', pointerEvents: 'none', display: 'none' }} className="desktop-coil">
-        <SpringCoilDecor height={400} color="#84cc16" />
+        <SpringCoilDecor height={400} color="rgba(255, 255, 255, 0.18)" />
       </div>
 
       <div className="container">

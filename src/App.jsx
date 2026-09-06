@@ -55,10 +55,18 @@ export function App() {
   // Stranger Things IT Single-Page Intro State: 'playing' | 'revealing' | 'done'
   const [introStage, setIntroStage] = useState('playing');
 
-  const handleReplayIntro = () => {
+  const handleRevealing = React.useCallback(() => {
+    setIntroStage((prev) => (prev === 'playing' ? 'revealing' : prev));
+  }, []);
+
+  const handleComplete = React.useCallback(() => {
+    setIntroStage('done');
+  }, []);
+
+  const handleReplayIntro = React.useCallback(() => {
     setIntroStage('playing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
   // Toast Notification Queue
   const [toasts, setToasts] = useState([]);
@@ -115,8 +123,8 @@ export function App() {
       {/* Stranger Things Style Cinematic 'IT' Intro — Standalone Single Page */}
       {introStage !== 'done' && (
         <IntroAnimation 
-          onRevealing={() => setIntroStage('revealing')}
-          onComplete={() => setIntroStage('done')}
+          onRevealing={handleRevealing}
+          onComplete={handleComplete}
         />
       )}
 

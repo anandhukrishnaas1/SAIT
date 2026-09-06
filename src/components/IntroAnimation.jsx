@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../styles/intro-animation.css';
 
 /**
  * IntroAnimation — Standalone Single-Page Stranger Things 'IT' Experience
  * 
- * - Plays as a dedicated single screen before revealing the SAIT home page.
+ * - Plays ONCE on initial load as a dedicated single screen before revealing the home page.
+ * - Solid lifecycle state machine (can never restart, loop, or glitch backwards).
  * - Stranger Things iconic cinematic title mechanics:
  *     * Slow 3D camera creep & scale increase.
  *     * Hollow neon glass strokes with glowing white-silver aura & subtle chromatic fringing.
@@ -17,6 +18,17 @@ import '../styles/intro-animation.css';
 export const IntroAnimation = ({ onComplete, onRevealing }) => {
   const [phase, setPhase] = useState('entering'); // 'entering' | 'blooming' | 'exiting' | 'finished'
   const canvasRef = useRef(null);
+
+  // Store callbacks in refs to completely decouple them from effect lifecycle
+  const onCompleteRef = useRef(onComplete);
+  const onRevealingRef = useRef(onRevealing);
+  const hasFinishedRef = useRef(false);
+  const hasExitStartedRef = useRef(false);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+    onRevealingRef.current = onRevealing;
+  });
 
   // Lock body scroll while intro single page is active
   useEffect(() => {
@@ -94,33 +106,47 @@ export const IntroAnimation = ({ onComplete, onRevealing }) => {
     };
   }, []);
 
-  // Animation timeline
+  const skipIntro = useCallback(() => {
+    if (hasFinishedRef.current) return;
+    hasFinishedRef.current = true;
+    hasExitStartedRef.current = true;
+
+    setPhase('finished');
+    if (onRevealingRef.current) onRevealingRef.current();
+    if (onCompleteRef.current) onCompleteRef.current();
+  }, []);
+
+  // Master animation timeline — strictly executed ONCE on mount
   useEffect(() => {
     // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
-      if (onRevealing) onRevealing();
-      if (onComplete) onComplete();
+      skipIntro();
       return;
     }
 
-    // Phase 1: Slow dramatic scale increase (0ms - 2100ms)
-    // Phase 2: Bloom & lock pulse (2100ms - 2600ms)
+    // Phase 1: Slow scale creep (0ms - 2000ms)
+    // Phase 2: Bloom & lock pulse (2000ms - 2500ms)
     const bloomTimer = setTimeout(() => {
+      if (hasFinishedRef.current || hasExitStartedRef.current) return;
       setPhase('blooming');
     }, 2000);
 
-    // Phase 3: Zoom-through & exit fade (2600ms - 3250ms)
+    // Phase 3: Zoom-through & reveal home page (2500ms - 3150ms)
     const exitTimer = setTimeout(() => {
+      if (hasFinishedRef.current) return;
+      hasExitStartedRef.current = true;
       setPhase('exiting');
-      if (onRevealing) onRevealing();
-    }, 2550);
+      if (onRevealingRef.current) onRevealingRef.current();
+    }, 2500);
 
-    // Phase 4: Complete & unmount
+    // Phase 4: Final unmount (3150ms)
     const finishTimer = setTimeout(() => {
+      if (hasFinishedRef.current) return;
+      hasFinishedRef.current = true;
       setPhase('finished');
-      if (onComplete) onComplete();
-    }, 3250);
+      if (onCompleteRef.current) onCompleteRef.current();
+    }, 3150);
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
@@ -136,17 +162,7 @@ export const IntroAnimation = ({ onComplete, onRevealing }) => {
       clearTimeout(finishTimer);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onComplete, onRevealing]);
-
-  const skipIntro = () => {
-    if (phase === 'finished') return;
-    setPhase('exiting');
-    if (onRevealing) onRevealing();
-    setTimeout(() => {
-      setPhase('finished');
-      if (onComplete) onComplete();
-    }, 350);
-  };
+  }, [skipIntro]);
 
   if (phase === 'finished') return null;
 

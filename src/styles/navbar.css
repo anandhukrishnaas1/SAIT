@@ -410,6 +410,7 @@
   display: block;
   filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.12));
   transition: filter 0.2s ease;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .nav-cusat-link:hover .nav-cusat-logo {

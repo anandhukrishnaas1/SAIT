@@ -130,6 +130,7 @@
   filter: drop-shadow(0 4px 14px rgba(255, 255, 255, 0.22));
   user-select: none;
   -webkit-user-drag: none;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Elegant Light Sweep / Sheen strictly clipped inside the circle */

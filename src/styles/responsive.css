@@ -617,37 +617,42 @@
 }
 
 /* Footer watermark styling & responsive sizing */
-.footer-watermark-container {
+.footer-ambient-watermark {
   overflow: hidden;
   pointer-events: none;
   user-select: none;
 }
 
 @media (max-width: 768px) {
-  .footer-watermark-logo {
-    width: 240px !important;
-    height: 240px !important;
+  .footer-ambient-watermark {
+    width: 260px !important;
+    height: 260px !important;
     right: -20px !important;
-    bottom: -30px !important;
-    opacity: 0.035 !important;
+    opacity: 0.02 !important;
   }
-  .footer-watermark-text {
-    font-size: clamp(3.5rem, 18vw, 7rem) !important;
-    bottom: 10px !important;
+  .footer-brand-watermark {
+    margin-top: 2rem !important;
+    padding-top: 1rem !important;
+  }
+  .footer-brand-watermark-text {
+    font-size: clamp(3.75rem, 18vw, 8rem) !important;
+    letter-spacing: 0.06em !important;
   }
 }
 
 @media (max-width: 480px) {
-  .footer-watermark-logo {
-    width: 170px !important;
-    height: 170px !important;
-    right: -10px !important;
-    bottom: -20px !important;
-    opacity: 0.03 !important;
+  .footer-ambient-watermark {
+    width: 180px !important;
+    height: 180px !important;
+    right: -15px !important;
+    opacity: 0.015 !important;
   }
-  .footer-watermark-text {
-    font-size: 3.5rem !important;
-    letter-spacing: 0.08em !important;
-    bottom: 8px !important;
+  .footer-brand-watermark {
+    margin-top: 1.5rem !important;
+    padding-top: 0.75rem !important;
+  }
+  .footer-brand-watermark-text {
+    font-size: clamp(3rem, 17vw, 4.5rem) !important;
+    letter-spacing: 0.04em !important;
   }
 }

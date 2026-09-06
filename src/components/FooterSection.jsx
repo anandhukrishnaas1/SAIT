@@ -26,64 +26,27 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
 
   return (
     <footer id="contact" className="site-footer" style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Low-opacity SAIT Watermark Background Elements */}
+      {/* Soft ambient watermark seal in background - whisper quiet, no text clashes */}
       <div 
-        className="footer-watermark-container"
+        className="footer-ambient-watermark"
         aria-hidden="true"
         style={{
           position: 'absolute',
-          inset: 0,
+          top: '20%',
+          right: '2%',
+          width: '420px',
+          height: '420px',
+          opacity: 0.025,
           pointerEvents: 'none',
           userSelect: 'none',
-          overflow: 'hidden',
+          backgroundImage: 'url(/sait-logo.png)',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          filter: 'grayscale(100%)',
           zIndex: 0,
         }}
-      >
-        {/* Large Logo Emblem Watermark */}
-        <img
-          src="/sait-logo.png"
-          alt=""
-          className="footer-watermark-logo"
-          style={{
-            position: 'absolute',
-            right: '-30px',
-            bottom: '-40px',
-            width: '360px',
-            height: '360px',
-            objectFit: 'contain',
-            opacity: 0.04,
-            filter: 'grayscale(100%) contrast(110%)',
-            transform: 'rotate(-10deg)',
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Large Typographic Watermark Outline */}
-        <div
-          className="footer-watermark-text"
-          style={{
-            position: 'absolute',
-            left: '50%',
-            bottom: '15px',
-            transform: 'translateX(-50%)',
-            fontFamily: 'var(--font-display, "Space Grotesk", sans-serif)',
-            fontSize: 'clamp(4.5rem, 16vw, 13rem)',
-            fontWeight: 900,
-            letterSpacing: '0.12em',
-            lineHeight: 0.8,
-            color: 'rgba(255, 255, 255, 0.015)',
-            WebkitTextStroke: '1.5px rgba(255, 255, 255, 0.035)',
-            whiteSpace: 'nowrap',
-            textTransform: 'uppercase',
-            pointerEvents: 'none',
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-          }}
-        >
-          SAIT
-        </div>
-      </div>
+      />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* 4-Column Layout (Matching Fillo Template) */}
@@ -216,6 +179,13 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
           <div>
             Crafted for the SAIT Website Redesign Challenge
           </div>
+        </div>
+
+        {/* Grand Standard SAIT Brand Watermark */}
+        <div className="footer-brand-watermark" aria-hidden="true">
+          <span className="footer-brand-watermark-text">
+            SAIT
+          </span>
         </div>
       </div>
     </footer>

@@ -7,7 +7,6 @@ import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation'
 import { CursorAnimation } from './components/CursorAnimation';
 import { IntroAnimation } from './components/IntroAnimation';
 import { HeroSection } from './components/HeroSection';
-import { PillarsSection } from './components/PillarsSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
 import { EventsSection } from './components/EventsSection';
 import { MoreToExploreSection } from './components/MoreToExploreSection';
@@ -168,10 +167,6 @@ export function App() {
             onNotifyToast={addToast}
           />
 
-          {/* Enjoy Studying / Department Pillars */}
-          <div className="reveal">
-            <PillarsSection />
-          </div>
 
           {/* Top Stories / Department Highlights */}
           <div className="reveal reveal-stagger">
@@ -229,7 +224,6 @@ export function App() {
           <FooterSection 
             onOpenTerminal={() => setTerminalOpen(true)} 
             onNotifyToast={addToast}
-            onReplayIntro={handleReplayIntro}
           />
         </div>
 

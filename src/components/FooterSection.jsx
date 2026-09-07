@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { 
   Terminal, 
   CheckCircle,
-  Navigation,
-  Sparkles
+  Navigation
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export const FooterSection = ({ onOpenTerminal, onNotifyToast, onReplayIntro }) => {
+export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
   const [emailInput, setEmailInput] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -168,17 +167,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast, onReplayIntro }) 
                   <Terminal size={14} /> Terminal Mode
                 </button>
               </li>
-              {onReplayIntro && (
-                <li>
-                  <button 
-                    onClick={onReplayIntro} 
-                    style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.84rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
-                    title="Replay cinematic Stranger Things IT intro"
-                  >
-                    <Sparkles size={14} /> Replay 'IT' Intro
-                  </button>
-                </li>
-              )}
+
             </ul>
           </div>
         </div>

@@ -7,7 +7,6 @@ export const AssociationSection = () => {
   const [showAllExec, setShowAllExec] = useState(false);
   const [expandedId, setExpandedId] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
-  const [activeWing, setActiveWing] = useState(null);
 
   const INITIAL_VISIBLE = 3;
   const allExec = teamData.executiveCommittee;
@@ -235,90 +234,85 @@ export const AssociationSection = () => {
           </div>
         )}
 
-        {/* Specialized Wings - Compact Accordion Rows */}
+        {/* Specialized Wings - Profiles Directly Visible */}
         <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '2rem', marginTop: '2rem' }}>
-          <h3 style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1rem' }}>
-            Specialized Wings
-          </h3>
+          <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <h3 style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', margin: 0 }}>
+              Specialized Wings
+            </h3>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              Sub-team coordinators &amp; leads
+            </span>
+          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {wings.map((w) => {
-              const isOpen = activeWing === w.name;
-              return (
-                <div key={w.name}>
-                  <div
-                    onClick={() => setActiveWing(isOpen ? null : w.name)}
-                    style={{
-                      background: isOpen ? 'var(--bg-tertiary)' : 'var(--bg-primary)',
-                      border: `1px solid ${isOpen ? 'rgba(255, 255, 255, 0.2)' : 'var(--border-card)'}`,
-                      borderRadius: isOpen ? 'var(--radius-xs) var(--radius-xs) 0 0' : 'var(--radius-xs)',
-                      padding: '0.75rem 1rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
-                    <span style={{ color: 'var(--brand-primary)', display: 'flex', alignItems: 'center' }}>{w.icon}</span>
-                    <span style={{ fontWeight: '700', fontSize: '0.84rem', color: 'var(--text-primary)', flex: 1 }}>{w.name}</span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{w.members.length} members</span>
-                    <ChevronDown
-                      size={14}
-                      style={{
-                        color: 'var(--text-muted)',
-                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                      }}
-                    />
-                  </div>
-
-                  {isOpen && (
-                    <div style={{
-                      background: 'var(--bg-primary)',
-                      border: '1px solid var(--border-card)',
-                      borderTop: 'none',
-                      borderRadius: '0 0 var(--radius-xs) var(--radius-xs)',
-                      padding: '0.75rem 1rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.55rem',
-                      animation: 'fadeIn 0.15s ease'
-                    }}>
-                      {w.members.map((m) => (
-                        <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                          <img
-                            src={m.avatar}
-                            alt={m.name}
-                            style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-                          />
-                          <div style={{ minWidth: 0, flex: 1 }}>
-                            <div style={{ fontSize: '0.8125rem', fontWeight: '600', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {m.name}
-                            </div>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {m.role}
-                            </div>
-                          </div>
-                          <div style={{ display: 'flex', gap: '0.35rem', flexShrink: 0 }}>
-                            {m.linkedin && (
-                              <a href={m.linkedin} target="_blank" rel="noreferrer" className="social-link" style={{ padding: '2px' }} title="LinkedIn">
-                                <LinkedinIcon size={13} />
-                              </a>
-                            )}
-                            {m.github && (
-                              <a href={m.github} target="_blank" rel="noreferrer" className="social-link" style={{ padding: '2px' }} title="GitHub">
-                                <GithubIcon size={13} />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '1rem',
+          }}>
+            {wings.map((w) => (
+              <div
+                key={w.name}
+                style={{
+                  background: 'var(--bg-primary)',
+                  border: '1px solid var(--border-card)',
+                  borderRadius: 'var(--radius-xs)',
+                  padding: '0.85rem 1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.65rem',
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: '700',
+                  color: 'var(--brand-primary)',
+                  borderBottom: '1px solid var(--border-subtle)',
+                  paddingBottom: '0.45rem',
+                }}>
+                  {w.icon}
+                  <span>{w.name}</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: '500' }}>
+                    {w.members.length} members
+                  </span>
                 </div>
-              );
-            })}
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                  {w.members.map((m) => (
+                    <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                      <img
+                        src={m.avatar}
+                        alt={m.name}
+                        style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '1px solid rgba(255, 255, 255, 0.15)' }}
+                      />
+                      <div style={{ minWidth: 0, flex: 1 }}>
+                        <div style={{ fontSize: '0.8125rem', fontWeight: '600', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {m.name}
+                        </div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {m.role}
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.35rem', flexShrink: 0 }}>
+                        {m.linkedin && (
+                          <a href={m.linkedin} target="_blank" rel="noreferrer" className="social-link" style={{ padding: '2px' }} title="LinkedIn">
+                            <LinkedinIcon size={13} />
+                          </a>
+                        )}
+                        {m.github && (
+                          <a href={m.github} target="_blank" rel="noreferrer" className="social-link" style={{ padding: '2px' }} title="GitHub">
+                            <GithubIcon size={13} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

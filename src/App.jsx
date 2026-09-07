@@ -16,6 +16,7 @@ import { PlacementsSection } from './components/PlacementsSection';
 import { AlumniSection } from './components/AlumniSection';
 import { ApplyBannerSection } from './components/ApplyBannerSection';
 import { AnnouncementsSection } from './components/AnnouncementsSection';
+import { InterviewRoadmapsSection } from './components/InterviewRoadmapsSection';
 import { ResourceVaultSection } from './components/ResourceVaultSection';
 import { FooterSection } from './components/FooterSection';
 
@@ -178,14 +179,14 @@ export function App() {
             <PlacementsSection onNotifyToast={addToast} />
           </div>
 
+          {/* Academics & Faculty Directory (About Department & SAIT) */}
+          <div className="reveal reveal-left">
+            <AboutSection />
+          </div>
+
           {/* Campus Events (Split Layout) */}
           <div className="reveal">
             <EventsSection onNotifyToast={addToast} />
-          </div>
-
-          {/* Academics & Faculty Directory */}
-          <div className="reveal reveal-left">
-            <AboutSection />
           </div>
 
           {/* Association & Leadership */}
@@ -203,9 +204,14 @@ export function App() {
             <ApplyBannerSection />
           </div>
 
-          {/* Notices & Circulars */}
+          {/* Notices & Circulars (Department Notices & Announcements) */}
           <div className="reveal">
             <AnnouncementsSection onNotifyToast={addToast} />
+          </div>
+
+          {/* Interview Roadmaps & Question Banks */}
+          <div className="reveal">
+            <InterviewRoadmapsSection onNotifyToast={addToast} />
           </div>
 
           {/* Academic Notes Vault */}

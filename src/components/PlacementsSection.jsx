@@ -1,14 +1,13 @@
 import React from 'react';
-import { Download } from 'lucide-react';
 import { placementsData } from '../data/placementsData';
 
-export const PlacementsSection = ({ onNotifyToast }) => {
+export const PlacementsSection = () => {
   return (
     <section id="placements" className="section-bg-alt">
       <div className="container">
         <div className="section-header-row">
           <div>
-            <h2 className="section-title">Placements & Careers</h2>
+            <h2 className="section-title">Placements &amp; Careers</h2>
             <p className="section-subtitle">
               Consistent placement breakthroughs across Tier-1 product tech companies and international software labs.
             </p>
@@ -16,7 +15,7 @@ export const PlacementsSection = ({ onNotifyToast }) => {
         </div>
 
         {/* Stats Row */}
-        <div className="placement-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '3.5rem' }}>
+        <div className="placement-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
           <div className="editorial-card" style={{ padding: '2rem', textAlign: 'center' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
               Highest CTC
@@ -55,7 +54,7 @@ export const PlacementsSection = ({ onNotifyToast }) => {
         </div>
 
         {/* Recruiters Wall */}
-        <div style={{ marginBottom: '3.5rem' }}>
+        <div>
           <h3 style={{ fontSize: '1.35rem', fontWeight: '800', marginBottom: '1.5rem' }}>
             Top Recruiting Partners
           </h3>
@@ -70,36 +69,6 @@ export const PlacementsSection = ({ onNotifyToast }) => {
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>{rec.role}</div>
                 <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--brand-primary)', fontFamily: 'var(--font-mono)' }}>
                   {rec.ctcRange}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Interview Guides */}
-        <div>
-          <h3 style={{ fontSize: '1.35rem', fontWeight: '800', marginBottom: '1.25rem' }}>
-            Interview Roadmaps & Question Banks
-          </h3>
-
-          <div className="placement-recruiters-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
-            {placementsData.interviewGuides.map((guide, idx) => (
-              <div key={idx} className="editorial-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column' }}>
-                <span className="skill-tag" style={{ width: 'fit-content', marginBottom: '0.75rem' }}>{guide.type}</span>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '0.5rem' }}>{guide.title}</h4>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: '1.5' }}>
-                  {guide.desc}
-                </p>
-                <div style={{ marginTop: 'auto', paddingTop: '0.75rem', borderTop: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>By {guide.author}</span>
-                  <button 
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => {
-                      if (onNotifyToast) onNotifyToast(`Downloaded ${guide.title}!`);
-                    }}
-                  >
-                    <Download size={13} /> Access
-                  </button>
                 </div>
               </div>
             ))}

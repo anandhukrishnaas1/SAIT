@@ -7,6 +7,8 @@ import { GlassBackgroundAnimation } from './components/GlassBackgroundAnimation'
 import { CursorAnimation } from './components/CursorAnimation';
 import { IntroAnimation } from './components/IntroAnimation';
 import { HeroSection } from './components/HeroSection';
+import { WhyChooseSection } from './components/WhyChooseSection';
+import { MilestonesSection } from './components/MilestonesSection';
 import { TopStoriesSection } from './components/TopStoriesSection';
 import { EventsSection } from './components/EventsSection';
 import { MoreToExploreSection } from './components/MoreToExploreSection';
@@ -167,6 +169,22 @@ export function App() {
             onNotifyToast={addToast}
           />
 
+
+          {/* Why Choose Our Program? */}
+          <div className="reveal">
+            <WhyChooseSection 
+              onNotifyToast={addToast} 
+              onOpenApplyModal={() => {
+                const banner = document.getElementById('apply');
+                if (banner) banner.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+          </div>
+
+          {/* Milestones & Journey of Excellence */}
+          <div className="reveal">
+            <MilestonesSection onNotifyToast={addToast} />
+          </div>
 
           {/* Top Stories / Department Highlights */}
           <div className="reveal reveal-stagger">

@@ -41,6 +41,8 @@ export const Navbar = ({
   // Full navigation for the mobile slide-out drawer
   const drawerNavItems = [
     { label: 'Home', href: '#' },
+    { label: 'Why Choose Us', href: '#why-choose' },
+    { label: 'Milestones & Excellence', href: '#milestones' },
     { label: 'Events & Hackathons', href: '#events' },
     { label: 'Placements & Careers', href: '#placements' },
     { label: 'Academic Vault', href: '#resources' },

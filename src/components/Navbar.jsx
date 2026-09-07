@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { 
   Search, 
-  Bell, 
   Menu, 
   X, 
   Terminal as TerminalIcon
@@ -17,18 +16,6 @@ export const Navbar = ({
   onReplayIntro
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showNotifs, setShowNotifs] = useState(false);
-  const notifRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (notifRef.current && !notifRef.current.contains(event.target)) {
-        setShowNotifs(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   // Important, catchy destinations for the header
   const desktopNavItems = [
@@ -115,42 +102,7 @@ export const Navbar = ({
               <TerminalIcon size={16} />
             </button>
 
-            {/* Notifications Tray */}
-            <div className="nav-notifications-wrapper" style={{ position: 'relative' }} ref={notifRef}>
-              <button 
-                className="icon-btn"
-                onClick={() => {
-                  setShowNotifs(!showNotifs);
-                  if (unreadNotifs > 0) setUnreadNotifs(0);
-                }}
-                title="Department Circulars"
-              >
-                <Bell size={16} />
-                {unreadNotifs > 0 && <span className="badge-count">{unreadNotifs}</span>}
-              </button>
 
-              {showNotifs && (
-                <div className="notifications-dropdown">
-                  <div className="notif-header">
-                    <span style={{ fontWeight: '700', fontSize: '0.875rem' }}>Department Notices</span>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--brand-primary)', fontWeight: '600' }}>Live</span>
-                  </div>
-                  <ul className="notif-list">
-                    {announcements.map((ann) => (
-                      <li key={ann.id} className="notif-item">
-                        <div className="notif-meta">
-                          <span>{ann.priority}</span>
-                          <span>{ann.date}</span>
-                        </div>
-                        <a href="#announcements" onClick={() => setShowNotifs(false)} className="notif-title" style={{ textDecoration: 'none' }}>
-                          {ann.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
 
             {/* CUSAT Official University Crest */}
             <a

@@ -183,11 +183,6 @@ export function App() {
             <EventsSection onNotifyToast={addToast} />
           </div>
 
-          {/* More to Explore (3-Photo Grid) */}
-          <div className="reveal reveal-scale">
-            <MoreToExploreSection onNotifyToast={addToast} />
-          </div>
-
           {/* Academics & Faculty Directory */}
           <div className="reveal reveal-left">
             <AboutSection />
@@ -216,6 +211,11 @@ export function App() {
           {/* Academic Notes Vault */}
           <div className="reveal">
             <ResourceVaultSection onNotifyToast={addToast} />
+          </div>
+
+          {/* More to Explore (3-Photo Grid) */}
+          <div className="reveal reveal-scale">
+            <MoreToExploreSection onNotifyToast={addToast} />
           </div>
         </main>
 

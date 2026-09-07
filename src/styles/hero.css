@@ -249,25 +249,28 @@
 }
 
 .hero-notice-priority-urgent {
-  background: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
   font-weight: 700;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
 }
 
 .hero-notice-priority-high {
-  background: rgba(245, 158, 11, 0.12);
-  color: #d97706;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   font-weight: 700;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
 }
 
 .hero-notice-priority-normal {
-  background: rgba(255,255,255,0.08);
-  color: var(--text-secondary);
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
 }
@@ -313,7 +316,7 @@
 
 .hero-notice-deadline {
   font-size: 0.72rem;
-  color: #d97706;
+  color: var(--brand-accent);
   font-weight: 600;
 }
 

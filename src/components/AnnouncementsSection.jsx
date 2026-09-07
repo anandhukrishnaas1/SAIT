@@ -47,19 +47,19 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
     switch (priority) {
       case 'Urgent':
         return {
-          bg: 'rgba(239, 68, 68, 0.15)',
-          color: '#f87171',
-          border: 'rgba(239, 68, 68, 0.35)'
+          bg: 'rgba(255, 255, 255, 0.15)',
+          color: '#ffffff',
+          border: 'rgba(255, 255, 255, 0.28)'
         };
       case 'High':
         return {
-          bg: 'rgba(245, 158, 11, 0.15)',
-          color: '#fbbf24',
-          border: 'rgba(245, 158, 11, 0.35)'
+          bg: 'rgba(255, 255, 255, 0.08)',
+          color: '#e2e8f0',
+          border: 'rgba(255, 255, 255, 0.18)'
         };
       default:
         return {
-          bg: 'rgba(255, 255, 255, 0.08)',
+          bg: 'rgba(255, 255, 255, 0.04)',
           color: 'var(--text-secondary)',
           border: 'var(--border-subtle)'
         };
@@ -188,9 +188,9 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
                         display: 'inline-flex', 
                         alignItems: 'center', 
                         gap: '0.25rem', 
-                        background: 'rgba(251, 191, 36, 0.12)',
-                        color: '#fbbf24',
-                        border: '1px solid rgba(251, 191, 36, 0.3)',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        color: '#ffffff',
+                        border: '1px solid rgba(255, 255, 255, 0.18)',
                         padding: '0.15rem 0.5rem',
                         borderRadius: 'var(--radius-xs)',
                         fontSize: '0.68rem', 
@@ -240,7 +240,7 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
                     {ann.deadline && (
                       <span style={{ 
                         fontSize: '0.72rem', 
-                        color: 'var(--color-warning)', 
+                        color: 'var(--brand-accent)', 
                         display: 'inline-flex', 
                         alignItems: 'center', 
                         gap: '0.3rem',

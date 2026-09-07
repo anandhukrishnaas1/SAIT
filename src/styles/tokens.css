@@ -35,15 +35,15 @@
   --brand-glow:         rgba(255,255,255,0.10);
   --brand-cyan-glow:    rgba(168,168,168,0.12);
 
-  /* ── Status Colors ── */
+  /* ── Status Colors (Monochrome & Site-Aligned) ── */
   --color-success:    #4ade80;
   --color-success-bg: rgba(74,222,128,0.08);
-  --color-warning:    #fbbf24;
-  --color-warning-bg: rgba(251,191,36,0.08);
-  --color-danger:     #f87171;
-  --color-danger-bg:  rgba(248,113,113,0.08);
-  --color-info:       #60a5fa;
-  --color-info-bg:    rgba(96,165,250,0.08);
+  --color-warning:    #e2e8f0;
+  --color-warning-bg: rgba(255,255,255,0.08);
+  --color-danger:     #ffffff;
+  --color-danger-bg:  rgba(255,255,255,0.12);
+  --color-info:       #d4d4d4;
+  --color-info-bg:    rgba(255,255,255,0.06);
 
   /* ── Gradients ── */
   --grad-brand:      linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);

@@ -239,7 +239,7 @@ export const HeroSection = ({
                     </span>
                     <span className="hero-notice-category">• {ann.category}</span>
                     {ann.pinned && (
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: 'var(--color-warning)', fontWeight: 700 }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: '#ffffff', background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.18)', padding: '0.08rem 0.4rem', borderRadius: '4px', fontWeight: 700, fontSize: '0.68rem' }}>
                         <Pin size={10} /> Pinned
                       </span>
                     )}

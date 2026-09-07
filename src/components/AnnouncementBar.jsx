@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Megaphone, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const PRIORITY_CONFIG = {
-  Urgent: { color: '#ffffff', bg: 'rgba(239, 68, 68, 0.95)', label: 'URGENT' },
-  High:   { color: '#ffffff', bg: 'rgba(245, 158, 11, 0.95)', label: 'HIGH' },
-  Normal: { color: '#ffffff', bg: 'rgba(255, 255, 255, 0.22)', label: 'NOTICE' },
+  Urgent: { color: '#0a0a0a', bg: '#ffffff', label: 'URGENT' },
+  High:   { color: '#ffffff', bg: 'rgba(255, 255, 255, 0.20)', label: 'HIGH' },
+  Normal: { color: 'var(--text-secondary)', bg: 'rgba(255, 255, 255, 0.08)', label: 'NOTICE' },
 };
 
 export const AnnouncementBar = ({ announcements = [] }) => {

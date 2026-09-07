@@ -322,7 +322,7 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
         { type: 'info',   text: '  │  Roll No.  IT24-042                           │' },
         { type: 'info',   text: '  │  Program   B.Tech Information Technology      │' },
         { type: 'info',   text: '  │  Batch     2024–28 · Semester 5               │' },
-        { type: 'success',text: '  │  Tier      🏆 Platinum Scholar                │' },
+        { type: 'success',text: '  │  Tier      [Platinum Scholar]                 │' },
         { type: 'info',   text: '  │  Status    ✓ SAIT Member · Activity Logger    │' },
         { type: 'header', text: '  └───────────────────────────────────────────────┘' },
         { type: 'blank',  text: '' },

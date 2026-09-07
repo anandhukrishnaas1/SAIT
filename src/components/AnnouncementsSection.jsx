@@ -9,7 +9,8 @@ import {
   ChevronDown,
   ChevronRight,
   AlertCircle,
-  FileText
+  FileText,
+  Info
 } from 'lucide-react';
 import { announcementsData } from '../data/announcementsData';
 
@@ -288,8 +289,8 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
                     </p>
 
                     {ann.details && (
-                      <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.5, fontStyle: 'italic' }}>
-                        ℹ️ {ann.details}
+                      <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.5, display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                        <Info size={12} style={{ flexShrink: 0 }} /> {ann.details}
                       </p>
                     )}
 

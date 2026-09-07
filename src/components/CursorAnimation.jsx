@@ -48,6 +48,10 @@ export const CursorAnimation = () => {
     let lastY = -100;
     let isMouseInside = false;
 
+    // Speed tracking — only spawn particles when cursor is fast
+    let lastMoveTime = 0;
+    const SPEED_THRESHOLD = 600; // pixels per second — must exceed this to spawn
+
     const particles = [];
     const MAX_PARTICLES = 40;
     let isRunning = false;
@@ -114,6 +118,7 @@ export const CursorAnimation = () => {
 
     // Mouse move handler
     const onMouseMove = (e) => {
+      const now = performance.now();
       mouseX = e.clientX;
       mouseY = e.clientY;
       isMouseInside = true;
@@ -123,12 +128,17 @@ export const CursorAnimation = () => {
       const dy = mouseY - lastY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Spawn binary 0 or 1 when cursor moves > 12px
+      // Calculate speed (px/sec)
+      const elapsed = now - lastMoveTime; // ms
+      const speed = elapsed > 0 ? (dist / elapsed) * 1000 : 0;
+
+      // Spawn binary 0 or 1 only on FAST movement (> threshold px/sec)
       if (dist > 12) {
         lastX = mouseX;
         lastY = mouseY;
+        lastMoveTime = now;
 
-        if (particles.length < MAX_PARTICLES) {
+        if (speed > SPEED_THRESHOLD && particles.length < MAX_PARTICLES) {
           particles.push({
             char: Math.random() > 0.5 ? '1' : '0',
             x: mouseX + (Math.random() - 0.5) * 8,

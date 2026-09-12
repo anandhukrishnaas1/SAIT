@@ -997,6 +997,51 @@ section {
   pointer-events: none;
 }
 
+/* ── On-Demand Sections (Hidden by default from home, opened via Header) ── */
+.on-demand-hidden-section {
+  display: none !important;
+}
+
+.on-demand-revealed-section {
+  display: block !important;
+  animation: onDemandSectionFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes onDemandSectionFade {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-close-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 0.28rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  line-height: 1.3;
+}
+
+.section-close-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
 @media (max-width: 1024px) {
   .pillars-grid,
   .top-stories-grid,

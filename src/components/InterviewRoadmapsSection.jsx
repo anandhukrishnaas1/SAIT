@@ -14,7 +14,7 @@ import {
 import { placementsData } from '../data/placementsData';
 import { LetterReveal } from './LetterReveal';
 
-export const InterviewRoadmapsSection = ({ onNotifyToast, onHideOnMobile, isMobileRevealed }) => {
+export const InterviewRoadmapsSection = ({ onNotifyToast, onCloseSection, isRevealed }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('All');
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -77,13 +77,13 @@ export const InterviewRoadmapsSection = ({ onNotifyToast, onHideOnMobile, isMobi
               Curated blueprints, system design primers &amp; technical cheat sheets by alumni at top tech firms.
             </p>
           </div>
-          {isMobileRevealed && onHideOnMobile && (
+          {onCloseSection && (
             <button 
-              className="mobile-section-header-pill"
-              onClick={onHideOnMobile}
-              style={{ cursor: 'pointer', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)' }}
+              className="section-close-pill-btn"
+              onClick={onCloseSection}
+              title="Close section"
             >
-              ✕ Hide on mobile
+              ✕ Close Section
             </button>
           )}
         </div>

@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export const FooterSection = ({ onOpenTerminal, onNotifyToast, onShowMobileSection }) => {
+export const FooterSection = ({ onOpenTerminal, onNotifyToast, onShowSection }) => {
   const [emailInput, setEmailInput] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -144,7 +144,8 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast, onShowMobileSecti
             <h4 className="footer-col-title">Info</h4>
             <ul className="footer-links-list">
               <li><a href="#about" className="footer-link-item">Department A - Z</a></li>
-              <li><a href="#resources" className="footer-link-item" onClick={() => onShowMobileSection && onShowMobileSection('vault')}>Academic Vault</a></li>
+              <li><a href="#interview-roadmaps" className="footer-link-item" onClick={() => onShowSection && onShowSection('roadmaps')}>Interview Roadmaps</a></li>
+              <li><a href="#resources" className="footer-link-item" onClick={() => onShowSection && onShowSection('vault')}>Academic Vault</a></li>
               <li><a href="#placements" className="footer-link-item">Career & Placements</a></li>
               <li><a href="#contact" className="footer-link-item">Contact Us</a></li>
               <li><a href="#association" className="footer-link-item">Executive Office</a></li>

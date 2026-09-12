@@ -14,17 +14,18 @@ export const Navbar = ({
   setUnreadNotifs,
   onOpenActivityModal,
   onReplayIntro,
-  onShowMobileSection
+  onShowSection
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Important, catchy destinations for the header
+  // Curated Header Navigation Links (Desktop)
   const desktopNavItems = [
     { label: 'Events', href: '#events' },
     { label: 'Placements', href: '#placements' },
+    { label: 'Roadmaps', href: '#interview-roadmaps', sectionKey: 'roadmaps' },
+    { label: 'Academic Vault', href: '#resources', sectionKey: 'vault' },
     { label: 'About', href: '#about' },
-    { label: 'Notices', href: '#announcements' },
-    { label: 'Academic Vault', href: '#resources' }
+    { label: 'Notices', href: '#announcements' }
   ];
 
   // Full navigation for the mobile slide-out drawer
@@ -32,17 +33,31 @@ export const Navbar = ({
     { label: 'Home', href: '#' },
     { label: 'Events & Hackathons', href: '#events' },
     { label: 'Placements & Careers', href: '#placements' },
+    { label: 'Interview Roadmaps', href: '#interview-roadmaps', sectionKey: 'roadmaps' },
+    { label: 'CUSAT IT Resource Vault', href: '#resources', sectionKey: 'vault' },
     { label: 'About Department', href: '#about' },
     { label: 'Faculty & Administration', href: '#faculty' },
     { label: 'Notices', href: '#announcements' },
-    { label: 'Executive Office', href: '#association' },
-    { label: 'Interview Roadmaps', href: '#interview-roadmaps', mobileKey: 'roadmaps' },
-    { label: 'CUSAT IT Resource Vault', href: '#resources', mobileKey: 'vault' }
+    { label: 'Executive Office', href: '#association' }
   ];
 
+  const handleDesktopNavClick = (e, item) => {
+    if (item.sectionKey && onShowSection) {
+      onShowSection(item.sectionKey);
+    }
+    if (item.href && item.href !== '#') {
+      setTimeout(() => {
+        const el = document.querySelector(item.href);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 60);
+    }
+  };
+
   const handleDrawerItemClick = (e, item) => {
-    if (item.mobileKey && onShowMobileSection) {
-      onShowMobileSection(item.mobileKey);
+    if (item.sectionKey && onShowSection) {
+      onShowSection(item.sectionKey);
     }
     setMobileMenuOpen(false);
     if (item.href && item.href !== '#') {
@@ -91,6 +106,7 @@ export const Navbar = ({
                   <a 
                     href={item.href} 
                     className="nav-item-link"
+                    onClick={(e) => handleDesktopNavClick(e, item)}
                   >
                     {item.label}
                   </a>

@@ -53,24 +53,39 @@ export function App() {
   const [activityModalOpen, setActivityModalOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
 
-  // Mobile on-demand section visibility (Hidden on mobile home by default, shown when tapped from 3-line menu)
-  const [showMobileRoadmaps, setShowMobileRoadmaps] = useState(false);
-  const [showMobileVault, setShowMobileVault] = useState(false);
+  // On-demand section visibility (Hidden from home by default, revealed when clicked from header)
+  const [showRoadmaps, setShowRoadmaps] = useState(false);
+  const [showVault, setShowVault] = useState(false);
 
-  const handleShowMobileSection = (sectionKey) => {
+  const handleShowSection = (sectionKey) => {
     if (sectionKey === 'roadmaps') {
-      setShowMobileRoadmaps(true);
+      setShowRoadmaps(true);
     } else if (sectionKey === 'vault') {
-      setShowMobileVault(true);
+      setShowVault(true);
     }
   };
 
-  // Sync hash changes (e.g., links from footer, menu, command palette) to reveal on mobile
+  const handleCloseSection = (sectionKey) => {
+    if (sectionKey === 'roadmaps') {
+      setShowRoadmaps(false);
+    } else if (sectionKey === 'vault') {
+      setShowVault(false);
+    }
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+      } catch (e) {
+        // ignore
+      }
+    }
+  };
+
+  // Sync hash changes (e.g., links from header, footer, command palette) to reveal on demand
   useEffect(() => {
     const handleHashSync = () => {
       const hash = window.location.hash;
-      if (hash === '#interview-roadmaps') setShowMobileRoadmaps(true);
-      if (hash === '#resources') setShowMobileVault(true);
+      if (hash === '#interview-roadmaps') setShowRoadmaps(true);
+      if (hash === '#resources') setShowVault(true);
     };
     handleHashSync();
     window.addEventListener('hashchange', handleHashSync);
@@ -182,7 +197,7 @@ export function App() {
           setUnreadNotifs={setUnreadNotifs}
           onOpenActivityModal={() => setActivityModalOpen(true)}
           onReplayIntro={handleReplayIntro}
-          onShowMobileSection={handleShowMobileSection}
+          onShowSection={handleShowSection}
         />
 
         {/* Main Sections: Attractive High-Energy Sections First, Followed by Standard Institutional Core */}
@@ -239,20 +254,20 @@ export function App() {
           </div>
 
           {/* 10. Interview Roadmaps & Question Banks (#interview-roadmaps - Direct placement prep pairing) */}
-          <div className={`reveal ${!showMobileRoadmaps ? 'mobile-hidden-section' : 'mobile-revealed-section'}`}>
+          <div className={`reveal ${!showRoadmaps ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}`}>
             <InterviewRoadmapsSection 
               onNotifyToast={addToast} 
-              onHideOnMobile={() => setShowMobileRoadmaps(false)}
-              isMobileRevealed={showMobileRoadmaps}
+              onCloseSection={() => handleCloseSection('roadmaps')}
+              isRevealed={showRoadmaps}
             />
           </div>
 
           {/* 11. CUSAT IT Academic Vault (#resources - Syllabus, lab code & solved question papers) */}
-          <div className={`reveal ${!showMobileVault ? 'mobile-hidden-section' : 'mobile-revealed-section'}`}>
+          <div className={`reveal ${!showVault ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}`}>
             <ResourceVaultSection 
               onNotifyToast={addToast} 
-              onHideOnMobile={() => setShowMobileVault(false)}
-              isMobileRevealed={showMobileVault}
+              onCloseSection={() => handleCloseSection('vault')}
+              isRevealed={showVault}
             />
           </div>
 
@@ -267,7 +282,7 @@ export function App() {
           <FooterSection 
             onOpenTerminal={() => setTerminalOpen(true)} 
             onNotifyToast={addToast}
-            onShowMobileSection={handleShowMobileSection}
+            onShowSection={handleShowSection}
           />
         </div>
 

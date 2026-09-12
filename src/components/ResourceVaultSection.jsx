@@ -15,7 +15,7 @@ import {
 import { resourcesData } from '../data/resourcesData';
 import { LetterReveal } from './LetterReveal';
 
-export const ResourceVaultSection = ({ onNotifyToast, onHideOnMobile, isMobileRevealed }) => {
+export const ResourceVaultSection = ({ onNotifyToast, onCloseSection, isRevealed }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSem, setSelectedSem] = useState('All');
   const [showAll, setShowAll] = useState(false);
@@ -81,13 +81,13 @@ export const ResourceVaultSection = ({ onNotifyToast, onHideOnMobile, isMobileRe
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginLeft: 'auto' }}>
-            {isMobileRevealed && onHideOnMobile && (
+            {onCloseSection && (
               <button 
-                className="mobile-section-header-pill"
-                onClick={onHideOnMobile}
-                style={{ cursor: 'pointer', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)', margin: 0 }}
+                className="section-close-pill-btn"
+                onClick={onCloseSection}
+                title="Close section"
               >
-                ✕ Hide on mobile
+                ✕ Close Section
               </button>
             )}
 

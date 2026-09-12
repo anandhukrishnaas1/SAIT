@@ -85,8 +85,10 @@ export const Navbar = ({
                   onClick={onOpenCommandPalette}
                   title="Search & Command Palette (⌘K)"
                 >
-                  <Search size={13} />
-                  <span>Search</span>
+                  <span className="nav-search-pill-left">
+                    <Search size={14} />
+                    <span>Search</span>
+                  </span>
                   <kbd className="nav-search-kbd">⌘K</kbd>
                 </button>
               </li>

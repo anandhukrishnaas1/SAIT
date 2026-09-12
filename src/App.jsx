@@ -53,6 +53,30 @@ export function App() {
   const [activityModalOpen, setActivityModalOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
 
+  // Mobile on-demand section visibility (Hidden on mobile home by default, shown when tapped from 3-line menu)
+  const [showMobileRoadmaps, setShowMobileRoadmaps] = useState(false);
+  const [showMobileVault, setShowMobileVault] = useState(false);
+
+  const handleShowMobileSection = (sectionKey) => {
+    if (sectionKey === 'roadmaps') {
+      setShowMobileRoadmaps(true);
+    } else if (sectionKey === 'vault') {
+      setShowMobileVault(true);
+    }
+  };
+
+  // Sync hash changes (e.g., links from footer, menu, command palette) to reveal on mobile
+  useEffect(() => {
+    const handleHashSync = () => {
+      const hash = window.location.hash;
+      if (hash === '#interview-roadmaps') setShowMobileRoadmaps(true);
+      if (hash === '#resources') setShowMobileVault(true);
+    };
+    handleHashSync();
+    window.addEventListener('hashchange', handleHashSync);
+    return () => window.removeEventListener('hashchange', handleHashSync);
+  }, []);
+
   // Stranger Things IT Single-Page Intro State: 'playing' | 'revealing' | 'done'
   const [introStage, setIntroStage] = useState('playing');
 
@@ -158,6 +182,7 @@ export function App() {
           setUnreadNotifs={setUnreadNotifs}
           onOpenActivityModal={() => setActivityModalOpen(true)}
           onReplayIntro={handleReplayIntro}
+          onShowMobileSection={handleShowMobileSection}
         />
 
         {/* Main Sections: Attractive High-Energy Sections First, Followed by Standard Institutional Core */}
@@ -214,13 +239,21 @@ export function App() {
           </div>
 
           {/* 10. Interview Roadmaps & Question Banks (#interview-roadmaps - Direct placement prep pairing) */}
-          <div className="reveal">
-            <InterviewRoadmapsSection onNotifyToast={addToast} />
+          <div className={`reveal ${!showMobileRoadmaps ? 'mobile-hidden-section' : 'mobile-revealed-section'}`}>
+            <InterviewRoadmapsSection 
+              onNotifyToast={addToast} 
+              onHideOnMobile={() => setShowMobileRoadmaps(false)}
+              isMobileRevealed={showMobileRoadmaps}
+            />
           </div>
 
           {/* 11. CUSAT IT Academic Vault (#resources - Syllabus, lab code & solved question papers) */}
-          <div className="reveal">
-            <ResourceVaultSection onNotifyToast={addToast} />
+          <div className={`reveal ${!showMobileVault ? 'mobile-hidden-section' : 'mobile-revealed-section'}`}>
+            <ResourceVaultSection 
+              onNotifyToast={addToast} 
+              onHideOnMobile={() => setShowMobileVault(false)}
+              isMobileRevealed={showMobileVault}
+            />
           </div>
 
           {/* 12. More to Explore (Student Pathways into Footer) */}
@@ -234,6 +267,7 @@ export function App() {
           <FooterSection 
             onOpenTerminal={() => setTerminalOpen(true)} 
             onNotifyToast={addToast}
+            onShowMobileSection={handleShowMobileSection}
           />
         </div>
 

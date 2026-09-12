@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
+export const FooterSection = ({ onOpenTerminal, onNotifyToast, onShowMobileSection }) => {
   const [emailInput, setEmailInput] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -32,11 +32,11 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '20%',
-          right: '2%',
-          width: '420px',
-          height: '420px',
-          opacity: 0.025,
+          top: '15%',
+          right: '3%',
+          width: '380px',
+          height: '380px',
+          opacity: 0.05,
           pointerEvents: 'none',
           userSelect: 'none',
           backgroundImage: 'url(/sait-logo.png)',
@@ -144,7 +144,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
             <h4 className="footer-col-title">Info</h4>
             <ul className="footer-links-list">
               <li><a href="#about" className="footer-link-item">Department A - Z</a></li>
-              <li><a href="#resources" className="footer-link-item">Academic Vault</a></li>
+              <li><a href="#resources" className="footer-link-item" onClick={() => onShowMobileSection && onShowMobileSection('vault')}>Academic Vault</a></li>
               <li><a href="#placements" className="footer-link-item">Career & Placements</a></li>
               <li><a href="#contact" className="footer-link-item">Contact Us</a></li>
               <li><a href="#association" className="footer-link-item">Executive Office</a></li>
@@ -183,8 +183,13 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
           </div>
         </div>
 
-        {/* Grand Standard SAIT Brand Watermark */}
+        {/* Grand Standard SAIT Brand Watermark with Lowered Opacity Emblem Logo */}
         <div className="footer-brand-watermark" aria-hidden="true">
+          <img 
+            src="/sait-logo.png" 
+            alt="SAIT Logo Watermark" 
+            className="footer-brand-watermark-logo" 
+          />
           <span className="footer-brand-watermark-text">
             SAIT
           </span>

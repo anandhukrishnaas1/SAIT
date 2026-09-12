@@ -15,7 +15,7 @@ import {
 import { resourcesData } from '../data/resourcesData';
 import { LetterReveal } from './LetterReveal';
 
-export const ResourceVaultSection = ({ onNotifyToast }) => {
+export const ResourceVaultSection = ({ onNotifyToast, onHideOnMobile, isMobileRevealed }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSem, setSelectedSem] = useState('All');
   const [showAll, setShowAll] = useState(false);
@@ -61,7 +61,7 @@ export const ResourceVaultSection = ({ onNotifyToast }) => {
     <section id="resources" className="notices-section-compact" style={{ background: 'transparent' }}>
       <div className="container">
         {/* Minimal & Cute Header */}
-        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>
+        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div>
             <div style={{ marginBottom: '0.35rem' }}>
               <span className="notice-header-badge">
@@ -80,16 +80,27 @@ export const ResourceVaultSection = ({ onNotifyToast }) => {
             </p>
           </div>
 
-          {hasMore && (
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="notice-cute-action-btn"
-              style={{ padding: '0.35rem 0.85rem', fontSize: '0.75rem' }}
-            >
-              <span>{showAll ? 'Show Less' : `View All (${filteredResources.length})`}</span>
-              {showAll ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
-            </button>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginLeft: 'auto' }}>
+            {isMobileRevealed && onHideOnMobile && (
+              <button 
+                className="mobile-section-header-pill"
+                onClick={onHideOnMobile}
+                style={{ cursor: 'pointer', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)', margin: 0 }}
+              >
+                ✕ Hide on mobile
+              </button>
+            )}
+
+            {hasMore && (
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="notices-view-toggle-btn"
+              >
+                {showAll ? 'Show Fewer' : `View All (${filteredResources.length})`}
+                <ChevronDown size={12} style={{ transform: showAll ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Minimal & Cute Control Bar: Pill Search + Pill Semester Filters */}

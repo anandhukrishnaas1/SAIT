@@ -13,7 +13,8 @@ export const Navbar = ({
   unreadNotifs,
   setUnreadNotifs,
   onOpenActivityModal,
-  onReplayIntro
+  onReplayIntro,
+  onShowMobileSection
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,8 +36,24 @@ export const Navbar = ({
     { label: 'Faculty & Administration', href: '#faculty' },
     { label: 'Notices', href: '#announcements' },
     { label: 'Executive Office', href: '#association' },
-    { label: 'Academic Vault', href: '#resources' }
+    { label: 'Interview Roadmaps', href: '#interview-roadmaps', mobileKey: 'roadmaps' },
+    { label: 'CUSAT IT Resource Vault', href: '#resources', mobileKey: 'vault' }
   ];
+
+  const handleDrawerItemClick = (e, item) => {
+    if (item.mobileKey && onShowMobileSection) {
+      onShowMobileSection(item.mobileKey);
+    }
+    setMobileMenuOpen(false);
+    if (item.href && item.href !== '#') {
+      setTimeout(() => {
+        const el = document.querySelector(item.href);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 80);
+    }
+  };
 
   return (
     <>
@@ -167,7 +184,7 @@ export const Navbar = ({
                   <a 
                     href={item.href} 
                     className="mobile-drawer-link"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => handleDrawerItemClick(e, item)}
                   >
                     {item.label}
                   </a>

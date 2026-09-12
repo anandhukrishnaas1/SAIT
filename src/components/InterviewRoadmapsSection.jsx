@@ -14,7 +14,7 @@ import {
 import { placementsData } from '../data/placementsData';
 import { LetterReveal } from './LetterReveal';
 
-export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
+export const InterviewRoadmapsSection = ({ onNotifyToast, onHideOnMobile, isMobileRevealed }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('All');
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -59,7 +59,7 @@ export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
     <section id="interview-roadmaps" className="notices-section-compact" style={{ background: 'transparent' }}>
       <div className="container">
         {/* Minimal & Cute Header */}
-        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>
+        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <div>
             <div style={{ marginBottom: '0.35rem' }}>
               <span className="notice-header-badge">
@@ -77,6 +77,15 @@ export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
               Curated blueprints, system design primers &amp; technical cheat sheets by alumni at top tech firms.
             </p>
           </div>
+          {isMobileRevealed && onHideOnMobile && (
+            <button 
+              className="mobile-section-header-pill"
+              onClick={onHideOnMobile}
+              style={{ cursor: 'pointer', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)' }}
+            >
+              ✕ Hide on mobile
+            </button>
+          )}
         </div>
 
         {/* Minimal & Cute Control Bar: Pill Search + Pill Type Filters */}

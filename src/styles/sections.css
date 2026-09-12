@@ -959,11 +959,6 @@ section {
 .footer-brand-watermark {
   margin-top: 3rem;
   padding-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
   text-align: center;
   user-select: none;
   pointer-events: none;
@@ -971,17 +966,9 @@ section {
   overflow: hidden;
 }
 
+/* Hidden on laptop/desktop, displayed on mobile via responsive.css */
 .footer-brand-watermark-logo {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  border-radius: 50%;
-  opacity: 0.12;
-  filter: grayscale(100%);
-  display: block;
-  user-select: none;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  display: none;
 }
 
 .footer-brand-watermark-text {

@@ -43,7 +43,7 @@ const HELP_TEXT = [
   { type: 'output', text: '│    sait portal      Student intranet portal status          │' },
   { type: 'output', text: '│    neofetch         SAIT system info (neofetch style)       │' },
   { type: 'output', text: '│    matrix           Toggle matrix rain easter egg           │' },
-  { type: 'output', text: '│    intro            Replay cinematic Stranger Things intro  │' },
+  { type: 'output', text: '│    intro            Replay intro                            │' },
   { type: 'output', text: '│    date             Current date & time                    │' },
   { type: 'output', text: '│    echo <text>      Print text to terminal                 │' },
   { type: 'output', text: '│    clear            Clear terminal output                   │' },
@@ -376,7 +376,7 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
         }, 150);
         return;
       }
-      output = [{ type: 'info', text: '  Replaying Stranger Things intro sequence...' }];
+      output = [{ type: 'info', text: '  Replaying intro sequence...' }];
     }
 
     // ── unknown ────────────────────────────────────────────────────────────

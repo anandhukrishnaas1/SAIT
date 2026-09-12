@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
   Menu, 
   X, 
-  Terminal as TerminalIcon
+  Terminal as TerminalIcon,
+  ChevronDown,
+  Compass,
+  GraduationCap,
+  Sparkles
 } from 'lucide-react';
 
 export const Navbar = ({ 
@@ -17,13 +21,56 @@ export const Navbar = ({
   onShowSection
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setDropdownOpen(false);
+    }, 160);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  const handleDropdownOptionClick = (e, sectionKey) => {
+    e.preventDefault();
+    setDropdownOpen(false);
+    if (onShowSection) {
+      onShowSection(sectionKey);
+    }
+  };
 
   // Curated Header Navigation Links (Desktop)
   const desktopNavItems = [
     { label: 'Events', href: '#events' },
     { label: 'Placements', href: '#placements' },
-    { label: 'Roadmaps', href: '#interview-roadmaps', sectionKey: 'roadmaps' },
-    { label: 'Academic Vault', href: '#resources', sectionKey: 'vault' },
     { label: 'About', href: '#about' },
     { label: 'Notices', href: '#announcements' }
   ];
@@ -84,20 +131,119 @@ export const Navbar = ({
             </div>
           </a>
 
-          {/* Curated Desktop Nav Links */}
+          {/* Curated Desktop Nav Links with Dropdown */}
           <nav>
             <ul className="nav-links">
-              {desktopNavItems.map((item) => (
-                <li key={item.label}>
-                  <a 
-                    href={item.href} 
-                    className="nav-item-link"
-                    onClick={(e) => handleDesktopNavClick(e, item)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a 
+                  href="#events" 
+                  className="nav-item-link"
+                  onClick={(e) => handleDesktopNavClick(e, { href: '#events' })}
+                >
+                  Events
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#placements" 
+                  className="nav-item-link"
+                  onClick={(e) => handleDesktopNavClick(e, { href: '#placements' })}
+                >
+                  Placements
+                </a>
+              </li>
+
+              {/* Resources Dropdown: Roadmaps & Academic Vault */}
+              <li 
+                className={`nav-dropdown-wrapper ${dropdownOpen ? 'open' : ''}`}
+                ref={dropdownRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  className={`nav-dropdown-trigger ${dropdownOpen ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDropdownOpen((prev) => !prev);
+                  }}
+                  aria-expanded={dropdownOpen}
+                  aria-haspopup="true"
+                  title="Roadmaps & Academic Vault"
+                >
+                  <span>Resources</span>
+                  <ChevronDown size={14} className="nav-dropdown-chevron" />
+                </button>
+
+                {dropdownOpen && (
+                  <div className="nav-dropdown-menu" role="menu">
+                    <a
+                      href="#interview-roadmaps"
+                      className="nav-dropdown-card"
+                      role="menuitem"
+                      onClick={(e) => handleDropdownOptionClick(e, 'roadmaps')}
+                    >
+                      <div className="nav-dropdown-icon-box">
+                        <Compass size={18} />
+                      </div>
+                      <div className="nav-dropdown-text">
+                        <div className="nav-dropdown-title-row">
+                          <span className="nav-dropdown-title">Interview Roadmaps</span>
+                          <span className="nav-dropdown-badge">Careers</span>
+                        </div>
+                        <span className="nav-dropdown-desc">
+                          Blueprints, tech stacks & mock interviews
+                        </span>
+                      </div>
+                    </a>
+
+                    <a
+                      href="#resources"
+                      className="nav-dropdown-card"
+                      role="menuitem"
+                      onClick={(e) => handleDropdownOptionClick(e, 'vault')}
+                    >
+                      <div className="nav-dropdown-icon-box">
+                        <GraduationCap size={18} />
+                      </div>
+                      <div className="nav-dropdown-text">
+                        <div className="nav-dropdown-title-row">
+                          <span className="nav-dropdown-title">Academic Vault</span>
+                          <span className="nav-dropdown-badge">CUSAT IT</span>
+                        </div>
+                        <span className="nav-dropdown-desc">
+                          Semester notes, lab code & question papers
+                        </span>
+                      </div>
+                    </a>
+
+                    <div className="nav-dropdown-footer">
+                      <Sparkles size={12} className="nav-dropdown-footer-icon" />
+                      <span>Curated open repository for CUSAT IT students</span>
+                    </div>
+                  </div>
+                )}
+              </li>
+
+              <li>
+                <a 
+                  href="#about" 
+                  className="nav-item-link"
+                  onClick={(e) => handleDesktopNavClick(e, { href: '#about' })}
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#announcements" 
+                  className="nav-item-link"
+                  onClick={(e) => handleDesktopNavClick(e, { href: '#announcements' })}
+                >
+                  Notices
+                </a>
+              </li>
+
               <li>
                 <button 
                   className="nav-search-pill" 

@@ -6,8 +6,7 @@ import {
   Terminal as TerminalIcon,
   ChevronDown,
   Compass,
-  GraduationCap,
-  Sparkles
+  GraduationCap
 } from 'lucide-react';
 
 export const Navbar = ({ 
@@ -179,48 +178,23 @@ export const Navbar = ({
                   <div className="nav-dropdown-menu" role="menu">
                     <a
                       href="#interview-roadmaps"
-                      className="nav-dropdown-card"
+                      className="nav-dropdown-item"
                       role="menuitem"
                       onClick={(e) => handleDropdownOptionClick(e, 'roadmaps')}
                     >
-                      <div className="nav-dropdown-icon-box">
-                        <Compass size={18} />
-                      </div>
-                      <div className="nav-dropdown-text">
-                        <div className="nav-dropdown-title-row">
-                          <span className="nav-dropdown-title">Interview Roadmaps</span>
-                          <span className="nav-dropdown-badge">Careers</span>
-                        </div>
-                        <span className="nav-dropdown-desc">
-                          Blueprints, tech stacks & mock interviews
-                        </span>
-                      </div>
+                      <Compass size={15} className="nav-dropdown-icon" />
+                      <span>Interview Roadmaps</span>
                     </a>
 
                     <a
                       href="#resources"
-                      className="nav-dropdown-card"
+                      className="nav-dropdown-item"
                       role="menuitem"
                       onClick={(e) => handleDropdownOptionClick(e, 'vault')}
                     >
-                      <div className="nav-dropdown-icon-box">
-                        <GraduationCap size={18} />
-                      </div>
-                      <div className="nav-dropdown-text">
-                        <div className="nav-dropdown-title-row">
-                          <span className="nav-dropdown-title">Academic Vault</span>
-                          <span className="nav-dropdown-badge">CUSAT IT</span>
-                        </div>
-                        <span className="nav-dropdown-desc">
-                          Semester notes, lab code & question papers
-                        </span>
-                      </div>
+                      <GraduationCap size={15} className="nav-dropdown-icon" />
+                      <span>Academic Vault</span>
                     </a>
-
-                    <div className="nav-dropdown-footer">
-                      <Sparkles size={12} className="nav-dropdown-footer-icon" />
-                      <span>Curated open repository for CUSAT IT students</span>
-                    </div>
                   </div>
                 )}
               </li>

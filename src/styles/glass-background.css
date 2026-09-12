@@ -77,6 +77,8 @@
 .event-card,
 .alumni-card,
 .faculty-card,
+.faculty-cute-card,
+.about-cute-card,
 .stat-card,
 .vault-category-card,
 .resource-card,
@@ -98,6 +100,8 @@
 .event-card:hover,
 .alumni-card:hover,
 .faculty-card:hover,
+.faculty-cute-card:hover,
+.about-cute-card:hover,
 .stat-card:hover,
 .vault-category-card:hover,
 .resource-card:hover,
@@ -108,6 +112,19 @@
   border-color: rgba(255, 255, 255, 0.22) !important;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55),
               0 0 24px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Glass blur sections: Faculty & Administration, About Department & SAIT */
+.section-blur-glass,
+#about,
+#faculty {
+  background: rgba(10, 10, 14, 0.52) !important;
+  backdrop-filter: blur(28px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(160%) !important;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Alternate sections as sleek translucent glass panels */

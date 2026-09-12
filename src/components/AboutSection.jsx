@@ -11,7 +11,7 @@ export const AboutSection = () => {
   const [activeTab, setActiveTab] = useState('mission');
 
   return (
-    <section id="about" style={{ borderTop: '1px solid var(--border-subtle)', padding: '3.5rem 0' }}>
+    <section id="about" className="section-blur-glass" style={{ borderTop: '1px solid var(--border-subtle)', padding: '3.5rem 0' }}>
       <div className="container">
         {/* Minimal & Cute Section Header */}
         <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>

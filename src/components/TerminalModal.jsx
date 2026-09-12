@@ -41,7 +41,6 @@ const HELP_TEXT = [
   { type: 'output', text: '│                                                            │' },
   { type: 'output', text: '│  ACTIONS                                                   │' },
   { type: 'output', text: '│    sait portal      Student intranet portal status          │' },
-  { type: 'output', text: '│    whoami           Your student profile                   │' },
   { type: 'output', text: '│    neofetch         SAIT system info (neofetch style)       │' },
   { type: 'output', text: '│    matrix           Toggle matrix rain easter egg           │' },
   { type: 'output', text: '│    intro            Replay cinematic Stranger Things intro  │' },
@@ -313,21 +312,6 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
       ];
     }
 
-    // ── whoami ─────────────────────────────────────────────────────────────
-    else if (cmd === 'whoami') {
-      output = [
-        { type: 'blank',  text: '' },
-        { type: 'header', text: '  ┌─ Active Student Session ──────────────────────┐' },
-        { type: 'info',   text: '  │  Name      Anandhu K.                         │' },
-        { type: 'info',   text: '  │  Roll No.  IT24-042                           │' },
-        { type: 'info',   text: '  │  Program   B.Tech Information Technology      │' },
-        { type: 'info',   text: '  │  Batch     2024–28 · Semester 5               │' },
-        { type: 'success',text: '  │  Tier      [Platinum Scholar]                 │' },
-        { type: 'info',   text: '  │  Status    ✓ SAIT Member · Activity Logger    │' },
-        { type: 'header', text: '  └───────────────────────────────────────────────┘' },
-        { type: 'blank',  text: '' },
-      ];
-    }
 
     // ── neofetch ───────────────────────────────────────────────────────────
     else if (cmd === 'neofetch' || cmd === 'sait info') {

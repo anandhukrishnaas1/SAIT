@@ -1006,7 +1006,27 @@ section {
 
 .on-demand-revealed-section {
   display: block !important;
-  animation: onDemandSectionFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  position: relative !important;
+  z-index: 5 !important;
+  animation: onDemandSectionFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.on-demand-revealed-section * {
+  visibility: visible;
+}
+
+.on-demand-revealed-section .letter-char {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+#interview-roadmaps,
+#resources,
+.notices-section-compact {
+  scroll-margin-top: 85px;
 }
 
 @keyframes onDemandSectionFade {

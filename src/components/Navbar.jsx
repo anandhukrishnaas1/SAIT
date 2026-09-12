@@ -43,31 +43,17 @@ export const Navbar = ({
 
   const handleDesktopNavClick = (e, item) => {
     if (item.sectionKey && onShowSection) {
+      e.preventDefault();
       onShowSection(item.sectionKey);
-    }
-    if (item.href && item.href !== '#') {
-      setTimeout(() => {
-        const el = document.querySelector(item.href);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 60);
     }
   };
 
   const handleDrawerItemClick = (e, item) => {
     if (item.sectionKey && onShowSection) {
+      e.preventDefault();
       onShowSection(item.sectionKey);
     }
     setMobileMenuOpen(false);
-    if (item.href && item.href !== '#') {
-      setTimeout(() => {
-        const el = document.querySelector(item.href);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 80);
-    }
   };
 
   return (

@@ -20,6 +20,12 @@ export const LetterReveal = ({
     const el = ref.current;
     if (!el) return;
 
+    // Instantly reveal if inside an on-demand revealed section
+    if (el.closest('.on-demand-revealed-section') || el.closest('#interview-roadmaps') || el.closest('#resources')) {
+      setRevealed(true);
+      return;
+    }
+
     // Check if element or parent section is already in viewport
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {

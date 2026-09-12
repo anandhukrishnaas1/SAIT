@@ -58,11 +58,22 @@ export function App() {
   const [showVault, setShowVault] = useState(false);
 
   const handleShowSection = (sectionKey) => {
-    if (sectionKey === 'roadmaps') {
+    const isRoadmaps = sectionKey === 'roadmaps';
+    if (isRoadmaps) {
       setShowRoadmaps(true);
-    } else if (sectionKey === 'vault') {
+    } else {
       setShowVault(true);
     }
+
+    const targetId = isRoadmaps ? 'interview-roadmaps' : 'resources';
+    setTimeout(() => {
+      const el = document.getElementById(targetId) || document.getElementById(`${targetId}-wrap`);
+      if (el) {
+        const navOffset = 80;
+        const targetY = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+      }
+    }, 80);
   };
 
   const handleCloseSection = (sectionKey) => {
@@ -254,7 +265,10 @@ export function App() {
           </div>
 
           {/* 10. Interview Roadmaps & Question Banks (#interview-roadmaps - Direct placement prep pairing) */}
-          <div className={`reveal ${!showRoadmaps ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}`}>
+          <div 
+            id="interview-roadmaps-wrap"
+            className={!showRoadmaps ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}
+          >
             <InterviewRoadmapsSection 
               onNotifyToast={addToast} 
               onCloseSection={() => handleCloseSection('roadmaps')}
@@ -263,7 +277,10 @@ export function App() {
           </div>
 
           {/* 11. CUSAT IT Academic Vault (#resources - Syllabus, lab code & solved question papers) */}
-          <div className={`reveal ${!showVault ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}`}>
+          <div 
+            id="resources-wrap"
+            className={!showVault ? 'on-demand-hidden-section' : 'on-demand-revealed-section'}
+          >
             <ResourceVaultSection 
               onNotifyToast={addToast} 
               onCloseSection={() => handleCloseSection('vault')}

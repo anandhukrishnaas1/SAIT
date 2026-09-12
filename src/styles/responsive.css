@@ -462,19 +462,19 @@
   }
 
   /* ── Top Stories / Highlights ── */
-  .highlight-editorial-card {
-    padding: 1.25rem 1.15rem 1.15rem !important;
+  .highlight-minimal-card {
+    padding: 1.25rem 1.15rem !important;
     border-radius: 16px !important;
   }
 
-  .highlight-card-title {
+  .highlight-minimal-title {
     font-size: 0.98rem !important;
     line-height: 1.32 !important;
   }
 
-  .highlight-card-desc {
+  .highlight-minimal-summary {
     font-size: 0.8125rem !important;
-    line-height: 1.55 !important;
+    line-height: 1.52 !important;
     margin-bottom: 1rem !important;
   }
 

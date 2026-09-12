@@ -77,7 +77,7 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   TOP STORIES / ACHIEVEMENTS & HIGHLIGHTS (IMAGE-FREE EDITORIAL CARDS)
+   TOP STORIES / ACHIEVEMENTS & HIGHLIGHTS (CLEAN & MINIMAL EDITORIAL)
    -------------------------------------------------------------------------- */
 .top-stories-section {
   position: relative;
@@ -92,142 +92,100 @@ section {
   align-items: stretch;
 }
 
-.highlight-editorial-card {
+.highlight-minimal-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 20px;
-  padding: 1.65rem 1.5rem 1.35rem;
+  border-radius: 18px;
+  padding: 1.5rem 1.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  overflow: hidden;
   cursor: pointer;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
-.highlight-editorial-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  opacity: 0;
-  transition: opacity 0.22s ease;
-}
-
-.highlight-editorial-card:hover {
-  transform: translateY(-4px);
+.highlight-minimal-card:hover {
+  transform: translateY(-3px);
   border-color: rgba(255, 255, 255, 0.24);
   background: var(--bg-secondary);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 255, 255, 0.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
-.highlight-editorial-card:hover::before {
-  opacity: 1;
-}
-
-.highlight-card-header {
+.highlight-minimal-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
-.highlight-category-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+.highlight-minimal-category {
   font-size: 0.72rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 0.26rem 0.65rem;
-  border-radius: 8px;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.highlight-metric-pill {
+.highlight-minimal-stat {
   font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 700;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 0.2rem 0.55rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.18rem 0.5rem;
   border-radius: 6px;
-  white-space: nowrap;
 }
 
-.highlight-card-title {
+.highlight-minimal-title {
   font-family: var(--font-display);
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--text-primary);
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.6rem;
   letter-spacing: -0.015em;
   transition: color 0.15s ease;
 }
 
-.highlight-editorial-card:hover .highlight-card-title {
+.highlight-minimal-card:hover .highlight-minimal-title {
   color: #ffffff;
 }
 
-.highlight-card-desc {
+.highlight-minimal-summary {
   font-family: var(--font-body);
-  font-size: 0.84rem;
-  line-height: 1.6;
+  font-size: 0.835rem;
+  line-height: 1.55;
   color: var(--text-secondary);
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.25rem;
   flex-grow: 1;
 }
 
-.highlight-card-footer {
+.highlight-minimal-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.9rem;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--border-subtle);
+}
+
+.highlight-minimal-footnote {
   font-size: 0.75rem;
-}
-
-.highlight-impact-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
   color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.73rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 70%;
+  font-weight: 500;
 }
 
-.highlight-action-btn {
-  display: inline-flex;
+.highlight-minimal-arrow {
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
   align-items: center;
-  gap: 0.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-  flex-shrink: 0;
 }
 
-.highlight-editorial-card:hover .highlight-action-btn {
-  transform: translateX(2px);
+.highlight-minimal-card:hover .highlight-minimal-arrow {
+  color: #ffffff;
+  transform: translate(2px, -2px);
 }
 
 .story-read-more {

@@ -66,76 +66,71 @@
 }
 
 /* --------------------------------------------------------------------------
-   MOBILE HERO
+   CATCHY SCROLLING KINETIC LETTER REVEAL ANIMATION (MOBILE & DESKTOP)
    -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 2.25rem !important;
-    padding-bottom: 2.5rem !important;
-  }
+.letter-reveal-wrap {
+  display: inline-block;
+  perspective: 700px;
+  vertical-align: top;
+}
 
-  .hero-title {
-    font-size: 3rem !important;
-    line-height: 1.07 !important;
-    letter-spacing: -0.035em !important;
-    margin-bottom: 1.15rem !important;
-  }
+.letter-word {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+}
 
-  .hero-subtitle {
-    font-size: 0.95rem !important;
-    line-height: 1.65 !important;
-    margin-bottom: 1.75rem !important;
-  }
+.letter-space {
+  display: inline-block;
+  width: 0.28em;
+}
 
-  .hero-cta-btn {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    display: flex !important;
-    margin-bottom: 2.5rem !important;
-  }
+.letter-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px) rotateX(-55deg) scale(0.88);
+  filter: blur(5px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.2, 0.95, 0.3, 1.25),
+    filter 0.4s ease;
+}
 
-  .hero-stats-row {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0 !important;
-    padding-top: 1.25rem !important;
-  }
+/* Revealed state (triggered on scroll) */
+.is-revealed .letter-char,
+.letter-reveal-wrap.is-revealed .letter-char {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg) scale(1);
+  filter: blur(0px);
+}
 
-  .hero-stat-number {
-    font-size: 1.5rem !important;
-    letter-spacing: -0.03em !important;
+/* Catchy Shimmer Pulse as Letters Land */
+@keyframes letterLandGlow {
+  0% {
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
-
-  .hero-stat-label {
-    font-size: 0.68rem !important;
-    line-height: 1.3 !important;
+  45% {
+    text-shadow: 0 0 16px rgba(255, 255, 255, 0.9), 0 0 28px rgba(255, 255, 255, 0.45);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
-/* --------------------------------------------------------------------------
-   MOBILE SECTION HEADERS
-   -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .section-header-row {
-    margin-bottom: 2rem !important;
-  }
+.is-revealed .letter-char,
+.letter-reveal-wrap.is-revealed .letter-char {
+  animation: letterLandGlow 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-  .section-title {
-    font-size: 1.8rem !important;
-    letter-spacing: -0.03em !important;
-    line-height: 1.15 !important;
-  }
-
-  .section-subtitle {
-    font-size: 0.875rem !important;
-    line-height: 1.6 !important;
-    margin-top: 0.5rem !important;
-    max-width: 100% !important;
-  }
-
-  section {
-    padding: 3rem 0 !important;
+/* Accessible Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .letter-char {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
 

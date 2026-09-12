@@ -245,11 +245,14 @@ export const AssociationSection = () => {
             </span>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '1rem',
-          }}>
+          <div 
+            className="association-wings-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '1rem',
+            }}
+          >
             {wings.map((w) => (
               <div
                 key={w.name}

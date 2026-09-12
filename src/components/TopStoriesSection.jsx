@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronRight, Trophy, ExternalLink } from 'lucide-react';
+import { LetterReveal } from './LetterReveal';
 
 export const TopStoriesSection = ({ onNotifyToast }) => {
   const stories = [
@@ -50,21 +51,23 @@ export const TopStoriesSection = ({ onNotifyToast }) => {
   };
 
   return (
-    <section id="achievements" style={{ position: 'relative', padding: '3.25rem 0' }}>
+    <section id="achievements" style={{ position: 'relative', padding: '3.25rem 0', borderTop: '1px solid var(--border-subtle)' }}>
       <div className="container">
         {/* Header */}
         <div className="section-header-row" style={{ marginBottom: '1.5rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
               <span className="section-badge" style={{ padding: '0.2rem 0.6rem', fontSize: '0.72rem' }}>
-                <Sparkles size={13} /> Achievements
+                <Trophy size={13} /> Achievements
               </span>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                 {stories.length} Highlights
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
-              Top Stories & <span className="brand-gradient-text">Highlights</span>
+              <LetterReveal>
+                Top Stories &amp; <span className="brand-gradient-text">Highlights</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '620px', margin: 0 }}>
               Celebrating breakthrough achievements, global internships, and research accolades. Hover or click for details.

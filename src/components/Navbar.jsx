@@ -21,8 +21,9 @@ export const Navbar = ({
   const desktopNavItems = [
     { label: 'Events', href: '#events' },
     { label: 'Placements', href: '#placements' },
-    { label: 'Academic Vault', href: '#resources' },
-    { label: 'About', href: '#about' }
+    { label: 'About', href: '#about' },
+    { label: 'Notices', href: '#announcements' },
+    { label: 'Academic Vault', href: '#resources' }
   ];
 
   // Full navigation for the mobile slide-out drawer
@@ -30,10 +31,11 @@ export const Navbar = ({
     { label: 'Home', href: '#' },
     { label: 'Events & Hackathons', href: '#events' },
     { label: 'Placements & Careers', href: '#placements' },
-    { label: 'Academic Vault', href: '#resources' },
-    { label: 'Notices & Circulars', href: '#announcements' },
-    { label: 'Faculty & Academics', href: '#about' },
-    { label: 'Executive Office', href: '#association' }
+    { label: 'About Department', href: '#about' },
+    { label: 'Faculty & Administration', href: '#faculty' },
+    { label: 'Notices', href: '#announcements' },
+    { label: 'Executive Office', href: '#association' },
+    { label: 'Academic Vault', href: '#resources' }
   ];
 
   return (

@@ -11,6 +11,7 @@ import { TopStoriesSection } from './components/TopStoriesSection';
 import { EventsSection } from './components/EventsSection';
 import { MoreToExploreSection } from './components/MoreToExploreSection';
 import { AboutSection } from './components/AboutSection';
+import { FacultySection } from './components/FacultySection';
 import { AssociationSection } from './components/AssociationSection';
 import { PlacementsSection } from './components/PlacementsSection';
 import { AlumniSection } from './components/AlumniSection';
@@ -159,67 +160,70 @@ export function App() {
           onReplayIntro={handleReplayIntro}
         />
 
-        {/* Main Sections Ordered by Template Structure */}
+        {/* Main Sections: Attractive High-Energy Sections First, Followed by Standard Institutional Core */}
         <main>
-          {/* Hero Section */}
+          {/* 1. Hero Section */}
           <HeroSection
             onOpenActivityModal={() => setActivityModalOpen(true)}
-            announcements={announcementsData}
             onNotifyToast={addToast}
           />
 
-
-          {/* Top Stories / Department Highlights */}
-          <div className="reveal reveal-stagger">
-            <TopStoriesSection onNotifyToast={addToast} />
-          </div>
-
-          {/* Placements & Careers */}
-          <div className="reveal">
-            <PlacementsSection onNotifyToast={addToast} />
-          </div>
-
-          {/* Academics & Faculty Directory (About Department & SAIT) */}
-          <div className="reveal reveal-left">
-            <AboutSection />
-          </div>
-
-          {/* Campus Events (Split Layout) */}
+          {/* 2. Campus Events & Flagship Hackathon (#events - Attractive first!) */}
           <div className="reveal">
             <EventsSection onNotifyToast={addToast} />
           </div>
 
-          {/* Association & Leadership */}
-          <div className="reveal reveal-right">
-            <AssociationSection />
+          {/* 3. Placements & Careers (#placements - High impact salary stats & top recruiters) */}
+          <div className="reveal">
+            <PlacementsSection onNotifyToast={addToast} />
           </div>
 
-          {/* Alumni Network & Mentorship */}
+          {/* 4. About Department & SAIT (#about - Vision, mission, milestones) */}
+          <div className="reveal reveal-left">
+            <AboutSection />
+          </div>
+
+          {/* 5. Top Stories & Breakthrough Highlights (#achievements - Proof of department excellence) */}
+          <div className="reveal reveal-stagger">
+            <TopStoriesSection onNotifyToast={addToast} />
+          </div>
+
+          {/* 6. Faculty & Administration (#faculty - Distinguished professors & staff directory) */}
+          <div className="reveal">
+            <FacultySection />
+          </div>
+
+          {/* 7. Department Notices & Circulars (#announcements - Active circulars & deadlines) */}
+          <div className="reveal" id="notices-section">
+            <AnnouncementsSection onNotifyToast={addToast} />
+          </div>
+
+          {/* 7. Alumni Network & Global Mentorship (#alumni - Mentors & advisors) */}
           <div className="reveal">
             <AlumniSection onNotifyToast={addToast} />
           </div>
 
-          {/* Apply / Connect CTA Banner */}
+          {/* 8. Student Association & Executive Leadership (#association - Student council & wings) */}
+          <div className="reveal reveal-right">
+            <AssociationSection />
+          </div>
+
+          {/* 9. Apply For Scholarships At The Same Time You Apply For Admission */}
           <div className="reveal reveal-scale">
             <ApplyBannerSection />
           </div>
 
-          {/* Notices & Circulars (Department Notices & Announcements) */}
-          <div className="reveal">
-            <AnnouncementsSection onNotifyToast={addToast} />
-          </div>
-
-          {/* Interview Roadmaps & Question Banks */}
+          {/* 10. Interview Roadmaps & Question Banks (#interview-roadmaps - Direct placement prep pairing) */}
           <div className="reveal">
             <InterviewRoadmapsSection onNotifyToast={addToast} />
           </div>
 
-          {/* Academic Notes Vault */}
+          {/* 11. CUSAT IT Academic Vault (#resources - Syllabus, lab code & solved question papers) */}
           <div className="reveal">
             <ResourceVaultSection onNotifyToast={addToast} />
           </div>
 
-          {/* More to Explore (3-Photo Grid) */}
+          {/* 12. More to Explore (Student Pathways into Footer) */}
           <div className="reveal reveal-scale">
             <MoreToExploreSection onNotifyToast={addToast} />
           </div>

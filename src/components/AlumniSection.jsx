@@ -11,6 +11,7 @@ import {
 import { LinkedinIcon } from './SocialIcons';
 import { alumniData } from '../data/alumniData';
 import { MentorshipModal } from './MentorshipModal';
+import { LetterReveal } from './LetterReveal';
 
 export const AlumniSection = ({ onNotifyToast }) => {
   const [selectedBatch, setSelectedBatch] = useState('All');

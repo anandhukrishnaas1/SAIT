@@ -19,7 +19,7 @@ export const ApplyBannerSection = ({ onOpenActivityModal }) => {
             <button 
               className="btn btn-primary btn-lg"
               onClick={() => {
-                const el = document.getElementById('vault');
+                const el = document.getElementById('resources') || document.getElementById('vault');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
               style={{ padding: '0.9rem 2.2rem', fontSize: '0.95rem', borderRadius: 'var(--radius-xs)', whiteSpace: 'nowrap' }}

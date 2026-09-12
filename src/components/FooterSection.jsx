@@ -58,6 +58,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast }) => {
               <img
                 src="/sait-logo.png"
                 alt="SAIT Logo"
+                className="footer-logo-img"
                 style={{
                   width: '120px',
                   height: '120px',

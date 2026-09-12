@@ -11,7 +11,7 @@ import {
   PlusCircle, 
   ArrowRight,
   Terminal,
-  Sparkles
+  Play
 } from 'lucide-react';
 
 export const CommandPalette = ({ 
@@ -134,7 +134,7 @@ export const CommandPalette = ({
                   onClick={() => { onClose(); onReplayIntro(); }}
                 >
                   <div className="cmd-result-info">
-                    <Sparkles size={16} color="var(--brand-primary)" />
+                    <Play size={16} color="var(--brand-primary)" />
                     <span>Replay Cinematic 'IT' Intro (Stranger Things Style)</span>
                   </div>
                   <span className="cmd-result-tag">Intro</span>

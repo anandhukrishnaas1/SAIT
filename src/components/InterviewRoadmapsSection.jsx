@@ -1,112 +1,221 @@
-import React from 'react';
-import { Download, Compass, BookOpen, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  Compass, 
+  Download, 
+  ChevronDown, 
+  ChevronRight,
+  BookOpen, 
+  Users, 
+  Search, 
+  ArrowUpRight,
+  CheckCircle2,
+  FileCode2
+} from 'lucide-react';
 import { placementsData } from '../data/placementsData';
 
 export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedType, setSelectedType] = useState('All');
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  const types = ['All', 'Roadmaps', 'Cheat Sheets', 'Mentorship'];
+
+  const filteredGuides = placementsData.interviewGuides.filter((guide) => {
+    const matchesType = selectedType === 'All' 
+      ? true 
+      : selectedType === 'Roadmaps' 
+        ? guide.type.includes('Roadmap')
+        : selectedType === 'Cheat Sheets'
+          ? guide.type.includes('Cheat')
+          : guide.type.includes('Interactive');
+
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = guide.title.toLowerCase().includes(q) || 
+                          guide.desc.toLowerCase().includes(q) || 
+                          guide.author.toLowerCase().includes(q) ||
+                          guide.type.toLowerCase().includes(q);
+    return matchesType && matchesSearch;
+  });
+
+  const toggleExpand = (idx) => {
+    setExpandedIndex(prev => prev === idx ? null : idx);
+  };
+
+  const handleAccess = (e, guide) => {
+    e.stopPropagation();
+    if (onNotifyToast) {
+      onNotifyToast(`Opening: ${guide.title} (${guide.author})`);
+    }
+  };
+
+  const getTypeIcon = (type) => {
+    if (type.includes('Roadmap')) return <Compass size={10} />;
+    if (type.includes('Cheat')) return <FileCode2 size={10} />;
+    return <Users size={10} />;
+  };
+
   return (
-    <section id="interview-roadmaps" style={{ padding: '3.25rem 0', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-subtle)' }}>
+    <section id="interview-roadmaps" className="notices-section-compact" style={{ background: 'transparent' }}>
       <div className="container">
-        <div className="section-header-row" style={{ marginBottom: '1.5rem' }}>
+        {/* Minimal & Cute Header */}
+        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-              <span className="section-badge" style={{ padding: '0.2rem 0.6rem', fontSize: '0.72rem' }}>
-                <Compass size={13} /> Placement Prep
-              </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                {placementsData.interviewGuides.length} Curated Guides
+            <div style={{ marginBottom: '0.35rem' }}>
+              <span className="notice-header-badge">
+                <Compass size={12} /> Placement Prep
+                <span className="notice-badge-dot">•</span>
+                <span className="notice-count-tag">{filteredGuides.length} Blueprints</span>
               </span>
             </div>
-            <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
+            <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
               Interview Roadmaps &amp; <span className="brand-gradient-text">Question Banks</span>
             </h2>
-            <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '640px', margin: 0 }}>
-              Curated blueprints, system design primers, and technical cheat sheets crafted by SAIT alumni at top tech firms.
+            <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
+              Curated blueprints, system design primers &amp; technical cheat sheets by alumni at top tech firms.
             </p>
           </div>
         </div>
 
-        {/* Compact Grid of Interview Roadmaps */}
-        <div 
-          className="alumni-compact-grid" 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-            gap: '1.1rem',
-            alignItems: 'stretch'
-          }}
-        >
-          {placementsData.interviewGuides.map((guide, idx) => (
-            <div 
-              key={idx} 
-              style={{
-                background: 'var(--bg-primary)',
-                border: '1px solid var(--border-card)',
-                borderRadius: 'var(--radius-xs)',
-                padding: '1.25rem 1.35rem',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.65rem',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-card)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
-                <span 
-                  className="skill-tag" 
-                  style={{ 
-                    margin: 0, 
-                    fontSize: '0.7rem', 
-                    padding: '0.15rem 0.55rem',
-                    color: 'var(--brand-primary)',
-                    borderColor: 'rgba(255, 255, 255, 0.15)'
-                  }}
-                >
-                  {guide.type}
-                </span>
-                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                  {guide.downloads} downloads
-                </span>
+        {/* Minimal & Cute Control Bar: Pill Search + Pill Type Filters */}
+        <div className="notices-control-bar">
+          {/* Pill Search */}
+          <div className="notices-search-wrapper">
+            <Search size={14} className="notices-search-icon" />
+            <input 
+              type="text" 
+              className="notices-search-input" 
+              placeholder="Search blueprints, topics, or authors..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery && (
+              <button 
+                type="button"
+                className="notices-search-clear"
+                onClick={() => setSearchQuery('')}
+                title="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* Pill Types */}
+          <div className="notices-filter-pills">
+            {types.map((t) => (
+              <button
+                key={t}
+                type="button"
+                className={`notice-filter-chip ${selectedType === t ? 'active' : ''}`}
+                onClick={() => setSelectedType(t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Compact & Cute Roadmap List */}
+        <div className="notices-list-container">
+          {filteredGuides.map((guide, idx) => {
+            const isExpanded = expandedIndex === idx;
+
+            return (
+              <div 
+                key={guide.title || idx}
+                className={`notice-cute-card ${isExpanded ? 'is-expanded' : ''}`}
+                onClick={() => toggleExpand(idx)}
+              >
+                {/* Top Row: Type, Author, Stats & Action */}
+                <div className="notice-cute-meta-row">
+                  <div className="notice-cute-tags-group">
+                    <span className="notice-cute-tag notice-tag-pinned">
+                      {getTypeIcon(guide.type)}
+                      {guide.type}
+                    </span>
+
+                    <span className="notice-cute-tag notice-tag-cat">
+                      <Users size={10} /> By {guide.author}
+                    </span>
+                  </div>
+
+                  {/* Right side: Downloads badge + Cute Access button + Chevron */}
+                  <div className="notice-cute-right-group" onClick={(e) => e.stopPropagation()}>
+                    <span className="notice-cute-tag notice-tag-deadline" title={`${guide.downloads} downloads`}>
+                      <Download size={10} />
+                      <span>{guide.downloads} downloads</span>
+                    </span>
+
+                    <button 
+                      type="button"
+                      className="notice-cute-action-btn"
+                      onClick={(e) => handleAccess(e, guide)}
+                      title={`Access ${guide.title}`}
+                    >
+                      <span>Access</span>
+                      <ArrowUpRight size={11} />
+                    </button>
+
+                    <button 
+                      type="button"
+                      className="notice-cute-chevron-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExpand(idx);
+                      }}
+                      title={isExpanded ? 'Collapse' : 'Expand details'}
+                      aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
+                    >
+                      <ChevronDown 
+                        size={14} 
+                        className={`notice-chevron-icon ${isExpanded ? 'rotated' : ''}`}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Guide Title */}
+                <h4 className="notice-cute-title">
+                  {guide.title}
+                </h4>
+
+                {/* Guide Short Summary */}
+                <p className="notice-cute-summary">
+                  {guide.desc}
+                </p>
+
+                {/* Smooth Extra Details (on expand) */}
+                {isExpanded && (
+                  <div className="notice-cute-expanded-box">
+                    <Compass size={13} className="notice-info-icon" />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', width: '100%' }}>
+                      <span>{guide.desc}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.2rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                          Curated by: <strong>{guide.author}</strong> • Status: <strong>Verified 2026 Batch</strong>
+                        </span>
+                        <button
+                          type="button"
+                          className="notice-cute-action-btn"
+                          style={{ background: '#ffffff', color: '#0a0a0a', borderColor: '#ffffff' }}
+                          onClick={(e) => handleAccess(e, guide)}
+                        >
+                          <span>Open Complete Guide</span>
+                          <ArrowUpRight size={11} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
+            );
+          })}
 
-              <h4 style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0, lineHeight: 1.35 }}>
-                {guide.title}
-              </h4>
-
-              <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>
-                {guide.desc}
-              </p>
-
-              <div style={{ 
-                marginTop: 'auto', 
-                paddingTop: '0.75rem', 
-                borderTop: '1px solid var(--border-subtle)', 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}>
-                <span style={{ fontSize: '0.73rem', color: 'var(--text-muted)' }}>
-                  By {guide.author}
-                </span>
-                <button 
-                  className="btn btn-secondary btn-sm"
-                  style={{ fontSize: '0.72rem', padding: '0.3rem 0.75rem', gap: '0.35rem' }}
-                  onClick={() => {
-                    if (onNotifyToast) onNotifyToast(`Accessing ${guide.title}!`);
-                  }}
-                >
-                  <Download size={12} /> Access
-                </button>
-              </div>
+          {filteredGuides.length === 0 && (
+            <div className="notice-empty-state">
+              <p style={{ margin: 0 }}>No preparation roadmaps found matching your search.</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </section>

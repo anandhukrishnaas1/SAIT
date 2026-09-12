@@ -59,16 +59,16 @@ export const GlassBackgroundAnimation = () => {
     window.addEventListener('resize', resize, { passive: true });
 
     // 1. STARFIELD (Deep space stars with subtle twinkle & scroll parallax)
-    const starCount = 140;
+    const starCount = 220;
     const stars = Array.from({ length: starCount }, () => ({
       x: Math.random(),
       y: Math.random(),
-      size: Math.random() * 1.5 + 0.5,
-      baseAlpha: Math.random() * 0.5 + 0.2,
+      size: Math.random() * 1.6 + 0.6,
+      baseAlpha: Math.random() * 0.55 + 0.25,
       pulseSpeed: Math.random() * 0.02 + 0.008,
       pulsePhase: Math.random() * Math.PI * 2,
       parallaxFactor: Math.random() * 0.25 + 0.05,
-      isBinary: Math.random() > 0.85,
+      isBinary: Math.random() > 0.82,
       binaryChar: Math.random() > 0.5 ? '1' : '0'
     }));
 
@@ -172,12 +172,14 @@ export const GlassBackgroundAnimation = () => {
       ctx.fillRect(0, 0, width, height);
 
       // Black Hole Center Coordinates
-      // Positioned slightly upper-center on desktop, smoothly shifting with scroll parallax
+      // Perfectly aligned to the right side on desktop, gracefully centered on mobile
       const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       const scrollProgress = Math.min(Math.max(currentScrollY / maxScroll, 0), 1);
 
-      const centerX = width * 0.58 + Math.sin(scrollProgress * Math.PI) * 40;
-      const centerY = height * 0.44 - (currentScrollY * 0.12) + (scrollProgress * 50);
+      const xFactor = width >= 1280 ? 0.71 : (width >= 1024 ? 0.68 : (width >= 768 ? 0.64 : 0.50));
+      const centerX = width * xFactor + Math.sin(scrollProgress * Math.PI) * 25;
+      const centerY = height * 0.47 - (currentScrollY * 0.12) + (scrollProgress * 50);
+
 
       // Subtle tilt angle of the solar system plane (rotates dynamically with scroll velocity)
       const systemTilt = 0.28 + (scrollVelocity * 0.002);
@@ -432,15 +434,15 @@ export const GlassBackgroundAnimation = () => {
       ctx.restore();
 
       // ----------------------------------------------------------------------
-      // 8. VIGNETTE OVERLAY (Smoothly fades periphery into deep space)
+      // 8. VIGNETTE OVERLAY (Smooth subtle space depth without cutting off bottom)
       // ----------------------------------------------------------------------
       const edgeVignette = ctx.createRadialGradient(
-        width * 0.5, height * 0.5, Math.min(width, height) * 0.35,
-        width * 0.5, height * 0.5, Math.max(width, height) * 0.8
+        width * 0.5, height * 0.5, Math.min(width, height) * 0.5,
+        width * 0.5, height * 0.5, Math.max(width, height) * 1.05
       );
       edgeVignette.addColorStop(0, 'transparent');
-      edgeVignette.addColorStop(0.7, 'rgba(10, 10, 10, 0.45)');
-      edgeVignette.addColorStop(1, '#0a0a0a');
+      edgeVignette.addColorStop(0.85, 'rgba(10, 10, 10, 0.25)');
+      edgeVignette.addColorStop(1, 'rgba(10, 10, 10, 0.5)');
       ctx.fillStyle = edgeVignette;
       ctx.fillRect(0, 0, width, height);
 

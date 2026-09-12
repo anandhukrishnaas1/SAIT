@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ANNOUNCEMENT BAR (top of page, above navbar)
+   ANNOUNCEMENT BAR — CONTINUOUS HORIZONTAL TICKER (DESKTOP & MOBILE)
    ========================================================================== */
 
 .announcement-bar {
@@ -8,168 +8,206 @@
   left: 0;
   right: 0;
   z-index: 1001;
-  height: 38px;
+  height: 34px;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 1.25rem;
-  background: #111111;                          /* Logo off-black surface     */
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  background: #0d0d0d;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: #ffffff;
   overflow: hidden;
   user-select: none;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Left badge group */
-.ann-bar-left {
+/* Left pinned badge */
+.ann-bar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.9rem;
+  height: 100%;
+  background: #141414;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+  z-index: 5;
+  box-shadow: 4px 0 14px rgba(0, 0, 0, 0.6);
+}
+
+.ann-badge-icon {
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ann-badge-text {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Continuous Marquee Ticker Viewport */
+.ann-ticker-viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
   display: flex;
+  align-items: center;
+  mask-image: linear-gradient(to right, transparent 0px, black 16px, black calc(100% - 20px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0px, black 16px, black calc(100% - 20px), transparent 100%);
+}
+
+.ann-ticker-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: annTickerLoop 42s linear infinite;
+  will-change: transform;
+}
+
+.ann-ticker-viewport:hover .ann-ticker-track,
+.ann-ticker-viewport:active .ann-ticker-track {
+  animation-play-state: paused;
+}
+
+.ann-ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ann-ticker-item {
+  display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  flex-shrink: 0;
-  color: #ffffff;
+  padding: 0 0.85rem;
+  white-space: nowrap;
 }
 
-.ann-priority-chip {
-  font-size: 0.68rem;
+.ann-ticker-category {
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0.15rem 0.55rem;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-/* Centre text area */
-.ann-bar-center {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  overflow: hidden;
-  min-width: 0;
-}
-
-.ann-bar-text {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 500;
   color: #ffffff;
-  animation: annFadeSlide 0.35s ease;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.08rem 0.45rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
-.ann-bar-deadline {
-  color: rgba(255, 255, 255, 0.82);
-  font-weight: 400;
+.ann-ticker-title {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
 }
 
-.ann-bar-cta {
+.ann-ticker-deadline {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  flex-shrink: 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #0a0a0a;
+}
+
+.ann-ticker-dot {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.ann-ticker-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   background: #ffffff;
+  color: #0a0a0a !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.12rem 0.52rem;
+  border-radius: 999px;
   text-decoration: none;
-  border-radius: 9999px;
-  padding: 0.18rem 0.65rem;
   transition: all 0.15s ease;
-  white-space: nowrap;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+  line-height: 1.2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-.ann-bar-cta:hover {
+.ann-ticker-cta:hover {
   background: #e0e0e0;
-  color: #0a0a0a;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
-/* Right controls */
-.ann-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  flex-shrink: 0;
+.ann-ticker-sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.6rem;
+  margin-left: 0.65rem;
+  margin-right: 0.1rem;
 }
 
-.ann-counter {
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
-  min-width: 24px;
-  text-align: center;
-}
-
-.ann-nav-btn,
-.ann-dismiss-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s, color 0.15s;
-  padding: 0;
-}
-
-.ann-nav-btn:hover,
-.ann-dismiss-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-}
-
-@keyframes annFadeSlide {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes annTickerLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333333%);
+  }
 }
 
 /* Push navbar below the announcement bar on desktop */
 .navbar {
-  top: 38px;
+  top: 34px;
 }
 
-/* On mobile/tablet (≤768px): Hide announcement bar on scroll, keep navbar flush at top: 0 */
+/* Perfect Mobile Layout (≤768px, including 360px Galaxy S8+) */
 @media (max-width: 768px) {
   .announcement-bar {
     position: relative !important;
     top: auto !important;
-    height: auto;
-    min-height: 38px;
-    padding: 0.4rem 0.75rem;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
     z-index: 10;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-
-  .announcement-bar.is-scrolled {
-    opacity: 0 !important;
-    transform: translateY(-8px) !important;
-    pointer-events: none !important;
   }
 
   .navbar {
     top: 0 !important;
   }
 
-  .ann-bar-text {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    font-size: 0.72rem;
-    line-height: 1.4;
+  .ann-bar-badge {
+    padding: 0 0.55rem;
+    gap: 0.25rem;
   }
 
-  .ann-bar-deadline {
-    display: none;
+  .ann-badge-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .ann-ticker-item {
+    gap: 0.35rem;
+    padding: 0 0.6rem;
+  }
+
+  .ann-ticker-title {
+    font-size: 0.7rem;
+  }
+
+  .ann-ticker-category {
+    font-size: 0.58rem;
+    padding: 0.06rem 0.38rem;
+  }
+
+  .ann-ticker-deadline {
+    font-size: 0.65rem;
+  }
+
+  .ann-ticker-cta {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.42rem;
   }
 }
 

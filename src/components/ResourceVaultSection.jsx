@@ -3,197 +3,258 @@ import {
   FolderDown, 
   Download, 
   ChevronDown, 
+  ChevronRight,
   FileText, 
   Code, 
   BookOpen, 
-  ExternalLink,
-  Layers
+  GraduationCap,
+  Search,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react';
 import { resourcesData } from '../data/resourcesData';
 
 export const ResourceVaultSection = ({ onNotifyToast }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedSem, setSelectedSem] = useState('All');
+  const [showAll, setShowAll] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const sems = ['All', 'Semester 5', 'Semester 6', 'Semester 7'];
 
-  const filteredResources = selectedSem === 'All' 
-    ? resourcesData 
-    : resourcesData.filter(r => r.semester === selectedSem);
+  const filteredResources = resourcesData.filter((r) => {
+    const matchesSem = selectedSem === 'All' ? true : r.semester === selectedSem;
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = r.subject.toLowerCase().includes(q) || 
+                          r.code.toLowerCase().includes(q) || 
+                          r.type.toLowerCase().includes(q) || 
+                          r.description.toLowerCase().includes(q);
+    return matchesSem && matchesSearch;
+  });
 
-  const handleDownload = (e, res) => {
-    e.stopPropagation();
-    if (onNotifyToast) {
-      onNotifyToast(`Downloading ${res.subject} (${res.type})...`);
-    }
-  };
+  const INITIAL_VISIBLE_COUNT = 3;
+  const isFiltering = searchQuery.trim() !== '' || selectedSem !== 'All';
+  const visibleResources = (showAll || isFiltering) 
+    ? filteredResources 
+    : filteredResources.slice(0, INITIAL_VISIBLE_COUNT);
+  const hasMore = !isFiltering && filteredResources.length > INITIAL_VISIBLE_COUNT;
 
   const toggleExpand = (idx) => {
     setExpandedIndex(prev => prev === idx ? null : idx);
   };
 
+  const handleDownload = (e, res) => {
+    e.stopPropagation();
+    if (onNotifyToast) {
+      onNotifyToast(`Downloading ${res.subject} (${res.type}) • ${res.size}`);
+    }
+  };
+
+  const getTypeIcon = (type) => {
+    if (type.includes('Code') || type.includes('Lab')) return <Code size={10} />;
+    if (type.includes('Roadmap')) return <Layers size={10} />;
+    return <BookOpen size={10} />;
+  };
+
   return (
-    <section id="resources" style={{ padding: '3.25rem 0', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-subtle)' }}>
+    <section id="resources" className="notices-section-compact" style={{ background: 'transparent' }}>
       <div className="container">
-        {/* Header - Compact Row Layout */}
-        <div className="section-header-row" style={{ marginBottom: '1.5rem' }}>
+        {/* Minimal & Cute Header */}
+        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-              <span className="section-badge" style={{ padding: '0.2rem 0.6rem', fontSize: '0.72rem' }}>
-                <FolderDown size={13} /> Knowledge Base
-              </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                {filteredResources.length} Modules Available
+            <div style={{ marginBottom: '0.35rem' }}>
+              <span className="notice-header-badge">
+                <FolderDown size={12} /> Resource Vault
+                <span className="notice-badge-dot">•</span>
+                <span className="notice-count-tag">{filteredResources.length} Modules</span>
               </span>
             </div>
-            <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
+            <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
               CUSAT IT <span className="brand-gradient-text">Resource Vault</span>
             </h2>
-            <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '620px', margin: 0 }}>
-              Syllabus modules, lab code manuals, and solved CUSAT university question papers. Hover or click an item for detailed module syllabus.
+            <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
+              Syllabus modules, lab manuals, code repositories &amp; university question papers.
             </p>
+          </div>
+
+          {hasMore && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="notice-cute-action-btn"
+              style={{ padding: '0.35rem 0.85rem', fontSize: '0.75rem' }}
+            >
+              <span>{showAll ? 'Show Less' : `View All (${filteredResources.length})`}</span>
+              {showAll ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+            </button>
+          )}
+        </div>
+
+        {/* Minimal & Cute Control Bar: Pill Search + Pill Semester Filters */}
+        <div className="notices-control-bar">
+          {/* Pill Search */}
+          <div className="notices-search-wrapper">
+            <Search size={14} className="notices-search-icon" />
+            <input 
+              type="text" 
+              className="notices-search-input" 
+              placeholder="Search subjects, codes, or keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery && (
+              <button 
+                type="button"
+                className="notices-search-clear"
+                onClick={() => setSearchQuery('')}
+                title="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* Pill Semesters */}
+          <div className="notices-filter-pills">
+            {sems.map((s) => (
+              <button
+                key={s}
+                type="button"
+                className={`notice-filter-chip ${selectedSem === s ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedSem(s);
+                  setShowAll(false);
+                }}
+              >
+                {s === 'All' ? 'All Semesters' : s.replace('Semester', 'Sem')}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Semester Filter Pills - Compact */}
-        <div className="filter-tabs" style={{ marginBottom: '1.25rem', gap: '0.4rem' }}>
-          {sems.map((s) => (
-            <button
-              key={s}
-              className={`filter-pill ${selectedSem === s ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedSem(s);
-                setExpandedIndex(null);
-              }}
-              style={{ fontSize: '0.75rem', padding: '0.35rem 0.8rem' }}
-            >
-              {s === 'All' ? 'All Semesters' : s}
-            </button>
-          ))}
-        </div>
-
-        {/* Compact Resource Accordion List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
-          {filteredResources.map((res, i) => {
+        {/* Compact & Cute Resource List */}
+        <div className="notices-list-container">
+          {visibleResources.map((res, i) => {
             const isExpanded = expandedIndex === i;
-            const isHovered = hoveredIndex === i;
-            const showDetails = isExpanded || isHovered;
 
             return (
               <div 
-                key={i}
+                key={res.code || i}
+                className={`notice-cute-card ${isExpanded ? 'is-expanded' : ''}`}
                 onClick={() => toggleExpand(i)}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                style={{
-                  background: showDetails ? 'var(--bg-tertiary)' : 'var(--bg-primary)',
-                  border: `1px solid ${showDetails ? 'rgba(255, 255, 255, 0.2)' : 'var(--border-card)'}`,
-                  borderRadius: 'var(--radius-xs)',
-                  padding: '0.85rem 1.25rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: showDetails ? '0 4px 18px rgba(0, 0, 0, 0.25)' : 'none'
-                }}
               >
-                {/* Main Condensed Row */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '1rem',
-                  flexWrap: 'wrap'
-                }}>
-                  {/* Left: Sem badge + Title + Code */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', minWidth: '260px', flex: '1 1 320px' }}>
-                    <span 
-                      style={{
-                        background: 'var(--bg-secondary)',
-                        border: '1px solid var(--border-subtle)',
-                        borderRadius: 'var(--radius-xs)',
-                        padding: '0.2rem 0.55rem',
-                        fontSize: '0.72rem',
-                        fontWeight: '600',
-                        color: 'var(--text-secondary)',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      {res.semester}
+                {/* Top Row: Semester, Code, Type + Right-side Stats & Download */}
+                <div className="notice-cute-meta-row">
+                  <div className="notice-cute-tags-group">
+                    <span className="notice-cute-tag notice-tag-pinned">
+                      <GraduationCap size={10} /> {res.semester}
                     </span>
 
-                    <div>
-                      <div style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-primary)', lineHeight: 1.25 }}>
-                        {res.subject}
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
-                        Code: {res.code}
-                      </div>
-                    </div>
-                  </div>
+                    <span className="notice-cute-tag notice-tag-cat">
+                      <Code size={10} /> {res.code}
+                    </span>
 
-                  {/* Right: Type tag + Size + Download Action */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: 'auto' }}>
-                    <span 
-                      className="skill-tag"
-                      style={{ 
-                        margin: 0, 
-                        fontSize: '0.72rem', 
-                        padding: '0.2rem 0.55rem',
-                        color: 'var(--text-primary)',
-                        borderColor: 'rgba(255, 255, 255, 0.15)'
-                      }}
-                    >
+                    <span className="notice-cute-tag notice-tag-high">
+                      {getTypeIcon(res.type)}
                       {res.type}
                     </span>
+                  </div>
 
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
-                      {res.size} • {res.downloads} dl
+                  {/* Right side: File size & Downloads + Cute Download button + Chevron */}
+                  <div className="notice-cute-right-group" onClick={(e) => e.stopPropagation()}>
+                    <span className="notice-cute-tag notice-tag-deadline" title={`${res.size} • ${res.downloads} downloads`}>
+                      <Download size={10} />
+                      <span>{res.size} • {res.downloads} dl</span>
                     </span>
 
                     <button 
-                      className="btn btn-secondary btn-sm"
+                      type="button"
+                      className="notice-cute-action-btn"
                       onClick={(e) => handleDownload(e, res)}
-                      style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem', gap: '0.35rem' }}
-                      title="Download module material"
+                      title={`Download ${res.subject}`}
                     >
-                      <Download size={13} /> Download
+                      <Download size={11} />
+                      <span>Download</span>
                     </button>
 
-                    <ChevronDown 
-                      size={16} 
-                      style={{ 
-                        color: 'var(--text-muted)',
-                        transform: showDetails ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                        flexShrink: 0
-                      }} 
-                    />
+                    <button 
+                      type="button"
+                      className="notice-cute-chevron-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExpand(i);
+                      }}
+                      title={isExpanded ? 'Collapse' : 'Expand details'}
+                      aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
+                    >
+                      <ChevronDown 
+                        size={14} 
+                        className={`notice-chevron-icon ${isExpanded ? 'rotated' : ''}`}
+                      />
+                    </button>
                   </div>
                 </div>
 
-                {/* Details Accordion on Cursor Hover or Click */}
-                {showDetails && (
-                  <div 
-                    style={{
-                      marginTop: '0.75rem',
-                      paddingTop: '0.75rem',
-                      borderTop: '1px dashed var(--border-subtle)',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '0.75rem',
-                      animation: 'fadeIn 0.15s ease'
-                    }}
-                  >
-                    <FileText size={14} style={{ color: 'var(--text-muted)', flexShrink: 0, marginTop: '2px' }} />
-                    <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                      {res.description}
-                    </p>
+                {/* Resource Title */}
+                <h4 className="notice-cute-title">
+                  {res.subject}
+                </h4>
+
+                {/* Resource Short Summary */}
+                <p className="notice-cute-summary">
+                  {res.description}
+                </p>
+
+                {/* Smooth Extra Details (on expand) */}
+                {isExpanded && (
+                  <div className="notice-cute-expanded-box">
+                    <FileText size={13} className="notice-info-icon" />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', width: '100%' }}>
+                      <span>{res.description}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.2rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                          Subject Code: <strong>{res.code}</strong> • Format: <strong>PDF &amp; Source Archives</strong>
+                        </span>
+                        <button
+                          type="button"
+                          className="notice-cute-action-btn"
+                          style={{ background: '#ffffff', color: '#0a0a0a', borderColor: '#ffffff' }}
+                          onClick={(e) => handleDownload(e, res)}
+                        >
+                          <Download size={11} />
+                          <span>Get Full Material ({res.size})</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
             );
           })}
+
+          {filteredResources.length === 0 && (
+            <div className="notice-empty-state">
+              <p style={{ margin: 0 }}>No course materials found matching your criteria.</p>
+            </div>
+          )}
         </div>
+
+        {/* Bottom Expand Toggle if more */}
+        {hasMore && (
+          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="notice-cute-action-btn"
+              style={{ 
+                padding: '0.4rem 1.15rem', 
+                fontSize: '0.78rem',
+                background: 'rgba(255, 255, 255, 0.05)'
+              }}
+            >
+              <span>{showAll ? 'Show Less' : `Show ${filteredResources.length - INITIAL_VISIBLE_COUNT} More Modules`}</span>
+              {showAll ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -3,23 +3,23 @@ import {
   Bell, 
   Search, 
   Calendar, 
-  Clock,
-  Pin,
-  ExternalLink, 
-  ChevronDown,
-  ChevronRight,
-  AlertCircle,
-  FileText,
-  Info
+  Clock, 
+  Pin, 
+  ChevronDown, 
+  ChevronRight, 
+  Info, 
+  GraduationCap, 
+  Briefcase, 
+  ArrowUpRight 
 } from 'lucide-react';
 import { announcementsData } from '../data/announcementsData';
+import { LetterReveal } from './LetterReveal';
 
 export const AnnouncementsSection = ({ onNotifyToast }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [showAll, setShowAll] = useState(false);
   const [expandedId, setExpandedId] = useState(null);
-  const [hoveredId, setHoveredId] = useState(null);
 
   const categories = ['All', 'Urgent', 'Academic', 'Events', 'Placements'];
 
@@ -44,282 +44,193 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
     setExpandedId(prev => prev === id ? null : id);
   };
 
-  const getPriorityStyle = (priority) => {
-    switch (priority) {
-      case 'Urgent':
-        return {
-          bg: 'rgba(255, 255, 255, 0.15)',
-          color: '#ffffff',
-          border: 'rgba(255, 255, 255, 0.28)'
-        };
-      case 'High':
-        return {
-          bg: 'rgba(255, 255, 255, 0.08)',
-          color: '#e2e8f0',
-          border: 'rgba(255, 255, 255, 0.18)'
-        };
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case 'Events':
+        return <Calendar size={11} />;
+      case 'Academic':
+        return <GraduationCap size={11} />;
+      case 'Placements':
+        return <Briefcase size={11} />;
       default:
-        return {
-          bg: 'rgba(255, 255, 255, 0.04)',
-          color: 'var(--text-secondary)',
-          border: 'var(--border-subtle)'
-        };
+        return <Bell size={11} />;
     }
   };
 
   return (
-    <section id="announcements" style={{ padding: '3.25rem 0', borderTop: '1px solid var(--border-subtle)' }}>
+    <section id="announcements" className="notices-section-compact">
       <div className="container">
-        {/* Compact Header */}
-        <div className="section-header-row" style={{ marginBottom: '1.5rem' }}>
+        {/* Minimal & Cute Header */}
+        <div className="section-header-row" style={{ marginBottom: '1.25rem', alignItems: 'flex-end' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-              <span className="section-badge" style={{ padding: '0.2rem 0.6rem', fontSize: '0.72rem' }}>
-                <Bell size={13} /> Official Notice Board
-              </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                {filteredAnnouncements.length} Active Circulars
+            <div style={{ marginBottom: '0.35rem' }}>
+              <span className="notice-header-badge">
+                <Bell size={12} /> Notice Board
+                <span className="notice-badge-dot">•</span>
+                <span className="notice-count-tag">{filteredAnnouncements.length} Active</span>
               </span>
             </div>
-            <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
-              Department Notices & <span className="brand-gradient-text">Announcements</span>
+            <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
+              <LetterReveal>
+                Department Notices &amp; <span className="brand-gradient-text">Updates</span>
+              </LetterReveal>
             </h2>
-            <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '640px', margin: 0 }}>
-              Stay informed with academic circulars, exam schedules, placement briefings, and activity deadlines. Hover or click an item for details.
+            <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
+              Official circulars, academic schedules, placement briefings &amp; deadlines.
             </p>
           </div>
 
           {hasMore && (
             <button
               onClick={() => setShowAll(!showAll)}
-              className="btn-view-all"
-              style={{ fontSize: '0.8rem', padding: '0.45rem 1rem' }}
+              className="notice-cute-action-btn"
+              style={{ padding: '0.35rem 0.85rem', fontSize: '0.75rem', cursor: 'pointer' }}
             >
-              {showAll ? 'Show Less' : `View All (${filteredAnnouncements.length})`}
-              {showAll ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              <span>{showAll ? 'Show Less' : `View All (${filteredAnnouncements.length})`}</span>
+              {showAll ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
             </button>
           )}
         </div>
 
-        {/* Search & Filter Bar - Compact */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between',
-          flexWrap: 'wrap', 
-          gap: '0.75rem', 
-          marginBottom: '1.25rem' 
-        }}>
-          {/* Search Input */}
-          <div style={{ position: 'relative', flex: '1 1 240px', maxWidth: '380px' }}>
-            <Search size={15} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+        {/* Minimal & Cute Control Bar: Pill Search + Pill Category Filters */}
+        <div className="notices-control-bar">
+          {/* Pill Search */}
+          <div className="notices-search-wrapper">
+            <Search size={14} className="notices-search-icon" />
             <input 
               type="text" 
-              className="form-input" 
-              placeholder="Search circulars or keywords..."
-              style={{ 
-                paddingLeft: '2.3rem', 
-                paddingTop: '0.45rem',
-                paddingBottom: '0.45rem',
-                fontSize: '0.8125rem',
-                width: '100%',
-                borderRadius: 'var(--radius-xs)',
-                background: 'var(--bg-primary)'
-              }}
+              className="notices-search-input" 
+              placeholder="Search circulars or topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            {searchQuery && (
+              <button 
+                type="button"
+                className="notices-search-clear"
+                onClick={() => setSearchQuery('')}
+                title="Clear search"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="filter-tabs" style={{ gap: '0.4rem', margin: 0 }}>
+          {/* Pill Categories */}
+          <div className="notices-filter-pills">
             {categories.map((cat) => (
               <button
                 key={cat}
-                className={`filter-pill ${selectedCategory === cat ? 'active' : ''}`}
+                type="button"
+                className={`notice-filter-chip ${selectedCategory === cat ? 'active' : ''}`}
                 onClick={() => {
                   setSelectedCategory(cat);
                   setShowAll(false);
-                  setExpandedId(null);
                 }}
-                style={{ fontSize: '0.75rem', padding: '0.35rem 0.8rem' }}
               >
-                {cat === 'All' ? 'All Notices' : cat}
+                {cat === 'All' ? 'All' : cat}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Compact Structured Notice Accordion Rows */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+        {/* Compact & Cute Notice List */}
+        <div className="notices-list-container">
           {visibleAnnouncements.map((ann) => {
             const isExpanded = expandedId === ann.id;
-            const isHovered = hoveredId === ann.id;
-            const showDetails = isExpanded || isHovered;
-            const pStyle = getPriorityStyle(ann.priority);
 
             return (
               <div 
                 key={ann.id}
+                className={`notice-cute-card ${isExpanded ? 'is-expanded' : ''}`}
                 onClick={() => toggleExpand(ann.id)}
-                onMouseEnter={() => setHoveredId(ann.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                style={{
-                  background: showDetails ? 'var(--bg-tertiary)' : 'var(--bg-primary)',
-                  border: `1px solid ${showDetails ? 'rgba(255, 255, 255, 0.22)' : 'var(--border-card)'}`,
-                  borderRadius: 'var(--radius-xs)',
-                  padding: '0.85rem 1.15rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: showDetails ? '0 6px 20px rgba(0, 0, 0, 0.3)' : 'none'
-                }}
               >
-                {/* Top Row: Badges, Category, Date, Deadline, Chevron */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '0.75rem',
-                  flexWrap: 'wrap',
-                  marginBottom: '0.45rem'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                {/* Top Row: Meta tags & Clean Due Date / Action */}
+                <div className="notice-cute-meta-row">
+                  <div className="notice-cute-tags-group">
                     {ann.pinned && (
-                      <span style={{ 
-                        display: 'inline-flex', 
-                        alignItems: 'center', 
-                        gap: '0.25rem', 
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        color: '#ffffff',
-                        border: '1px solid rgba(255, 255, 255, 0.18)',
-                        padding: '0.15rem 0.5rem',
-                        borderRadius: 'var(--radius-xs)',
-                        fontSize: '0.68rem', 
-                        fontWeight: '700',
-                        letterSpacing: '0.02em'
-                      }}>
-                        <Pin size={11} /> Pinned
+                      <span className="notice-cute-tag notice-tag-pinned">
+                        <Pin size={10} /> Pinned
                       </span>
                     )}
 
-                    <span style={{
-                      background: pStyle.bg,
-                      color: pStyle.color,
-                      border: `1px solid ${pStyle.border}`,
-                      padding: '0.15rem 0.5rem',
-                      borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.68rem',
-                      fontWeight: '700'
-                    }}>
-                      {ann.priority} Priority
-                    </span>
-
-                    <span style={{
-                      background: 'var(--bg-secondary)',
-                      border: '1px solid var(--border-subtle)',
-                      color: 'var(--text-secondary)',
-                      padding: '0.15rem 0.5rem',
-                      borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.68rem',
-                      fontWeight: '600'
-                    }}>
+                    <span className="notice-cute-tag notice-tag-cat">
+                      {getCategoryIcon(ann.category)}
                       {ann.category}
                     </span>
 
-                    <span style={{ 
-                      fontSize: '0.72rem', 
-                      color: 'var(--text-muted)', 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '0.3rem' 
-                    }}>
+                    <span className="notice-cute-date">
                       <Calendar size={11} /> {ann.date}
                     </span>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: 'auto' }}>
+                  {/* Right side: Single Due date + cute action button + chevron */}
+                  <div className="notice-cute-right-group" onClick={(e) => e.stopPropagation()}>
                     {ann.deadline && (
-                      <span style={{ 
-                        fontSize: '0.72rem', 
-                        color: 'var(--brand-accent)', 
-                        display: 'inline-flex', 
-                        alignItems: 'center', 
-                        gap: '0.3rem',
-                        fontWeight: '600'
-                      }}>
-                        <Clock size={11} /> {ann.deadline}
+                      <span className="notice-cute-tag notice-tag-deadline" title={`Deadline: ${ann.deadline}`}>
+                        <Clock size={11} />
+                        <span>Due: {ann.deadline}</span>
                       </span>
                     )}
 
-                    <ChevronDown 
-                      size={15} 
-                      style={{ 
-                        color: 'var(--text-muted)',
-                        transform: showDetails ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                        flexShrink: 0
-                      }} 
-                    />
-                  </div>
-                </div>
-
-                {/* Notice Title */}
-                <div style={{
-                  fontSize: '0.92rem',
-                  fontWeight: '700',
-                  color: 'var(--text-primary)',
-                  lineHeight: 1.35
-                }}>
-                  {ann.title}
-                </div>
-
-                {/* Expanded Details on Hover or Click */}
-                {showDetails && (
-                  <div style={{
-                    marginTop: '0.65rem',
-                    paddingTop: '0.65rem',
-                    borderTop: '1px dashed var(--border-subtle)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.55rem',
-                    animation: 'fadeIn 0.15s ease'
-                  }}>
-                    <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                      {ann.summary}
-                    </p>
-
-                    {ann.details && (
-                      <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.5, display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                        <Info size={12} style={{ flexShrink: 0 }} /> {ann.details}
-                      </p>
-                    )}
-
-                    {/* Action Link Button */}
-                    <div style={{ paddingTop: '0.35rem' }} onClick={(e) => e.stopPropagation()}>
-                      {ann.actionUrl.startsWith('#') ? (
+                    {ann.actionUrl && (
+                      ann.actionUrl.startsWith('#') ? (
                         <a 
                           href={ann.actionUrl} 
-                          className="btn btn-secondary btn-sm"
-                          style={{ padding: '0.35rem 0.8rem', fontSize: '0.75rem' }}
+                          className="notice-cute-action-btn"
                         >
-                          {ann.actionLabel}
+                          <span>{ann.actionLabel || 'View'}</span>
+                          <ChevronRight size={11} />
                         </a>
                       ) : (
                         <a 
                           href={ann.actionUrl} 
                           target="_blank" 
                           rel="noreferrer" 
-                          className="btn btn-primary btn-sm"
-                          style={{ padding: '0.35rem 0.85rem', fontSize: '0.75rem', gap: '0.35rem' }}
+                          className="notice-cute-action-btn"
                           onClick={() => {
                             if (onNotifyToast) onNotifyToast(`Opening: ${ann.actionLabel}`);
                           }}
                         >
-                          <span>{ann.actionLabel}</span>
-                          <ExternalLink size={12} />
+                          <span>{ann.actionLabel || 'Details'}</span>
+                          <ArrowUpRight size={11} />
                         </a>
-                      )}
-                    </div>
+                      )
+                    )}
+
+                    <button 
+                      type="button"
+                      className="notice-cute-chevron-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExpand(ann.id);
+                      }}
+                      title={isExpanded ? 'Collapse' : 'Expand details'}
+                      aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
+                    >
+                      <ChevronDown 
+                        size={14} 
+                        className={`notice-chevron-icon ${isExpanded ? 'rotated' : ''}`}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Notice Title */}
+                <h4 className="notice-cute-title">
+                  {ann.title}
+                </h4>
+
+                {/* Notice Summary */}
+                <p className="notice-cute-summary">
+                  {ann.summary}
+                </p>
+
+                {/* Smooth Extra Details (on expand) */}
+                {isExpanded && ann.details && (
+                  <div className="notice-cute-expanded-box">
+                    <Info size={13} className="notice-info-icon" />
+                    <span>{ann.details}</span>
                   </div>
                 )}
               </div>
@@ -327,22 +238,27 @@ export const AnnouncementsSection = ({ onNotifyToast }) => {
           })}
 
           {filteredAnnouncements.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '2.5rem', background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: 0 }}>No announcements match your search criteria.</p>
+            <div className="notice-empty-state">
+              <p style={{ margin: 0 }}>No announcements found matching your criteria.</p>
             </div>
           )}
         </div>
 
-        {/* Bottom "More" Button */}
+        {/* Bottom Expand Toggle if more */}
         {hasMore && (
-          <div style={{ textAlign: 'center', marginTop: '1.25rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
             <button
               onClick={() => setShowAll(!showAll)}
-              className="btn btn-secondary btn-sm"
-              style={{ padding: '0.45rem 1.25rem', fontSize: '0.8rem', gap: '0.4rem' }}
+              className="notice-cute-action-btn"
+              style={{ 
+                padding: '0.4rem 1.15rem', 
+                fontSize: '0.78rem',
+                cursor: 'pointer',
+                background: 'rgba(255, 255, 255, 0.05)'
+              }}
             >
-              {showAll ? 'Show Less' : `Show ${filteredAnnouncements.length - INITIAL_VISIBLE_COUNT} More Notices`}
-              {showAll ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+              <span>{showAll ? 'Show Less' : `Show ${filteredAnnouncements.length - INITIAL_VISIBLE_COUNT} More Notices`}</span>
+              {showAll ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
             </button>
           </div>
         )}

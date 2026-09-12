@@ -1,103 +1,61 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Megaphone, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
-
-const PRIORITY_CONFIG = {
-  Urgent: { color: '#0a0a0a', bg: '#ffffff', label: 'URGENT' },
-  High:   { color: '#ffffff', bg: 'rgba(255, 255, 255, 0.20)', label: 'HIGH' },
-  Normal: { color: 'var(--text-secondary)', bg: 'rgba(255, 255, 255, 0.08)', label: 'NOTICE' },
-};
+import React from 'react';
+import { Megaphone, ArrowUpRight } from 'lucide-react';
 
 export const AnnouncementBar = ({ announcements = [] }) => {
-  const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const timerRef = useRef(null);
+  if (!announcements || announcements.length === 0) return null;
 
-  const items = announcements.slice(0, 5);
+  const items = announcements.slice(0, 6);
 
-  // Detect scroll to hide on mobile
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Auto-rotate every 4 seconds
-  useEffect(() => {
-    if (paused || items.length <= 1) return;
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % items.length);
-    }, 4000);
-    return () => clearInterval(timerRef.current);
-  }, [paused, items.length]);
-
-  const prev = () => {
-    clearInterval(timerRef.current);
-    setCurrent((c) => (c - 1 + items.length) % items.length);
-  };
-
-  const next = () => {
-    clearInterval(timerRef.current);
-    setCurrent((c) => (c + 1) % items.length);
-  };
-
-  if (items.length === 0) return null;
-
-  const ann = items[current];
-  const cfg = PRIORITY_CONFIG[ann.priority] || PRIORITY_CONFIG.Normal;
+  const renderTickerGroup = (keyPrefix, isAriaHidden = false) => (
+    <div 
+      className="ann-ticker-group" 
+      aria-hidden={isAriaHidden ? 'true' : undefined}
+    >
+      {items.map((ann, idx) => (
+        <div key={`${keyPrefix}-${ann.id || idx}`} className="ann-ticker-item">
+          {ann.category && (
+            <span className="ann-ticker-category">{ann.category}</span>
+          )}
+          <span className="ann-ticker-title">{ann.title}</span>
+          {ann.deadline && (
+            <span className="ann-ticker-deadline">
+              <span className="ann-ticker-dot">•</span>
+              Due: {ann.deadline}
+            </span>
+          )}
+          {ann.actionUrl && (
+            <a
+              href={ann.actionUrl}
+              className="ann-ticker-cta"
+              target={ann.actionUrl.startsWith('http') ? '_blank' : '_self'}
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span>{ann.actionLabel || 'View'}</span>
+              <ArrowUpRight size={10} />
+            </a>
+          )}
+          <span className="ann-ticker-sep" aria-hidden="true">✦</span>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
-    <div
-      className={`announcement-bar ${scrolled ? 'is-scrolled' : ''}`}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {/* Left: Megaphone badge */}
-      <div className="ann-bar-left">
-        <Megaphone size={13} />
-        <span
-          className="ann-priority-chip"
-          style={{ color: cfg.color, background: cfg.bg }}
-        >
-          {cfg.label}
-        </span>
+    <div className="announcement-bar">
+      {/* Pinned Left Updates Badge */}
+      <div className="ann-bar-badge">
+        <Megaphone size={12} className="ann-badge-icon" />
+        <span className="ann-badge-text">UPDATES</span>
       </div>
 
-      {/* Centre: scrolling notice text */}
-      <div className="ann-bar-center">
-        <span className="ann-bar-text" key={current}>
-          {ann.title}
-          {ann.deadline && (
-            <span className="ann-bar-deadline"> — Deadline: {ann.deadline}</span>
-          )}
-        </span>
-        {ann.actionUrl && (
-          <a
-            href={ann.actionUrl}
-            className="ann-bar-cta"
-            target={ann.actionUrl.startsWith('http') ? '_blank' : '_self'}
-            rel="noreferrer"
-          >
-            {ann.actionLabel || 'View'} <ArrowUpRight size={11} />
-          </a>
-        )}
-      </div>
-
-      {/* Right: navigation + counter */}
-      <div className="ann-bar-right">
-        {items.length > 1 && (
-          <>
-            <button className="ann-nav-btn" onClick={prev} title="Previous Announcement">
-              <ChevronLeft size={13} />
-            </button>
-            <span className="ann-counter">{current + 1}/{items.length}</span>
-            <button className="ann-nav-btn" onClick={next} title="Next Announcement">
-              <ChevronRight size={13} />
-            </button>
-          </>
-        )}
+      {/* Smooth Continuous Side-Scrolling Ticker Viewport */}
+      <div className="ann-ticker-viewport">
+        <div className="ann-ticker-track">
+          {renderTickerGroup('orig', false)}
+          {renderTickerGroup('dup1', true)}
+          {renderTickerGroup('dup2', true)}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { placementsData } from '../data/placementsData';
+import { LetterReveal } from './LetterReveal';
 
 export const PlacementsSection = () => {
   return (
@@ -7,7 +8,9 @@ export const PlacementsSection = () => {
       <div className="container">
         <div className="section-header-row">
           <div>
-            <h2 className="section-title">Placements &amp; Careers</h2>
+            <h2 className="section-title">
+              <LetterReveal>Placements &amp; Careers</LetterReveal>
+            </h2>
             <p className="section-subtitle">
               Consistent placement breakthroughs across Tier-1 product tech companies and international software labs.
             </p>
@@ -15,39 +18,39 @@ export const PlacementsSection = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="placement-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
-          <div className="editorial-card" style={{ padding: '2rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+        <div className="placement-stats-grid">
+          <div className="editorial-card placement-stat-card">
+            <div className="placement-stat-label">
               Highest CTC
             </div>
-            <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--brand-primary)', lineHeight: '1.1' }}>
+            <div className="placement-stat-val">
               {placementsData.stats.highestPackage}
             </div>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+            <p className="placement-stat-sub">
               Google Cloud AI (Zurich)
             </p>
           </div>
 
-          <div className="editorial-card" style={{ padding: '2rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+          <div className="editorial-card placement-stat-card">
+            <div className="placement-stat-label">
               Average Package
             </div>
-            <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.1' }}>
+            <div className="placement-stat-val">
               {placementsData.stats.averagePackage}
             </div>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+            <p className="placement-stat-sub">
               Across all IT Department cohorts
             </p>
           </div>
 
-          <div className="editorial-card" style={{ padding: '2rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+          <div className="editorial-card placement-stat-card">
+            <div className="placement-stat-label">
               Placement Rate
             </div>
-            <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--brand-secondary)', lineHeight: '1.1' }}>
+            <div className="placement-stat-val">
               {placementsData.stats.placementRate}
             </div>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+            <p className="placement-stat-sub">
               {placementsData.stats.totalOffers} total offers rolled out
             </p>
           </div>

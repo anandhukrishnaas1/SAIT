@@ -13,6 +13,7 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { resourcesData } from '../data/resourcesData';
+import { LetterReveal } from './LetterReveal';
 
 export const ResourceVaultSection = ({ onNotifyToast }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -70,7 +71,9 @@ export const ResourceVaultSection = ({ onNotifyToast }) => {
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
-              CUSAT IT <span className="brand-gradient-text">Resource Vault</span>
+              <LetterReveal>
+                CUSAT IT <span className="brand-gradient-text">Resource Vault</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
               Syllabus modules, lab manuals, code repositories &amp; university question papers.

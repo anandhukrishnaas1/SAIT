@@ -12,6 +12,7 @@ import {
   FileCode2
 } from 'lucide-react';
 import { placementsData } from '../data/placementsData';
+import { LetterReveal } from './LetterReveal';
 
 export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -68,7 +69,9 @@ export const InterviewRoadmapsSection = ({ onNotifyToast }) => {
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
-              Interview Roadmaps &amp; <span className="brand-gradient-text">Question Banks</span>
+              <LetterReveal>
+                Interview Roadmaps &amp; <span className="brand-gradient-text">Question Banks</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
               Curated blueprints, system design primers &amp; technical cheat sheets by alumni at top tech firms.

@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Compass
 } from 'lucide-react';
+import { LetterReveal } from './LetterReveal';
 
 export const MoreToExploreSection = ({ onNotifyToast }) => {
   const exploreItems = [
@@ -53,7 +54,9 @@ export const MoreToExploreSection = ({ onNotifyToast }) => {
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '0.2rem' }}>
-              More to <span className="brand-gradient-text">Explore</span>
+              <LetterReveal>
+                More to <span className="brand-gradient-text">Explore</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.82rem', maxWidth: '580px', margin: 0, color: 'var(--text-secondary)' }}>
               Curriculum guides, specialized research laboratories, and student-led development wings.

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Code, Palette, Calendar, Megaphone, ChevronRight, ChevronDown, Quote, Users } from 'lucide-react';
 import { LinkedinIcon, GithubIcon } from './SocialIcons';
 import { teamData } from '../data/teamData';
+import { LetterReveal } from './LetterReveal';
 
 export const AssociationSection = () => {
   const [showAllExec, setShowAllExec] = useState(false);
@@ -39,7 +40,9 @@ export const AssociationSection = () => {
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
-              Association & <span className="brand-gradient-text">Leadership</span>
+              <LetterReveal>
+                Association &amp; <span className="brand-gradient-text">Leadership</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '620px', margin: 0 }}>
               The student innovators, organizers, and architects leading SAIT initiatives for the IT Division. Hover or click to see details.

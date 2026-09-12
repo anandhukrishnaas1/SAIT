@@ -50,7 +50,9 @@ export const AlumniSection = ({ onNotifyToast }) => {
               </span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.25rem' }}>
-              Our Global <span className="brand-gradient-text">Alumni Network</span>
+              <LetterReveal>
+                Our Global <span className="brand-gradient-text">Alumni Network</span>
+              </LetterReveal>
             </h2>
             <p className="section-subtitle" style={{ fontSize: '0.85rem', maxWidth: '620px', margin: 0 }}>
               CUSAT IT graduates engineering pioneering systems at Google, Microsoft, Amazon, Stanford &amp; beyond. Hover or click an alumni card for full career achievements &amp; insights.

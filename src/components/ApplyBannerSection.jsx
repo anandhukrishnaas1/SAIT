@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScholarshipEmblemDecor } from './GeometricDecors';
+import { LetterReveal } from './LetterReveal';
 
 export const ApplyBannerSection = ({ onOpenActivityModal }) => {
   return (
@@ -11,7 +12,9 @@ export const ApplyBannerSection = ({ onOpenActivityModal }) => {
               <ScholarshipEmblemDecor size={76} />
             </div>
             <h2 className="cta-banner-title">
-              Apply For Scholarships At The Same Time You Apply For Admission
+              <LetterReveal>
+                Apply For Scholarships At The Same Time You Apply For Admission
+              </LetterReveal>
             </h2>
           </div>
 

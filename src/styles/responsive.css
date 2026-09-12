@@ -110,7 +110,11 @@
     margin-bottom: 2rem;
   }
 
-  /* Navbar hamburger (already in navbar.css) */
+  /* ── Top Stories ── */
+  .top-stories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.15rem !important;
+  }
 }
 
 /* =====================================================================
@@ -144,7 +148,7 @@
   /* ── Top Stories ── */
   .top-stories-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem;
+    gap: 1rem !important;
   }
 
   /* ── Campus Events ── */
@@ -455,6 +459,23 @@
 
   .recruiter-editorial-card img {
     max-height: 20px !important;
+  }
+
+  /* ── Top Stories / Highlights ── */
+  .highlight-editorial-card {
+    padding: 1.25rem 1.15rem 1.15rem !important;
+    border-radius: 16px !important;
+  }
+
+  .highlight-card-title {
+    font-size: 0.98rem !important;
+    line-height: 1.32 !important;
+  }
+
+  .highlight-card-desc {
+    font-size: 0.8125rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1rem !important;
   }
 
   /* ── About Department ── */

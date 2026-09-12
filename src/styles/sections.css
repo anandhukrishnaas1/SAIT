@@ -349,6 +349,7 @@ section {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -991,6 +992,7 @@ section {
   letter-spacing: 0.08em;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 75%, transparent 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
   user-select: none;
@@ -1396,6 +1398,7 @@ section {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1403,6 +1406,7 @@ section {
 
 .notice-cute-card.is-expanded .notice-cute-summary {
   -webkit-line-clamp: unset;
+  line-clamp: unset;
   display: block;
 }
 

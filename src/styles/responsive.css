@@ -849,6 +849,7 @@
     letter-spacing: 0.06em !important;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 85%, transparent 100%) !important;
     -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
 }

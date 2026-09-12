@@ -1,4 +1,5 @@
 import React from 'react';
+import { LetterReveal } from './LetterReveal';
 import { InquiryResearchDecor, JusticeEquilibriumDecor, ConnectedWorldDecor } from './GeometricDecors';
 
 export const PillarsSection = () => {
@@ -30,7 +31,9 @@ export const PillarsSection = () => {
     <section className="pillars-section">
       <div className="container">
         <div className="pillars-header">
-          <h2 className="pillars-title">Enjoy Studying</h2>
+          <h2 className="pillars-title">
+            <LetterReveal>Enjoy Studying</LetterReveal>
+          </h2>
           <p className="pillars-subtitle">
             Nearly 1,500 Carolina students began a new chapter lives Sunday their degree Winter Commencement.
           </p>

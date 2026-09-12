@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LetterReveal } from './LetterReveal';
 import { 
   Trophy, 
   PartyPopper, 
@@ -38,7 +39,9 @@ export const AchievementsSection = ({ onNotifyToast }) => {
             <Trophy size={14} /> Hall of Fame &amp; Achievements
           </span>
           <h2 className="section-title">
-            Celebrating Department <span className="brand-gradient-text">Triumphs</span>
+            <LetterReveal>
+              Celebrating Department <span className="brand-gradient-text">Triumphs</span>
+            </LetterReveal>
           </h2>
           <p className="section-subtitle">
             Recognizing the exceptional hackathon wins, IEEE research publications, 

@@ -9,8 +9,8 @@ export const LetterReveal = ({
   children,
   className = '',
   as: Component = 'span',
-  delay = 0,
-  staggerMs = 22,
+  delay = 0.08,
+  staggerMs = 24,
   ...props
 }) => {
   const ref = useRef(null);
@@ -20,50 +20,60 @@ export const LetterReveal = ({
     const el = ref.current;
     if (!el) return;
 
-    // Instantly reveal if inside an on-demand revealed section
-    if (el.closest('.on-demand-revealed-section') || el.closest('#interview-roadmaps') || el.closest('#resources')) {
-      setRevealed(true);
-      return;
+    let timer = null;
+
+    const doReveal = () => {
+      timer = setTimeout(() => {
+        setRevealed(true);
+      }, 40);
+    };
+
+    const isElementInViewport = () => {
+      const rect = el.getBoundingClientRect();
+      return rect.height > 0 && rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+    };
+
+    // If currently visible in viewport (e.g. Hero on load or section on page refresh), animate!
+    if (isElementInViewport()) {
+      doReveal();
+      return () => {
+        if (timer) clearTimeout(timer);
+      };
     }
 
-    // Check if element or parent section is already in viewport
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
-      setRevealed(true);
-    }
-
+    // IntersectionObserver for scroll reveal
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setRevealed(true);
+          doReveal();
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
     );
 
     observer.observe(el);
 
-    // Also observe ancestor .reveal container if present
-    const parentReveal = el.closest('.reveal, .reveal-stagger');
+    // Watch for ancestor becoming visible (e.g. main-site-wrapper removing site-content-hidden after intro)
+    const siteWrapper = el.closest('.main-site-wrapper') || document.querySelector('.main-site-wrapper');
     let mutObs = null;
-    if (parentReveal) {
-      if (parentReveal.classList.contains('is-revealed')) {
-        setRevealed(true);
-      } else {
-        mutObs = new MutationObserver(() => {
-          if (parentReveal.classList.contains('is-revealed')) {
-            setRevealed(true);
+    if (siteWrapper) {
+      mutObs = new MutationObserver(() => {
+        if (!siteWrapper.classList.contains('site-content-hidden')) {
+          if (isElementInViewport()) {
+            doReveal();
+            observer.disconnect();
             if (mutObs) mutObs.disconnect();
           }
-        });
-        mutObs.observe(parentReveal, { attributes: true, attributeFilter: ['class'] });
-      }
+        }
+      });
+      mutObs.observe(siteWrapper, { attributes: true, attributeFilter: ['class'] });
     }
 
     return () => {
       observer.disconnect();
       if (mutObs) mutObs.disconnect();
+      if (timer) clearTimeout(timer);
     };
   }, []);
 
@@ -95,8 +105,9 @@ export const LetterReveal = ({
                   className="letter-char"
                   style={{
                     '--char-idx': idx,
+                    '--char-delay': `${charDelay.toFixed(3)}s`,
                     transitionDelay: `${charDelay.toFixed(3)}s`,
-                    animationDelay: `${(charDelay + 0.12).toFixed(3)}s`,
+                    animationDelay: `${charDelay.toFixed(3)}s`,
                   }}
                 >
                   {char}

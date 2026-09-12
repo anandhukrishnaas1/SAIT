@@ -10,9 +10,9 @@ import { useEffect } from 'react';
 export function useScrollReveal() {
   useEffect(() => {
     const observe = (el, obs) => {
-      // Already revealed (e.g. already in viewport on mount)
+      // Already revealed (e.g. already in viewport on mount and actually visible)
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.92) {
+      if (rect.height > 0 && rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
         el.classList.add('is-revealed');
       } else {
         obs.observe(el);

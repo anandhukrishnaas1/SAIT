@@ -92,36 +92,34 @@
   filter: blur(5px);
   will-change: transform, opacity, filter;
   -webkit-text-fill-color: currentColor;
-  transition: 
-    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.2, 0.95, 0.3, 1.25),
-    filter 0.4s ease;
 }
 
-/* Revealed state (triggered on scroll) */
-.is-revealed .letter-char,
-.letter-reveal-wrap.is-revealed .letter-char {
-  opacity: 1;
-  transform: translateY(0) rotateX(0deg) scale(1);
-  filter: blur(0px);
-}
-
-/* Catchy Shimmer Pulse as Letters Land */
-@keyframes letterLandGlow {
+/* Catchy 3D Entrance & Landing Shimmer */
+@keyframes letterFlipEntrance {
   0% {
+    opacity: 0;
+    transform: translateY(28px) rotateX(-55deg) scale(0.88);
+    filter: blur(5px);
     text-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
-  45% {
-    text-shadow: 0 0 16px rgba(255, 255, 255, 0.9), 0 0 28px rgba(255, 255, 255, 0.45);
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) rotateX(4deg) scale(1.02);
+    filter: blur(0px);
+    text-shadow: 0 0 16px rgba(255, 255, 255, 0.85), 0 0 28px rgba(255, 255, 255, 0.45);
   }
   100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0px);
     text-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
-.is-revealed .letter-char,
+/* Revealed state (triggered on scroll, initial load, or refresh) */
 .letter-reveal-wrap.is-revealed .letter-char {
-  animation: letterLandGlow 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: letterFlipEntrance 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--char-delay, 0s);
 }
 
 /* Accessible Reduced Motion */

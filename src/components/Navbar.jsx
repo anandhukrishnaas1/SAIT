@@ -8,6 +8,7 @@ import {
   Compass,
   GraduationCap
 } from 'lucide-react';
+import usePlatformShortcut from '../hooks/usePlatformShortcut';
 
 export const Navbar = ({ 
   onOpenCommandPalette, 
@@ -21,6 +22,7 @@ export const Navbar = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { shortcutLabel } = usePlatformShortcut();
   const dropdownRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
@@ -222,13 +224,14 @@ export const Navbar = ({
                 <button 
                   className="nav-search-pill" 
                   onClick={onOpenCommandPalette}
-                  title="Search & Command Palette (⌘K)"
+                  title={`Search & Command Palette (${shortcutLabel})`}
+                  aria-label={`Search & Command Palette (${shortcutLabel})`}
                 >
                   <span className="nav-search-pill-left">
                     <Search size={14} />
                     <span>Search</span>
                   </span>
-                  <kbd className="nav-search-kbd">⌘K</kbd>
+                  <kbd className="nav-search-kbd">{shortcutLabel}</kbd>
                 </button>
               </li>
             </ul>

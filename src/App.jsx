@@ -309,6 +309,7 @@ export function App() {
         <CommandPalette
           isOpen={commandPaletteOpen}
           onClose={() => setCommandPaletteOpen(false)}
+          onOpen={() => setCommandPaletteOpen(true)}
           events={eventsData}
           faculty={departmentData.faculty}
           alumni={alumniData}

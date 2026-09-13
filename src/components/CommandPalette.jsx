@@ -56,6 +56,7 @@ const matchesTokens = (targetText, queryTokens) => {
 export const CommandPalette = ({ 
   isOpen, 
   onClose, 
+  onOpen,
   events = [], 
   faculty = [], 
   alumni = [], 
@@ -505,7 +506,11 @@ export const CommandPalette = ({
     const handleKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        isOpen ? onClose() : null;
+        if (isOpen) {
+          onClose();
+        } else if (onOpen) {
+          onOpen();
+        }
         return;
       }
       if (e.key === 'Escape' && isOpen) {
@@ -529,7 +534,7 @@ export const CommandPalette = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose, allResultItems, selectedIndex]);
+  }, [isOpen, onClose, onOpen, allResultItems, selectedIndex]);
 
   if (!isOpen) return null;
 

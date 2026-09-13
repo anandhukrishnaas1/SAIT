@@ -530,9 +530,10 @@
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
-  padding: 0.08rem 0.32rem;
+  padding: 0.08rem 0.36rem;
   line-height: 1;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav-search-pill:hover .nav-search-kbd {

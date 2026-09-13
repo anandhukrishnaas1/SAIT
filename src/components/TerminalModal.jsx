@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { X, Terminal as TerminalIcon } from 'lucide-react';
+import usePlatformShortcut from '../hooks/usePlatformShortcut';
 
 // Import live site data
 import { eventsData } from '../data/eventsData';
@@ -57,6 +58,7 @@ function buildOutput(lines) {
 }
 
 export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIntro }) => {
+  const { isMac } = usePlatformShortcut();
   const [history, setHistory] = useState([...BOOT_LINES]);
   const [inputVal, setInputVal] = useState('');
   const [cmdHistory, setCmdHistory] = useState([]);
@@ -64,6 +66,19 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
   const [matrixOn, setMatrixOn] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Close on Escape or ⌘W
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -422,7 +437,7 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
             <button
               className="mac-dot mac-dot-close"
               onClick={onClose}
-              title="Close (⌘W)"
+              title={isMac ? "Close (⌘W)" : "Close (Esc)"}
               aria-label="Close terminal"
             />
             <span className="mac-dot mac-dot-minimize" title="Minimize" />

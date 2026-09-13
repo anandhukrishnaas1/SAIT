@@ -367,8 +367,8 @@ export const TerminalModal = ({ isOpen, onClose, onOpenActivityModal, onReplayIn
             : '  You took the blue pill.' },
       ];
     }
-    // ── intro / stranger-things ───────────────────────────────────────────
-    else if (cmd === 'intro' || cmd === 'stranger-things' || cmd === 'replay') {
+    // ── intro ─────────────────────────────────────────────────────────────
+    else if (cmd === 'intro' || cmd === 'replay') {
       if (onReplayIntro) {
         onClose();
         setTimeout(() => {

@@ -226,6 +226,67 @@
   background: var(--bg-tertiary);
   border-radius: var(--radius-xs);
   color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.cmd-result-tag.tag-primary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.cmd-result-tag.tag-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.cmd-result-tag.tag-accent {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.cmd-empty-state {
+  padding: 2.25rem 1.25rem;
+  text-align: center;
+}
+
+.cmd-empty-title {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.cmd-empty-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.cmd-empty-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cmd-chip-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.cmd-chip-btn:hover {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+  transform: translateY(-1px);
 }
 
 /* --------------------------------------------------------------------------

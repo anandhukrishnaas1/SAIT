@@ -30,6 +30,8 @@ import { eventsData } from './data/eventsData';
 import { alumniData } from './data/alumniData';
 import { announcementsData } from './data/announcementsData';
 import { resourcesData } from './data/resourcesData';
+import { placementsData } from './data/placementsData';
+import { teamData } from './data/teamData';
 import { initialActivities, initialLeaderboard } from './data/initialActivityData';
 
 export function App() {
@@ -103,7 +105,7 @@ export function App() {
     return () => window.removeEventListener('hashchange', handleHashSync);
   }, []);
 
-  // Stranger Things IT Single-Page Intro State: 'playing' | 'revealing' | 'done'
+  // Intro State: 'playing' | 'revealing' | 'done'
   const [introStage, setIntroStage] = useState('playing');
 
   const handleRevealing = React.useCallback(() => {
@@ -171,7 +173,7 @@ export function App() {
 
   return (
     <div className={`app-root ${introStage !== 'done' ? 'intro-active' : ''}`}>
-      {/* Stranger Things Style Cinematic 'IT' Intro — Standalone Single Page */}
+      {/* Intro Animation — Standalone Single Page */}
       {introStage !== 'done' && (
         <IntroAnimation 
           onRevealing={handleRevealing}
@@ -311,6 +313,10 @@ export function App() {
           faculty={departmentData.faculty}
           alumni={alumniData}
           resources={resourcesData}
+          placements={placementsData}
+          announcements={announcementsData}
+          team={teamData}
+          onShowSection={handleShowSection}
           onOpenActivityModal={() => setActivityModalOpen(true)}
           onOpenTerminal={() => setTerminalOpen(true)}
           onReplayIntro={handleReplayIntro}

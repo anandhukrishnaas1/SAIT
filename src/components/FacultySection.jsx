@@ -113,14 +113,6 @@ export const FacultySection = () => {
                 <div className="faculty-meta-col">
                   <div className="faculty-name-row">
                     <h4 className="faculty-cute-name">{fac.name}</h4>
-                    {fac.featured && (
-                      <span 
-                        className="notice-cute-tag notice-tag-pinned" 
-                        style={{ fontSize: '0.62rem', padding: '0.1rem 0.45rem' }}
-                      >
-                        ★ Featured
-                      </span>
-                    )}
                   </div>
                   <div className="faculty-cute-role">{fac.role}</div>
                   <div className="faculty-cute-quals">{fac.qualifications}</div>

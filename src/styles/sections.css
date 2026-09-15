@@ -1611,3 +1611,181 @@ section {
 }
 
 
+/* ==========================================================================
+   WEEVOLVEIT-INSPIRED ANIMATION ENHANCEMENTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Animation #4: CARD CANDLE GLOW — Animated border glow on hover
+   Apply class "card-candle-glow" to any card element
+   -------------------------------------------------------------------------- */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 135deg;
+  inherits: false;
+}
+
+.card-candle-glow {
+  position: relative;
+}
+
+.card-candle-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--glow-angle, 135deg),
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 0;
+  pointer-events: none;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+.card-candle-glow:hover::before {
+  opacity: 1;
+  animation: candleGlowRotate 3s linear infinite;
+}
+
+@keyframes candleGlowRotate {
+  from { --glow-angle: 0deg; }
+  to { --glow-angle: 360deg; }
+}
+
+/* Fallback for browsers that don't support @property */
+@supports not (background: linear-gradient(var(--glow-angle, 0deg), red, blue)) {
+  .card-candle-glow:hover::before {
+    background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.18) 50%, transparent 70%);
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animation #5: IMAGE HOVER ZOOM — Subtle 5% scale with luxury easing
+   Apply to any parent card that has a child image
+   -------------------------------------------------------------------------- */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img,
+.img-hover-zoom .hover-zoom-target {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.img-hover-zoom:hover img,
+.img-hover-zoom:hover .hover-zoom-target {
+  transform: scale(1.05);
+}
+
+/* Also apply to editorial cards and event showcase images */
+.editorial-card .story-img-wrap img,
+.editorial-card .card-img img,
+.events-showcase-card img,
+.alumni-card-img img,
+.alumni-img-wrap img {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-card:hover .story-img-wrap img,
+.editorial-card:hover .card-img img,
+.events-showcase-card:hover img,
+.alumni-card-img:hover img,
+.alumni-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   Animation #7: ARROW SWAP — Arrow slides out, new one slides in on hover
+   Wrap arrow in: <span class="arrow-swap"><span>→</span><span>→</span></span>
+   -------------------------------------------------------------------------- */
+.arrow-swap {
+  display: inline-flex;
+  overflow: hidden;
+  width: 1.1em;
+  height: 1em;
+  position: relative;
+  vertical-align: middle;
+  margin-left: 0.15em;
+}
+
+.arrow-swap span {
+  display: inline-block;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow-swap span:first-child {
+  position: relative;
+}
+
+.arrow-swap span:last-child {
+  position: absolute;
+  left: 0;
+  transform: translateX(-120%);
+}
+
+a:hover .arrow-swap span:first-child,
+button:hover .arrow-swap span:first-child,
+.arrow-swap-parent:hover .arrow-swap span:first-child {
+  transform: translateX(120%);
+}
+
+a:hover .arrow-swap span:last-child,
+button:hover .arrow-swap span:last-child,
+.arrow-swap-parent:hover .arrow-swap span:last-child {
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   Animation #8: AI STAR PULSE — Gentle pulsing glow for ✦ tech badges
+   Apply class "ai-star" to any inline sparkle element
+   -------------------------------------------------------------------------- */
+.ai-star {
+  display: inline-block;
+  animation: aiStarPulse 2.5s ease-in-out infinite;
+  font-style: normal;
+}
+
+@keyframes aiStarPulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+    transform: scale(1.15);
+  }
+}
+
+/* Reduced motion safety for all new animations */
+@media (prefers-reduced-motion: reduce) {
+  .card-candle-glow::before,
+  .ai-star {
+    animation: none !important;
+  }
+  .img-hover-zoom img,
+  .img-hover-zoom .hover-zoom-target,
+  .editorial-card .story-img-wrap img,
+  .editorial-card .card-img img,
+  .events-showcase-card img,
+  .alumni-card-img img,
+  .alumni-img-wrap img {
+    transition: none !important;
+  }
+  .arrow-swap span {
+    transition: none !important;
+  }
+}

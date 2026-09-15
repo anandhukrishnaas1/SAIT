@@ -22,9 +22,20 @@ export const Navbar = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { shortcutLabel } = usePlatformShortcut();
   const dropdownRef = useRef(null);
   const closeTimeoutRef = useRef(null);
+
+  // Animation #1: Dynamic shadow on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
@@ -106,7 +117,7 @@ export const Navbar = ({
 
   return (
     <>
-      <header className="navbar">
+      <header className={`navbar${scrolled ? ' nav-scrolled' : ''}`}>
         <div className="container nav-container">
           {/* Brand Logo & Institution Lockup */}
           <a href="#" className="nav-brand" title="Students Association of Information Technology">
@@ -304,8 +315,8 @@ export const Navbar = ({
               </button>
             </div>
             <ul className="mobile-drawer-links">
-              {drawerNavItems.map((item) => (
-                <li key={item.label}>
+              {drawerNavItems.map((item, idx) => (
+                <li key={item.label} className="drawer-stagger-item" style={{ animationDelay: `${60 + idx * 50}ms` }}>
                   <a 
                     href={item.href} 
                     className="mobile-drawer-link"

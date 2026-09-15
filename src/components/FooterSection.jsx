@@ -26,6 +26,7 @@ export const FooterSection = ({ onOpenTerminal, onNotifyToast, onShowSection }) 
 
   return (
     <footer id="contact" className="site-footer" style={{ position: 'relative', overflow: 'hidden' }}>
+
       {/* Soft ambient watermark seal in background - whisper quiet, no text clashes */}
       <div 
         className="footer-ambient-watermark"

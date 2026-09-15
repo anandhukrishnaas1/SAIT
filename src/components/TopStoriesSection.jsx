@@ -86,7 +86,7 @@ export const TopStoriesSection = ({ onNotifyToast }) => {
           {visibleStories.map((story) => (
             <div
               key={story.id}
-              className="highlight-minimal-card"
+              className="highlight-minimal-card card-candle-glow"
               onClick={() => setSelectedStory(story)}
               role="button"
               tabIndex={0}

@@ -285,3 +285,31 @@
     gap: 0.25rem !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Animation #6b: DRAWER STAGGER — cascading reveal for mobile drawer items
+   -------------------------------------------------------------------------- */
+.drawer-stagger-item {
+  opacity: 0;
+  transform: translateX(16px);
+  animation: drawerItemSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawerItemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

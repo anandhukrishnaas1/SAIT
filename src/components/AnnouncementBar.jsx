@@ -35,7 +35,7 @@ export const AnnouncementBar = ({ announcements = [] }) => {
               <ArrowUpRight size={10} />
             </a>
           )}
-          <span className="ann-ticker-sep" aria-hidden="true">✦</span>
+          <span className="ann-ticker-sep" aria-hidden="true">•</span>
         </div>
       ))}
     </div>

@@ -42,13 +42,17 @@ export const GlassBackgroundAnimation = () => {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Handle Resize & Retina DPI
+    let maxScroll = 1;
+
+    // Handle Resize & Retina DPI (capped at 1.5 for ultra-smooth 60fps scrolling on any screen)
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isMobile = (window.innerWidth || 360) < 768;
+      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5);
       width = window.innerWidth || document.documentElement.clientWidth || 360;
       height = window.innerHeight || document.documentElement.clientHeight || 640;
       if (width <= 0) width = 360;
       if (height <= 0) height = 640;
+      maxScroll = Math.max(document.documentElement.scrollHeight - height, 1);
 
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -108,7 +112,7 @@ export const GlassBackgroundAnimation = () => {
       {
         name: 'KERNEL',
         radiusX: 130,
-        radiusY: 48,
+        radiusY: 50,
         angle: 0.2,
         speed: 0.016,
         size: 5,
@@ -120,8 +124,8 @@ export const GlassBackgroundAnimation = () => {
       },
       {
         name: 'DATA',
-        radiusX: 200,
-        radiusY: 74,
+        radiusX: 220,
+        radiusY: 84,
         angle: 2.1,
         speed: 0.011,
         size: 4.5,
@@ -133,8 +137,8 @@ export const GlassBackgroundAnimation = () => {
       },
       {
         name: 'NEURAL',
-        radiusX: 290,
-        radiusY: 108,
+        radiusX: 300,
+        radiusY: 114,
         angle: 4.3,
         speed: 0.007,
         size: 5.5,
@@ -149,8 +153,8 @@ export const GlassBackgroundAnimation = () => {
       },
       {
         name: 'CLOUD',
-        radiusX: 380,
-        radiusY: 142,
+        radiusX: 390,
+        radiusY: 148,
         angle: 1.2,
         speed: 0.0048,
         size: 4.5,
@@ -162,16 +166,19 @@ export const GlassBackgroundAnimation = () => {
       },
       {
         name: 'QUANTUM',
-        radiusX: 470,
-        radiusY: 176,
+        radiusX: 480,
+        radiusY: 182,
         angle: 3.5,
-        speed: 0.0032,
+        speed: 0.003,
         size: 4,
-        color: '#ffffff',
-        glow: 'rgba(255, 255, 255, 0.8)',
+        color: '#d4d4d8',
+        glow: 'rgba(212, 212, 216, 0.5)',
         trail: [],
         rings: false,
-        symbol: '⟨q|'
+        moons: [
+          { angle: 0, speed: 0.035, dist: 14, size: 1.5 }
+        ],
+        symbol: '|q⟩'
       }
     ];
 
@@ -193,7 +200,6 @@ export const GlassBackgroundAnimation = () => {
 
         // Black Hole Center Coordinates
         // Perfectly aligned to the right side on desktop, gracefully centered on mobile
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
         const scrollProgress = Math.min(Math.max(currentScrollY / maxScroll, 0), 1);
 
         const isMobile = width < 768;
@@ -205,9 +211,9 @@ export const GlassBackgroundAnimation = () => {
 
         const systemScale = isMobile ? Math.min(width / 460, 0.76) : 1;
 
-        // Subtle tilt angle of the solar system plane (rotates dynamically with scroll velocity)
-        const systemTilt = 0.28 + (scrollVelocity * 0.002);
-        const orbitTiltRatio = 0.36; // Y compression to simulate 3D inclination
+        // Subtle tilt angle of the solar system plane (precisely matching 3D particle torus)
+        const systemTilt = -0.28 + (scrollVelocity * 0.001);
+        const orbitTiltRatio = 0.38; // Y compression to simulate 3D inclination
 
         // ----------------------------------------------------------------------
         // 1. DRAW DEEP SPACE STARS & BINARY PARTICLES
@@ -272,8 +278,8 @@ export const GlassBackgroundAnimation = () => {
         // 4. ACCRETION DISK (Relativistic Einstein Lens — Warped Luminous Arc)
         // ----------------------------------------------------------------------
         // Back arc of accretion disk (behind event horizon)
-        const diskRadiusX = 175;
-        const diskRadiusY = 52;
+        const diskRadiusX = 180;
+        const diskRadiusY = 68;
         
         const backGrad = ctx.createLinearGradient(-diskRadiusX, 0, diskRadiusX, 0);
         backGrad.addColorStop(0, 'rgba(255, 255, 255, 0.05)');
@@ -286,7 +292,7 @@ export const GlassBackgroundAnimation = () => {
         ctx.strokeStyle = backGrad;
         ctx.lineWidth = 18;
         ctx.shadowColor = 'rgba(255, 255, 255, 0.45)';
-        ctx.shadowBlur = 14;
+        ctx.shadowBlur = 6;
         ctx.stroke();
         ctx.shadowBlur = 0;
 
@@ -301,7 +307,7 @@ export const GlassBackgroundAnimation = () => {
         ctx.strokeStyle = lensGrad;
         ctx.lineWidth = 12;
         ctx.shadowColor = 'rgba(255, 255, 255, 0.55)';
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 5;
         ctx.stroke();
         ctx.shadowBlur = 0;
 
@@ -344,7 +350,7 @@ export const GlassBackgroundAnimation = () => {
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.lineWidth = 2.4;
         ctx.shadowColor = '#ffffff';
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 8;
         ctx.stroke();
         ctx.shadowBlur = 0;
 
@@ -373,7 +379,7 @@ export const GlassBackgroundAnimation = () => {
         ctx.strokeStyle = frontGrad;
         ctx.lineWidth = 14;
         ctx.shadowColor = 'rgba(255, 255, 255, 0.55)';
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 6;
         ctx.stroke();
         ctx.shadowBlur = 0;
 
@@ -417,7 +423,7 @@ export const GlassBackgroundAnimation = () => {
           ctx.arc(nodeX, nodeY, planet.size * 2.8, 0, Math.PI * 2);
           ctx.fillStyle = planet.glow;
           ctx.shadowColor = planet.glow;
-          ctx.shadowBlur = 12;
+          ctx.shadowBlur = 6;
           ctx.fill();
           ctx.shadowBlur = 0;
 

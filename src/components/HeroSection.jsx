@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
 import { LetterReveal } from './LetterReveal';
+import { ParticleTorus } from './ParticleTorus';
 
 const AnimatedStat = ({ target, decimals = 0, prefix = '', suffix = '', duration = 1100 }) => {
   const [val, setVal] = useState(0);
@@ -71,6 +71,18 @@ export const HeroSection = ({
 }) => {
   return (
     <section className="hero-section">
+      {/* 3D Particle Torus Animation — Concentrically Aligned to the Black Hole */}
+      <ParticleTorus
+        alignToBlackhole={true}
+        planeTilt={-0.28}
+        ballCount={1350}
+        mobileBallCount={550}
+        ballRadius={0.85}
+        majorRadiusFixed={180}
+        tubeRadiusFixed={46}
+        cyanCount={24}
+        interactive={true}
+      />
       <div className="container">
         <div className="hero-content-wrapper">
           <h1 className="hero-title">
@@ -114,7 +126,7 @@ export const HeroSection = ({
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              View Events <ArrowRight size={14} />
+              View Events <span className="arrow-swap" aria-hidden="true"><span>→</span><span>→</span></span>
             </a>
           </div>
 

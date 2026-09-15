@@ -51,7 +51,7 @@ export const EventsSection = ({ onNotifyToast }) => {
               return (
                 <div 
                   key={event.id} 
-                  className="event-editorial-item"
+                  className="event-editorial-item card-candle-glow"
                   onClick={() => setSelectedEventForModal(event)}
                 >
                   {/* Calendar Date Block */}
@@ -97,7 +97,7 @@ export const EventsSection = ({ onNotifyToast }) => {
           {/* Right Column: Flagship Event Spotlight Card */}
           <div className="events-showcase-column">
             <div 
-              className="flagship-event-card"
+              className="flagship-event-card card-candle-glow"
               onClick={() => setSelectedEventForModal(flagship)}
             >
               <div className="flagship-card-header">

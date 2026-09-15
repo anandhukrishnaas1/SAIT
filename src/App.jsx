@@ -20,6 +20,7 @@ import { AnnouncementsSection } from './components/AnnouncementsSection';
 import { InterviewRoadmapsSection } from './components/InterviewRoadmapsSection';
 import { ResourceVaultSection } from './components/ResourceVaultSection';
 import { FooterSection } from './components/FooterSection';
+import { DotField } from './components/DotField';
 
 import { CommandPalette } from './components/CommandPalette';
 import { ActivitySubmissionModal } from './components/ActivitySubmissionModal';
@@ -192,6 +193,9 @@ export function App() {
         }`}
         aria-hidden={introStage === 'playing'}
       >
+        {/* WeEvolveIT Interactive 2D Dot Matrix with Click Ripples */}
+        <DotField />
+
         {/* Scroll-Reactive Glass Ambient Background Animation */}
         <GlassBackgroundAnimation />
 

@@ -504,6 +504,16 @@
   }
 
   /* ── Faculty Directory ── */
+  .faculty-marquee-container {
+    padding: 0.5rem 0 1rem 0 !important;
+  }
+
+  .faculty-card-marquee {
+    width: 88vw !important;
+    flex: 0 0 88vw !important;
+    max-width: 420px !important;
+  }
+
   .faculty-grid-cute {
     grid-template-columns: 1fr !important;
     gap: 0.75rem !important;
@@ -600,6 +610,17 @@
   }
 
   /* ── Top Stories, Alumni, Association ── */
+  .alumni-marquee-container {
+    padding: 0.5rem 0 1rem 0 !important;
+  }
+
+  .alumni-card-marquee {
+    width: 85vw !important;
+    flex: 0 0 85vw !important;
+    max-width: 340px !important;
+    padding: 1rem 1.1rem !important;
+  }
+
   .alumni-compact-grid {
     grid-template-columns: 1fr !important;
     gap: 0.75rem !important;

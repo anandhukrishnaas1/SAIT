@@ -1542,32 +1542,27 @@ section {
 }
 
 .about-cute-card {
-  background: rgba(18, 18, 22, 0.68) !important;
-  backdrop-filter: blur(20px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  background: #000000 !important;
+  border: 1px solid #2a2a2a !important;
   border-radius: 18px;
   padding: 1.5rem 1.7rem;
   display: flex;
   flex-direction: column;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.9);
 }
 
 .about-cute-card:hover {
-  background: rgba(26, 26, 32, 0.82) !important;
-  backdrop-filter: blur(24px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 255, 255, 0.03);
+  background: #000000 !important;
+  border-color: #a8a8a8 !important;
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 255, 255, 0.08);
 }
 
 .vision-cute-box {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  background: #000000 !important;
+  border: 1px solid #2a2a2a !important;
+  border-left: 3.5px solid #ffffff !important;
   border-radius: 12px;
   padding: 0.9rem 1.15rem;
   margin-bottom: 1.15rem;

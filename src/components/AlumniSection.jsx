@@ -129,6 +129,7 @@ export const AlumniSection = ({ onNotifyToast }) => {
                   <img
                     src={alumni.avatar}
                     alt={alumni.name}
+                    onError={(e) => { e.currentTarget.src = '/img/avatars/default_avatar.svg'; }}
                     style={{
                       width: '42px',
                       height: '42px',

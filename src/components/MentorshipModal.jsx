@@ -96,7 +96,7 @@ export const MentorshipModal = ({ alumni, isOpen, onClose, onMentorshipSuccess }
                     type="text" 
                     required 
                     className="form-input" 
-                    placeholder="e.g. Anandhu K."
+                    placeholder="e.g. Rahul Sharma"
                     value={formData.studentName}
                     onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
                   />

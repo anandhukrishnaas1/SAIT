@@ -2,6 +2,9 @@
   "name": "sait-website-redesign",
   "private": true,
   "version": "2.0.0",
+  "author": "Anandhu Krishna A S",
+  "copyright": "Copyright (c) 2024-2026 Anandhu Krishna A S. All rights reserved.",
+  "license": "UNLICENSED",
   "type": "module",
   "scripts": {
     "dev": "vite",

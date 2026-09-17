@@ -1,0 +1,507 @@
+/* ==========================================================================
+   SAIT - ABOUT DEPARTMENT SILVER CHROME DESIGN SYSTEM
+   Luxury Polished Silver, Liquid Chrome & Specular Dark Obsidian Architecture
+   ========================================================================== */
+
+/* ── Section Background & Silver Ambient Glow ── */
+.about-chrome-section {
+  position: relative;
+  background: radial-gradient(80% 50% at 50% 0%, rgba(226, 232, 240, 0.05) 0%, transparent 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 -10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.about-chrome-section::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffffff 45%, #cbd5e1 55%, transparent);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+}
+
+/* ── Silver Chrome Header Badge ── */
+.about-chrome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(148, 163, 184, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.8), 0 4px 14px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.about-chrome-badge-dot {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.about-chrome-badge-tag {
+  color: #e2e8f0;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+}
+
+/* ── Metallic Silver Headline Accent ── */
+.about-chrome-title-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #ffffff 60%, #94a3b8 85%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.15));
+}
+
+/* ── Silver Chrome Dual Cards ── */
+.about-chrome-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 1.85rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: radial-gradient(130% 90% at 50% -10%, rgba(241, 245, 249, 0.08) 0%, rgba(22, 24, 30, 0.88) 45%, rgba(10, 11, 14, 0.96) 100%) !important;
+  backdrop-filter: blur(28px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 25px rgba(255, 255, 255, 0.02),
+    0 16px 45px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(203, 213, 225, 0.06) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease,
+              box-shadow 0.28s ease !important;
+}
+
+/* Ambient liquid chrome top reflection specular bar */
+.about-chrome-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Subtle corner chrome light flare */
+.about-chrome-card::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(203, 213, 225, 0.03) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.about-chrome-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.42) !important;
+  box-shadow: 
+    inset 0 1px 0 0 #ffffff,
+    inset 0 0 35px rgba(255, 255, 255, 0.05),
+    0 22px 60px rgba(0, 0, 0, 0.75),
+    0 0 45px rgba(226, 232, 240, 0.12) !important;
+}
+
+.about-chrome-card:hover::before {
+  background: linear-gradient(90deg, transparent 0%, #ffffff 50%, transparent 100%);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 1);
+}
+
+/* ── Chrome Pill Tabs ── */
+.chrome-tabs-wrapper {
+  display: inline-flex;
+  padding: 0.25rem;
+  background: linear-gradient(180deg, rgba(12, 13, 16, 0.95) 0%, rgba(24, 27, 34, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.4rem;
+  gap: 0.3rem;
+  align-self: flex-start;
+}
+
+.chrome-tab-btn {
+  padding: 0.42rem 1.15rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #94a3b8;
+  background: transparent;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.chrome-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.chrome-tab-btn.active {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 35%, #cbd5e1 65%, #94a3b8 100%);
+  color: #090a0f;
+  border: 1px solid #ffffff;
+  font-weight: 700;
+  box-shadow: 
+    0 3px 14px rgba(255, 255, 255, 0.35),
+    inset 0 1px 2px #ffffff,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Silver Chrome Department Vision Box ── */
+.vision-chrome-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(148, 163, 184, 0.025) 50%, rgba(255, 255, 255, 0.04) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: 3.5px solid #ffffff !important;
+  border-radius: 14px;
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.vision-chrome-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.vision-chrome-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(148, 163, 184, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 0.16rem 0.58rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.55rem;
+}
+
+.vision-chrome-quote {
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  line-height: 1.65;
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Core Missions (Silver Chrome Coin Numbers) ── */
+.missions-header-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.missions-header-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+}
+
+.mission-chrome-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.mission-chrome-item:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.mission-chrome-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono, monospace);
+  background: linear-gradient(145deg, #323844 0%, #15181f 60%, #252a34 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.48);
+  border-radius: 999px;
+  padding: 0.18rem 0.54rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.8),
+    0 3px 8px rgba(0, 0, 0, 0.55),
+    0 0 12px rgba(255, 255, 255, 0.08);
+  transition: all 0.22s ease;
+}
+
+.mission-chrome-item:hover .mission-chrome-num {
+  border-color: #ffffff;
+  background: linear-gradient(145deg, #434b5c 0%, #1e222b 60%, #303744 100%);
+  box-shadow: 
+    inset 0 1px 2px #ffffff,
+    0 0 16px rgba(255, 255, 255, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.6);
+  transform: scale(1.06);
+}
+
+.mission-chrome-text {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.mission-chrome-item:hover .mission-chrome-text {
+  color: #f1f5f9;
+}
+
+/* ── "Why Choose Our Program" Chrome Cards ── */
+.why-chrome-card {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.why-chrome-card:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateX(4px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.why-chrome-icon {
+  color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Right Card: Milestones & Legacy Chrome Spine Timeline ── */
+.timeline-chrome-header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(148, 163, 184, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  padding: 0.16rem 0.58rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.45rem;
+}
+
+.timeline-chrome-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.timeline-chrome-item {
+  position: relative;
+  padding-left: 1.85rem;
+  padding-bottom: 1.35rem;
+  transition: transform 0.22s ease;
+}
+
+.timeline-chrome-item:last-child {
+  padding-bottom: 0.2rem;
+}
+
+/* Polished Solid Metallic Spine Line */
+.timeline-chrome-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: -4px;
+  width: 2px;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 35%, #64748b 75%, rgba(255, 255, 255, 0.4) 100%);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+.timeline-chrome-item:last-child::before {
+  display: none;
+}
+
+/* Polished Liquid Chrome Jewel Node Dot */
+.timeline-chrome-dot {
+  position: absolute;
+  left: -5.5px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #cbd5e1 45%, #475569 85%, #1e293b 100%);
+  border: 1.5px solid #ffffff;
+  box-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.95),
+    0 0 3px #ffffff,
+    0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-chrome-item:hover .timeline-chrome-dot {
+  transform: scale(1.3);
+  box-shadow: 
+    0 0 18px rgba(255, 255, 255, 1),
+    0 0 6px #ffffff,
+    0 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Year Chip: Brushed Silver Metallic Etched Pill */
+.timeline-chrome-year {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.06em;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(148, 163, 184, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  padding: 0.12rem 0.58rem;
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.timeline-chrome-item:hover .timeline-chrome-year {
+  border-color: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  color: #0b0c10;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+.timeline-chrome-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+}
+
+.timeline-chrome-item:hover .timeline-chrome-title {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+.timeline-chrome-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.timeline-chrome-item:hover .timeline-chrome-desc {
+  color: #cbd5e1;
+}
+
+/* ── Responsive Architecture for Mobile Devices ── */
+@media (max-width: 900px) {
+  .about-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-chrome-card {
+    padding: 1.25rem 1.15rem !important;
+    border-radius: 16px !important;
+  }
+
+  .chrome-tabs-wrapper {
+    width: 100%;
+    display: flex;
+  }
+
+  .chrome-tab-btn {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.76rem;
+  }
+
+  .vision-chrome-box {
+    padding: 0.9rem 1rem !important;
+  }
+
+  .vision-chrome-quote {
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .timeline-chrome-item {
+    padding-left: 1.5rem !important;
+  }
+}

@@ -20,9 +20,9 @@ export const AssociationSection = () => {
 
   const wings = [
     { name: 'Technical & Web', icon: <Code size={14} />, members: teamData.subTeams.filter(m => m.team === 'Tech') },
-    { name: 'Media & Design', icon: <Palette size={14} />, members: teamData.subTeams.filter(m => m.team === 'Media') },
-    { name: 'Events & Logistics', icon: <Calendar size={14} />, members: teamData.subTeams.filter(m => m.team === 'Events') },
-    { name: 'PR & Editorial', icon: <Megaphone size={14} />, members: teamData.subTeams.filter(m => m.team === 'PR' || m.team === 'Content') }
+    { name: 'Media & Creative Arts', icon: <Palette size={14} />, members: teamData.subTeams.filter(m => m.team === 'Media') },
+    { name: 'Events & Sports', icon: <Calendar size={14} />, members: teamData.subTeams.filter(m => m.team === 'Events') },
+    { name: 'Outreach, Placement & Alumni', icon: <Megaphone size={14} />, members: teamData.subTeams.filter(m => m.team === 'PR' || m.team === 'Content') }
   ];
 
   return (
@@ -106,6 +106,7 @@ export const AssociationSection = () => {
                   <img
                     src={exec.avatar}
                     alt={exec.name}
+                    onError={(e) => { e.currentTarget.src = '/img/avatars/default_avatar.svg'; }}
                     style={{
                       width: '42px',
                       height: '42px',
@@ -292,6 +293,7 @@ export const AssociationSection = () => {
                       <img
                         src={m.avatar}
                         alt={m.name}
+                        onError={(e) => { e.currentTarget.src = '/img/avatars/default_avatar.svg'; }}
                         style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '1px solid rgba(255, 255, 255, 0.15)' }}
                       />
                       <div style={{ minWidth: 0, flex: 1 }}>

@@ -109,12 +109,12 @@ export const ActivityLoggerSection = ({
           <div className="logger-profile-header">
             <div className="student-info-row">
               <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" 
+                src="/img/avatars/standard_male.svg" 
                 alt="Student Profile" 
                 className="student-avatar-img"
               />
               <div>
-                <h4 className="student-name-title">Anandhu K.</h4>
+                <h4 className="student-name-title">Aditya M.</h4>
                 <div className="student-submeta">
                   <span>B.Tech IT (2024-28)</span>
                   <span>Roll: IT24-042</span>

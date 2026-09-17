@@ -3,7 +3,7 @@ import {
   GraduationCap, 
   Search, 
   MapPin, 
-  Mail 
+  Mail
 } from 'lucide-react';
 import { departmentData } from '../data/departmentData';
 import { LetterReveal } from './LetterReveal';
@@ -98,50 +98,61 @@ export const FacultySection = () => {
           </div>
         </div>
 
-        {/* Cute Compact Faculty Grid */}
+        {/* Editorial Faculty Cards Grid */}
         <div className="faculty-grid-cute">
           {filteredFaculty.map((fac) => (
-            <div key={fac.id} className="faculty-cute-card">
-              {/* Header: Squircle Avatar & Info */}
-              <div className="faculty-header-row">
-                <img 
-                  src={fac.avatar} 
-                  alt={fac.name} 
-                  className="faculty-cute-avatar" 
-                  loading="lazy"
-                />
-                <div className="faculty-meta-col">
-                  <div className="faculty-name-row">
-                    <h4 className="faculty-cute-name">{fac.name}</h4>
-                  </div>
-                  <div className="faculty-cute-role">{fac.role}</div>
-                  <div className="faculty-cute-quals">{fac.qualifications}</div>
+            <div key={fac.id} className="faculty-cute-card faculty-card-bw">
+              {/* Left Column: Full Size Portrait Image */}
+              <div className="faculty-card-left-full">
+                <div className="faculty-portrait-frame-full">
+                  <img 
+                    src={fac.avatar} 
+                    alt={fac.name} 
+                    className="faculty-portrait-img-full" 
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.src = '/img/avatars/default_avatar.svg'; }}
+                  />
                 </div>
               </div>
 
-              {/* Research Domain Chips */}
-              <div className="faculty-domain-tags">
-                {fac.domain.split(',').map((tag, idx) => (
-                  <span key={idx} className="faculty-domain-chip">
-                    {tag.trim()}
-                  </span>
-                ))}
-              </div>
+              {/* Right Column: Perfectly Aligned Details & Contact */}
+              <div className="faculty-card-right">
+                <div className="faculty-info-top">
+                  <h4 className="faculty-full-name">{fac.name}</h4>
+                  <div className="faculty-full-role">{fac.role}</div>
+                  <div className="faculty-full-quals">{fac.qualifications}</div>
+                  {fac.publications && (
+                    <div className="faculty-papers-text">{fac.publications} Papers</div>
+                  )}
+                </div>
 
-              {/* Footer: Office Location & Email Action Pill */}
-              <div className="faculty-cute-footer">
-                <span className="faculty-location-badge">
-                  <MapPin size={11} /> {fac.office}
-                </span>
+                {/* Research Domain Chips */}
+                <div className="faculty-domain-container">
+                  <div className="faculty-domain-tags">
+                    {fac.domain.split(',').map((tag, idx) => (
+                      <span key={idx} className="faculty-domain-chip">
+                        {tag.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-                <a 
-                  href={`mailto:${fac.email}`} 
-                  className="faculty-email-pill"
-                  title={`Email ${fac.name}`}
-                >
-                  <Mail size={11} />
-                  <span>{fac.email}</span>
-                </a>
+                {/* Bottom Row: Office Location & Email Action */}
+                <div className="faculty-card-bottom">
+                  <div className="faculty-location-row" title={fac.office}>
+                    <MapPin size={11} className="faculty-loc-icon" />
+                    <span className="faculty-loc-text">{fac.office}</span>
+                  </div>
+
+                  <a 
+                    href={`mailto:${fac.email}`} 
+                    className="faculty-email-action-btn"
+                    title={`Send email to ${fac.name}`}
+                  >
+                    <Mail size={11} />
+                    <span>{fac.email}</span>
+                  </a>
+                </div>
               </div>
             </div>
           ))}

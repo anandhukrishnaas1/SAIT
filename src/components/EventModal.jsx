@@ -122,7 +122,7 @@ export const EventModal = ({ event, isOpen, onClose, onRegisterSuccess }) => {
                     type="text" 
                     required 
                     className="form-input" 
-                    placeholder="e.g. Anandhu K."
+                    placeholder="e.g. Rahul Sharma"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
@@ -173,9 +173,13 @@ export const EventModal = ({ event, isOpen, onClose, onRegisterSuccess }) => {
                       onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
                     >
                       <option>Semester 1</option>
+                      <option>Semester 2</option>
                       <option>Semester 3</option>
+                      <option>Semester 4</option>
                       <option>Semester 5</option>
+                      <option>Semester 6</option>
                       <option>Semester 7</option>
+                      <option>Semester 8</option>
                     </select>
                   </div>
                 </div>

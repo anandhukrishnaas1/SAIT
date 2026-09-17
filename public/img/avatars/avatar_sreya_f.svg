@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="f_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2430" />
+      <stop offset="100%" stop-color="#11141c" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#f_bg)" />
+  <rect x="1" y="1" width="198" height="198" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+  <!-- Standard Female Silhouette: Solid, neutral slate, zero facial structure -->
+  <g fill="#94a3b8">
+    <!-- Clean feminine updo bun contour -->
+    <circle cx="100" cy="42" r="15" />
+    <!-- Head -->
+    <circle cx="100" cy="74" r="28" />
+    <!-- Shoulders -->
+    <path d="M 48 172 C 48 134, 72 120, 100 120 C 128 120, 152 134, 152 172 Z" />
+  </g>
+</svg>

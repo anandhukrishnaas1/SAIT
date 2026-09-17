@@ -15,7 +15,7 @@ import { activityCategories } from '../data/initialActivityData';
 
 export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) => {
   const [formData, setFormData] = useState({
-    studentName: 'Anandhu K. (You)',
+    studentName: 'Aditya M. (You)',
     studentRoll: 'IT24-042',
     semester: 'Semester 5',
     eventName: '',
@@ -92,7 +92,7 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
   const handleClose = () => {
     setSubmitted(false);
     setFormData({
-      studentName: 'Anandhu K. (You)',
+      studentName: 'Aditya M. (You)',
       studentRoll: 'IT24-042',
       semester: 'Semester 5',
       eventName: '',
@@ -237,9 +237,13 @@ export const ActivitySubmissionModal = ({ isOpen, onClose, onActivityAdded }) =>
                       onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
                     >
                       <option>Semester 1</option>
+                      <option>Semester 2</option>
                       <option>Semester 3</option>
+                      <option>Semester 4</option>
                       <option>Semester 5</option>
+                      <option>Semester 6</option>
                       <option>Semester 7</option>
+                      <option>Semester 8</option>
                     </select>
                   </div>
                 </div>

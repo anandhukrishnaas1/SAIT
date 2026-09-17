@@ -143,27 +143,27 @@ export const CommandPalette = ({
     {
       id: 'sec-faculty',
       title: 'Faculty & Administration Directory',
-      subtitle: 'Distinguished professors, Head of Division Dr. Daleesha, research labs & staff',
+      subtitle: 'Distinguished professors, HoD Prof. Dr. Santhosh Kumar, Coordinator Dr. Shelbi & faculty',
       href: '#faculty',
       tag: 'Section',
       icon: User,
       iconColor: 'var(--brand-primary)',
-      keywords: 'faculty professors professor teachers teacher hod head of department staff administration directory daleesha research'
+      keywords: 'faculty professors professor teachers teacher hod head of department staff administration directory santhosh shelbi daleesha research'
     },
     {
       id: 'sec-notices',
       title: 'Department Notices & Circulars',
-      subtitle: 'Official exam timetables, placement drives, deadlines & campus circulars',
+      subtitle: 'Academic circulars, timetable updates, exams & official announcements',
       href: '#announcements',
       tag: 'Section',
       icon: Bell,
       iconColor: '#f59e0b',
-      keywords: 'notices notice announcements announcement circulars circular deadlines timetable time table exam schedule updates alerts'
+      keywords: 'notices circulars announcements updates timetable exams schedule cusat administration'
     },
     {
       id: 'sec-alumni',
-      title: 'Alumni Network & Global Mentorship',
-      subtitle: 'Distinguished graduates at Google, Microsoft, Meta, Cisco and leading tech ventures',
+      title: 'Distinguished Alumni Network',
+      subtitle: 'CUSAT IT alumni at Google, Microsoft, Stanford, AWS & venture startups',
       href: '#alumni',
       tag: 'Section',
       icon: Award,
@@ -173,12 +173,12 @@ export const CommandPalette = ({
     {
       id: 'sec-association',
       title: 'SAIT Student Association & Leadership',
-      subtitle: 'Executive Council, President Rohit Nair, technical wings & club coordinators',
+      subtitle: 'Executive Council, President Mrudul Mathews, technical wings & club coordinators',
       href: '#association',
       tag: 'Section',
       icon: Users,
       iconColor: 'var(--brand-accent)',
-      keywords: 'association sait team executive leadership council president secretary committee office bearers student body'
+      keywords: 'association sait team executive leadership council president mrudul trisha adwaith akash hiba abhinav secretary committee office bearers student body'
     },
     {
       id: 'sec-admissions',

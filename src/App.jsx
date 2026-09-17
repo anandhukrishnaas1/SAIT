@@ -1,3 +1,10 @@
+/**
+ * SAIT Web Application
+ * Copyright (c) 2024-2026 Anandhu Krishna A S. All Rights Reserved.
+ * Proprietary source code. Unauthorized reproduction, modification,
+ * distribution, or public display of this codebase without explicit permission is strictly prohibited.
+ */
+
 import React, { useState, useEffect } from 'react';
 import './styles/mobile-animations.css';
 import { Navbar } from './components/Navbar';
@@ -146,7 +153,7 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('sait_activities', JSON.stringify(activities));
     
-    // Update Anandhu's points dynamically based on verified activities
+    // Update current user's points dynamically based on verified activities
     const myVerifiedPoints = activities
       .filter(a => a.studentName.includes('(You)') && a.status === 'Verified')
       .reduce((sum, item) => sum + (item.points || 0), 0);

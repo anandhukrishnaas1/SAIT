@@ -511,38 +511,46 @@
 
   .faculty-cute-card {
     padding: 0.85rem 0.9rem !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
+    gap: 0.85rem !important;
   }
 
-  .faculty-cute-avatar {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 12px !important;
+  .faculty-card-left-full {
+    flex: 0 0 115px !important;
+    width: 115px !important;
   }
 
-  .faculty-cute-name {
-    font-size: 0.88rem !important;
+  .faculty-portrait-frame-full {
+    min-height: 160px !important;
+    border-radius: 10px !important;
   }
 
-  .faculty-cute-role {
+  .faculty-full-name {
+    font-size: 0.9rem !important;
+  }
+
+  .faculty-full-role {
     font-size: 0.70rem !important;
   }
 
-  .faculty-cute-quals {
-    font-size: 0.67rem !important;
+  .faculty-full-quals {
+    font-size: 0.64rem !important;
   }
 
-  .faculty-cute-footer {
-    flex-wrap: wrap !important;
+  .faculty-card-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
     gap: 0.35rem !important;
   }
 
-  .faculty-email-pill {
-    font-size: 0.66rem !important;
-    padding: 0.15rem 0.45rem !important;
+  .faculty-location-row {
     max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+  }
+
+  .faculty-email-action-btn {
+    font-size: 0.66rem !important;
+    padding: 0.22rem 0.5rem !important;
+    max-width: 100% !important;
   }
 
   /* ── Campus Events ── */

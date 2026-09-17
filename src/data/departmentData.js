@@ -92,39 +92,39 @@ export const departmentData = {
   faculty: [
     {
       id: "fac-1",
-      name: "Dr. Daleesha M. Viswanathan",
+      name: "Prof. Dr. Santhosh Kumar",
       role: "Head of the Department & Professor",
-      qualifications: "Ph.D., M.Tech (Computer Science), B.Tech",
-      domain: "Distributed Systems, High Performance Computing, Data Mining",
-      email: "hod_it@cusat.ac.in",
-      office: "IT Block Room 201",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
-      featured: true,
-      publications: 34
-    },
-    {
-      id: "fac-2",
-      name: "Dr. Santosh Kumar",
-      role: "Professor & Research Coordinator",
       qualifications: "Ph.D., M.Tech, Postdoc (Singapore)",
       domain: "Artificial Intelligence, Deep Learning, Computer Vision",
       email: "santoshk@cusat.ac.in",
-      office: "AI Innovation Lab 102",
-      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+      office: "IT Block Room 201 / AI Lab 102",
+      avatar: "/img/people/hod.jpg",
       featured: true,
       publications: 48
     },
     {
-      id: "fac-3",
-      name: "Prof. Anitha Susan",
-      role: "Associate Professor & SAIT Staff Coordinator",
-      qualifications: "M.Tech (Software Eng), B.Tech (IT)",
-      domain: "Cyber Security, Cryptography, Blockchain Protocols",
-      email: "anithasusan@cusat.ac.in",
-      office: "IT Staff Room 204",
-      avatar: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80",
+      id: "fac-2",
+      name: "Prof. Dr. Shelbi Joseph",
+      role: "Professor & SAIT Staff Coordinator",
+      qualifications: "Ph.D., M.Tech (Computer Science), B.Tech",
+      domain: "Cyber Security, Cryptography, Machine Learning, Data Analytics",
+      email: "shelbij@cusat.ac.in",
+      office: "IT Block Room 203",
+      avatar: "/img/people/shelbi.jpg",
       featured: true,
-      publications: 22
+      publications: 28
+    },
+    {
+      id: "fac-3",
+      name: "Dr. Daleesha M. Viswanathan",
+      role: "Professor & SAIT Staff Co-coordinator",
+      qualifications: "Ph.D., M.Tech (Computer Science), B.Tech",
+      domain: "Distributed Systems, High Performance Computing, Data Mining",
+      email: "daleesha@cusat.ac.in",
+      office: "IT Block Room 205",
+      avatar: "/img/people/daleesha.jpg",
+      featured: true,
+      publications: 34
     },
     {
       id: "fac-4",
@@ -134,7 +134,7 @@ export const departmentData = {
       domain: "Cloud Architecture, DevOps, Microservices, Kubernetes",
       email: "rajeshv@cusat.ac.in",
       office: "Cloud Computing Lab 305",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      avatar: "/img/avatars/avatar_rajesh_m.svg",
       featured: false,
       publications: 19
     },
@@ -146,7 +146,7 @@ export const departmentData = {
       domain: "Natural Language Processing, Full Stack Systems, UX Research",
       email: "meeran@cusat.ac.in",
       office: "IT Block Room 206",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      avatar: "/img/avatars/avatar_meera_f.svg",
       featured: false,
       publications: 15
     },
@@ -158,7 +158,7 @@ export const departmentData = {
       domain: "Embedded Systems, Edge Computing, Linux Kernel Architecture",
       email: "arunk@cusat.ac.in",
       office: "Networks Lab 104",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      avatar: "/img/avatars/avatar_arun_m.svg",
       featured: false,
       publications: 11
     }

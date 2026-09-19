@@ -87,8 +87,11 @@ export const HeroSection = ({
         <div className="hero-content-wrapper">
           <h1 className="hero-title">
             <LetterReveal delay={0.08} staggerMs={24}>
-              Where Code <br />
-              Meets <span className="highlight-blue">Impact.</span>
+              India's <br />
+              <span className="hero-giant-num">
+                1<sup className="hero-ordinal">st</sup>
+              </span> <br />
+              B.Tech in IT.
             </LetterReveal>
           </h1>
 
@@ -99,10 +102,7 @@ export const HeroSection = ({
               <span className="hero-institution-name">SOE CUSAT</span>.
             </span>
             <span className="hero-sub-line">
-              Fostering student-led innovation, national hackathons &amp; open-source labs,
-            </span>
-            <span className="hero-sub-line">
-              bridging academic foundations with product engineering and global careers.
+              Pioneering student-led innovation, national hackathons, and real-world engineering.
             </span>
           </p>
 

@@ -25,15 +25,6 @@ export const AboutSection = () => {
         {/* Silver Chrome Section Header */}
         <div className="section-header-row" style={{ marginBottom: '1.5rem' }}>
           <div>
-            <div style={{ marginBottom: '0.45rem' }}>
-              <span className="about-chrome-badge">
-                <Building2 size={13} style={{ color: '#ffffff' }} /> Division Overview
-                <span className="about-chrome-badge-dot">•</span>
-                <span className="about-chrome-badge-tag">Est. 1995</span>
-                <span className="about-chrome-badge-dot">•</span>
-                <span className="about-chrome-badge-tag" style={{ color: '#cbd5e1' }}>Software Engineering Block</span>
-              </span>
-            </div>
             <h2 className="section-title" style={{ fontSize: '1.85rem', marginBottom: '0.3rem', letterSpacing: '-0.02em', textShadow: '0 2px 14px rgba(0,0,0,0.9)' }}>
               <LetterReveal>
                 About Department &amp; <span className="about-chrome-title-text brand-gradient-text">SAIT</span>
